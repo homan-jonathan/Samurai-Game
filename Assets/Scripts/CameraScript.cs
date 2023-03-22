@@ -45,8 +45,7 @@ public class CameraScript : MonoBehaviour
          _transform.RotateAround(_playerTransform.position, Vector3.up, _playerScript._rotAmt);*/
         Vector3 newPosn = _playerTransform.position
              + Quaternion.Euler(0, _playerScript._rotAmt, 0) * _offset;
-
-        _transform.position = Vector3.SmoothDamp(_transform.position, newPosn, ref _cameraVelocity, .1f);
+                 _transform.position = Vector3.SmoothDamp(_transform.position, newPosn, ref _cameraVelocity, .1f);
 
         _transform.LookAt(_playerTransform);
 
