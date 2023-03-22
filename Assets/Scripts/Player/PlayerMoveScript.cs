@@ -14,6 +14,9 @@ public class PlayerMoveScript : MonoBehaviour
     public float speed = 5.0F;
     public float jumpSpeed = 8.0F;
     public float gravity = 20.0F;
+
+    public bool isCrouched = false;
+    public bool isMoving = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,19 +27,6 @@ public class PlayerMoveScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /* if (_charCon.isGrounded)
-         {
-             _ySpeed = -1f;
-             if (Input.GetKeyDown(KeyCode.Space))
-             {
-                 _ySpeed = _JUMP_SPEED;
-             }
-         }
-         else
-         {
-             _ySpeed += Time.deltaTime * _GRAVITY;
-         }*/
-
         moveDirection = new Vector3(speed * Input.GetAxis("Horizontal"), 0, speed * Input.GetAxis("Vertical"));
         _transform.Translate(moveDirection * speed * Time.deltaTime, Space.World);
 
@@ -46,5 +36,26 @@ public class PlayerMoveScript : MonoBehaviour
             transform.rotation = Quaternion.RotateTowards(_transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
         }
         _charCon.Move(moveDirection * Time.deltaTime);
+
+        if(Input.GetKeyDown(KeyCode.Q))
+        {
+            if (!isCrouched)
+            {
+                isCrouched = true;
+            }
+            else
+            {
+                isCrouched = false;
+            }
+        } 
+
+        if (_charCon.velocity != Vector3.forward || _charCon.velocity != Vector3.zero)
+        {
+            isMoving = true;
+        }
+        else
+        {
+            isMoving = false;
+        }
     }
 }
