@@ -500,6 +500,21 @@ MonoBehaviour:
   speed: 5
   jumpSpeed: 8
   gravity: 20
+  isCrouched: 0
+  isMoving: 0
+--- !u!114 &1909518720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1909518718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7471804c515629c4f93106bfed069be7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _player: {fileID: 1909518718}
 --- !u!136 &1909518721
 CapsuleCollider:
   m_ObjectHideFlags: 0
