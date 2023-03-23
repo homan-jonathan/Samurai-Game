@@ -53,7 +53,7 @@ public class PlayerMoveScript : MonoBehaviour
         }
         _charCon.Move(moveDirection * Time.deltaTime);
 
-        if(Input.GetKeyDown(KeyCode.Q))
+        if(Input.GetKeyDown(KeyCode.LeftControl))
         {
             if (!isCrouched)
             {
