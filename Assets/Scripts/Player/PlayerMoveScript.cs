@@ -53,7 +53,23 @@ public class PlayerMoveScript : MonoBehaviour
         }
         _charCon.Move(moveDirection * Time.deltaTime);
 
-        if(Input.GetKeyDown(KeyCode.Q))
+        //transform.rotation = transform.rotation * Quaternion.Euler(0, Camera.main.transform.localRotation.y, 0);
+        /*float val = Camera.main.transform.localRotation.eulerAngles.y;
+        print(val);
+        if (val > 180)
+        {
+            transform.rotation = Quaternion.Euler(0, val - 360, 0);
+        }
+        else
+        {
+            transform.rotation = Quaternion.Euler(0, Camera.main.transform.localRotation.eulerAngles.y, 0);
+        }*/
+        /*Vector3 forwardVector = Camera.main.transform.localRotation.y * Vector3.forward;
+        float radianAngle = Mathf.Atan2(forwardVector.z, forwardVector.x);
+        float degreeAngle = radianAngle * Mathf.Rad2Deg;*/
+        //transform.rotation = Quaternion.Euler(0, degreeAngle, 0);
+
+        /*if(Input.GetKeyDown(KeyCode.Q))
         {
             if (!isCrouched)
             {
@@ -63,26 +79,9 @@ public class PlayerMoveScript : MonoBehaviour
             {
                 isCrouched = false;
             }
-        } 
+        } */
 
-        /*if (moveDirection != Vector3.forward || moveDirection != Vector3.zero)
-        {
-            isMoving = true;
-        }
-        else
-        {
-            isMoving = false;
-        }*/
-        /*if(_transform.position != lastPos)
-        {
-            isMoving = true;
-        }
-        else
-        {
-            isMoving = false;
-        }
-        lastPos = _transform.position;*/
-        if(moveDirection != Vector3.zero)
+        if (moveDirection != Vector3.zero)
         {
             isMoving = true;
         }
