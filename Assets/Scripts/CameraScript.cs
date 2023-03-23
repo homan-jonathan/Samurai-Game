@@ -10,7 +10,7 @@ public class CameraScript : MonoBehaviour
 
     enum Mode { FollowCam, OrbitCam }
     Mode _mode;
-    float _rotAmt = 0;
+    public float _rotAmt = 0;
     public float ROTATION_SPEED = 1;
 
     Vector3 _cameraVelocity = Vector3.zero;

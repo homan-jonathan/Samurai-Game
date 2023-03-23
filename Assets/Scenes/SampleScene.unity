@@ -1598,6 +1598,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerTransform: {fileID: 1792977566}
   _headTransform: {fileID: 1792992858}
+  _rotAmt: 0
   ROTATION_SPEED: 5
 --- !u!4 &965505203 stripped
 Transform:
@@ -3164,5 +3165,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1783183497022859649, guid: f127b226a0712f0458b2f491e6b96618, type: 3}
+      propertyPath: _camera
+      value: 
+      objectReference: {fileID: 963194228}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f127b226a0712f0458b2f491e6b96618, type: 3}
