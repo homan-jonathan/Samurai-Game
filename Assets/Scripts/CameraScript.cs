@@ -4,24 +4,25 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
-    public GameObject _player;
-    Transform _playerTransform;
+    public Transform _playerTransform;
+    public Transform _headTransform;
     Transform _transform;
 
     enum Mode { FollowCam, OrbitCam }
     Mode _mode;
     float _rotAmt = 0;
+    public float ROTATION_SPEED = 1;
 
     Vector3 _cameraVelocity = Vector3.zero;
-    Vector3 _offset = new Vector3(0, 3, -3);
+    Vector3 _offset;
     // Start is called before the first frame update
     void Start()
     {
         _mode = Mode.OrbitCam;
-        _playerTransform = _player.transform;
         _transform = transform;
-        _transform.position = _playerTransform.position + _offset;
-        _transform.LookAt(_playerTransform);
+        _offset = _transform.position;
+
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
@@ -55,19 +56,16 @@ public class CameraScript : MonoBehaviour
     }
 
     void FollowCam() {
+        _rotAmt = _playerTransform.rotation.eulerAngles.y;
 
+        _transform.LookAt(_headTransform);
     }
 
     void OrbitCam() {
-        if (Input.GetKey(KeyCode.E))
-        {
-            _rotAmt++;
-        }
-        if (Input.GetKey(KeyCode.Q))
-        {
-            _rotAmt--;
+        if (Input.GetMouseButton(1)) { //right mouse button
+            _rotAmt += Input.GetAxis("Mouse X") * ROTATION_SPEED;
         }
 
-        _transform.LookAt(_playerTransform);
+        _transform.LookAt(_headTransform);
     }
 }
