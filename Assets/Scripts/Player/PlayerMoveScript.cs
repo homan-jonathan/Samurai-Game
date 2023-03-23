@@ -73,7 +73,7 @@ public class PlayerMoveScript : MonoBehaviour
         {
             isMoving = false;
         }*/
-        if(_transform.position != lastPos)
+        /*if(_transform.position != lastPos)
         {
             isMoving = true;
         }
@@ -81,6 +81,14 @@ public class PlayerMoveScript : MonoBehaviour
         {
             isMoving = false;
         }
-        lastPos = _transform.position;
+        lastPos = _transform.position;*/
+        if(moveDirection != Vector3.zero)
+        {
+            isMoving = true;
+        }
+        else
+        {
+            isMoving = false;
+        }
     }
 }
