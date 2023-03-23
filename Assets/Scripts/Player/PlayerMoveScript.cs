@@ -53,36 +53,32 @@ public class PlayerMoveScript : MonoBehaviour
         }
         _charCon.Move(moveDirection * Time.deltaTime);
 
-        if(Input.GetKeyDown(KeyCode.LeftControl))
+        if(Input.GetKey(KeyCode.LeftControl))
         {
-            if (!isCrouched)
-            {
-                isCrouched = true;
-            }
-            else
-            {
-                isCrouched = false;
-            }
+            isCrouched = true;  
         } 
-
-        /*if (moveDirection != Vector3.forward || moveDirection != Vector3.zero)
-        {
-            isMoving = true;
-        }
         else
         {
-            isMoving = false;
-        }*/
-        /*if(_transform.position != lastPos)
-        {
-            isMoving = true;
+            isCrouched = false;
         }
-        else
-        {
-            isMoving = false;
-        }
-        lastPos = _transform.position;*/
-        if(moveDirection != Vector3.zero)
+/*if (moveDirection != Vector3.forward || moveDirection != Vector3.zero)
+{
+    isMoving = true;
+}
+else
+{
+    isMoving = false;
+}*/
+/*if(_transform.position != lastPos)
+{
+    isMoving = true;
+}
+else
+{
+    isMoving = false;
+}
+lastPos = _transform.position;*/
+if (moveDirection != Vector3.zero)
         {
             isMoving = true;
         }
