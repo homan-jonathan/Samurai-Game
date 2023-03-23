@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerAnimScript : MonoBehaviour
 {
-    Animator _anim;
+    private Animator _anim;
     public GameObject _player;
     PlayerMoveScript _playerScript;
     // Start is called before the first frame update
@@ -19,20 +19,20 @@ public class PlayerAnimScript : MonoBehaviour
     {
         if(_playerScript.isCrouched)
         {
-            _anim.SetBool("Crouched", true);
+            _anim.SetBool("isCrouched", true);
         }
         else
         {
-            _anim.SetBool("Crouched", false);
+            _anim.SetBool("isCrouched", false);
         }
 
         if(_playerScript.isMoving)
         {
-            _anim.SetBool("Moving", true);
+            _anim.SetBool("isMoving", true);
         }
         else
         {
-            _anim.SetBool("Moving", false);
+            _anim.SetBool("isMoving", false);
         }
     }
 }
