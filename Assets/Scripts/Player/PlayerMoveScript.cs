@@ -7,6 +7,7 @@ public class PlayerMoveScript : MonoBehaviour
 {
     CharacterController _charCon;
     public float _rotAmt = 0;
+    public Transform _camera;
     Transform _transform;
 
     private Vector3 moveDirection = Vector3.zero;
@@ -43,7 +44,10 @@ public class PlayerMoveScript : MonoBehaviour
         {
             speed = WALK_MOVESPEED;
         }
-        moveDirection = new Vector3(speed * Input.GetAxis("Horizontal"), 0, speed * Input.GetAxis("Vertical"));
+
+
+        float rotationRelativeToCamera = _camera.rotation.eulerAngles.y;
+        moveDirection = Quaternion.Euler(0, rotationRelativeToCamera, 0) * new Vector3(speed * Input.GetAxis("Horizontal"), 0, speed * Input.GetAxis("Vertical"));
         _transform.Translate(moveDirection * speed * Time.deltaTime, Space.World);
 
         if (moveDirection != Vector3.zero)
