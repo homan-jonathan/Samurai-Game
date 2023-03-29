@@ -20,7 +20,7 @@ public class CameraScript : MonoBehaviour
     {
         _mode = Mode.OrbitCam;
         _transform = transform;
-        _offset = _transform.position;
+        _offset = _transform.position - _playerTransform.position;
 
         Cursor.lockState = CursorLockMode.Locked;
     }
