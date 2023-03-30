@@ -18,23 +18,6 @@ public class PlayerAnimScript : MonoBehaviour
     void Update()
     {
         _anim.SetBool("isCrouched", _playerScript.IsCrouched());
-        _anim.SetBool("isMoving", _playerScript.IsMoving());
-        /*if(_playerScript.isCrouched)
-        {
-            _anim.SetBool("isCrouched", true);
-        }
-        else
-        {
-            _anim.SetBool("isCrouched", false);
-        }*/
-
-        /*if (_playerScript.isMoving)
-        {
-            _anim.SetBool("isMoving", true);
-        }
-        else
-        {
-            _anim.SetBool("isMoving", false);
-        }*/
+        _anim.SetBool("isWalking", _playerScript.IsWalking());
     }
 }
