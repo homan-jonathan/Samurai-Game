@@ -45,7 +45,7 @@ public class CameraScript : MonoBehaviour
         }
 
         //Move the camera
-        if (sinceTransition < 0)
+        if (sinceTransition <= 0)
         {
             Vector3 newPosn = _playerTransform.position
                  + Quaternion.Euler(_rotAmtY, _rotAmtX, 0) * _offset;

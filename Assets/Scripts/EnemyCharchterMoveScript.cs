@@ -13,6 +13,7 @@ public class EnemyCharchterMoveScript : MonoBehaviour
 
     public Transform _headTransform;
     public Transform _playerTransform;
+    public PlayerMoveScript _playerMoveScript;
     [Range(0, 360)]
     public float VIEW_ANGLE;
     public float MAX_VIEW_DISTANCE = 1;
@@ -51,9 +52,9 @@ public class EnemyCharchterMoveScript : MonoBehaviour
         Vector3 directionToPlayer = (_playerTransform.position - transform.position).normalized;
 
         float viewDistanceMultiplier = 1;
-        if (_playerTransform.GetComponent<PlayerMoveScript>().IsCrouched()) {
+        if (_playerMoveScript.IsCrouched()) {
             viewDistanceMultiplier = PLAYER_CROUCHING_MULTIPLIER;
-        } else if (_playerTransform.GetComponent<PlayerMoveScript>().IsRunning()) {
+        } else if (_playerMoveScript.IsRunning()) {
             viewDistanceMultiplier = PLAYER_RUNNING_MULTIPLIER;
         }
 
