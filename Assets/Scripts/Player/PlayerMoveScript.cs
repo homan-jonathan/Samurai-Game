@@ -7,7 +7,8 @@ public class PlayerMoveScript : MonoBehaviour
 {
     CharacterController _charCon;
     public float _rotAmt = 0;
-    public Transform _camera;
+    public Transform _cameraTransform;
+    public CameraScript _cameraScript;
     Transform _transform;
 
     private Vector3 moveDirection = Vector3.zero;
@@ -20,9 +21,6 @@ public class PlayerMoveScript : MonoBehaviour
     public float speed;
     public float jumpSpeed = 8.0F;
     public float gravity = 20.0F;
-
-    public bool isCrouched = false;
-    public bool isMoving = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,22 +39,35 @@ public class PlayerMoveScript : MonoBehaviour
         {
             speed = RUN_MOVESPEED;
         } 
-        else if (IsMoving())
+        else if (IsWalking())
         {
             speed = WALK_MOVESPEED;
         }
 
-        float rotationRelativeToCamera = _camera.rotation.eulerAngles.y;
-        moveDirection = Quaternion.Euler(0, rotationRelativeToCamera, 0) * new Vector3(speed * Input.GetAxis("Horizontal"), 0, speed * Input.GetAxis("Vertical"));
+        switch (_cameraScript._mode)
+        {
+            case CameraScript.Mode.OrbitCam:
+                float rotationRelativeToCamera1 = _cameraTransform.rotation.eulerAngles.y;
+                moveDirection = Quaternion.Euler(0, rotationRelativeToCamera1, 0) * new Vector3(speed * Input.GetAxis("Horizontal"), 0, speed * Input.GetAxis("Vertical"));
+
+                if (moveDirection != Vector3.zero)
+                {
+                    Quaternion toRotation1 = Quaternion.LookRotation(moveDirection, Vector3.up);
+                    transform.rotation = Quaternion.RotateTowards(_transform.rotation, toRotation1, rotationSpeed * Time.deltaTime);
+                }
+                break;
+            case CameraScript.Mode.FollowCam:
+                float rotationRelativeToCamera2 = _cameraScript._rotAmtX;
+                moveDirection = Quaternion.Euler(0, rotationRelativeToCamera2, 0) * new Vector3(0, 0, speed * Input.GetAxis("Vertical"));
+
+                Quaternion toRotation2 = Quaternion.Euler(0, rotationRelativeToCamera2 + speed * Input.GetAxis("Horizontal"), 0);
+                transform.rotation = Quaternion.RotateTowards(_transform.rotation, toRotation2, rotationSpeed * Time.deltaTime);
+
+                break;
+        }
         _transform.Translate(moveDirection * speed * Time.deltaTime, Space.World);
 
-        if (moveDirection != Vector3.zero)
-        {
-            Quaternion toRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
-            transform.rotation = Quaternion.RotateTowards(_transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
-        }
         _charCon.Move(moveDirection * Time.deltaTime);
-        
     }
 
     public bool IsCrouched() {
@@ -70,7 +81,7 @@ public class PlayerMoveScript : MonoBehaviour
         }
     }
 
-    public bool IsMoving()
+    public bool IsWalking()
     {
         if (moveDirection != Vector3.zero)
         {
@@ -82,7 +93,7 @@ public class PlayerMoveScript : MonoBehaviour
         }
     }
 
-    bool IsRunning() {
+    public bool IsRunning() {
         if (Input.GetKey(KeyCode.LeftShift))
         {
             return true;
