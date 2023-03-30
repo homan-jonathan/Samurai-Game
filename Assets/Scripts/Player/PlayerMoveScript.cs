@@ -14,7 +14,7 @@ public class PlayerMoveScript : MonoBehaviour
 
     public const float CROUCH_MOVESPEED = 2.0F;
     public const float WALK_MOVESPEED = 4.0F;
-    //public const float RUN_MOVESPEED = 6.0F;
+    public const float RUN_MOVESPEED = 6.0F;
 
     public float rotationSpeed = 720F;
     public float speed;
@@ -23,28 +23,28 @@ public class PlayerMoveScript : MonoBehaviour
 
     public bool isCrouched = false;
     public bool isMoving = false;
-
-    private Vector3 lastPos = Vector3.zero;
     // Start is called before the first frame update
     void Start()
     {
         _charCon = GetComponent<CharacterController>();
         _transform = transform;
-        lastPos = _transform.position;
         speed = WALK_MOVESPEED;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isCrouched)
+        if (IsCrouched())
         {
             speed = CROUCH_MOVESPEED;
-        } else
+        } else if (IsRunning()) 
+        {
+            speed = RUN_MOVESPEED;
+        } 
+        else if (IsMoving())
         {
             speed = WALK_MOVESPEED;
         }
-
 
         float rotationRelativeToCamera = _camera.rotation.eulerAngles.y;
         moveDirection = Quaternion.Euler(0, rotationRelativeToCamera, 0) * new Vector3(speed * Input.GetAxis("Horizontal"), 0, speed * Input.GetAxis("Vertical"));
@@ -56,39 +56,40 @@ public class PlayerMoveScript : MonoBehaviour
             transform.rotation = Quaternion.RotateTowards(_transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
         }
         _charCon.Move(moveDirection * Time.deltaTime);
+        
+    }
 
-        if(Input.GetKey(KeyCode.LeftControl))
+    public bool IsCrouched() {
+        if (Input.GetKey(KeyCode.LeftControl))
         {
-            isCrouched = true;  
-        } 
-        else
-        {
-            isCrouched = false;
-        }
-/*if (moveDirection != Vector3.forward || moveDirection != Vector3.zero)
-{
-    isMoving = true;
-}
-else
-{
-    isMoving = false;
-}*/
-/*if(_transform.position != lastPos)
-{
-    isMoving = true;
-}
-else
-{
-    isMoving = false;
-}
-lastPos = _transform.position;*/
-if (moveDirection != Vector3.zero)
-        {
-            isMoving = true;
+            return true;
         }
         else
         {
-            isMoving = false;
+            return false;
+        }
+    }
+
+    public bool IsMoving()
+    {
+        if (moveDirection != Vector3.zero)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    bool IsRunning() {
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            return true;
+        }
+        else 
+        {
+            return false;
         }
     }
 }
