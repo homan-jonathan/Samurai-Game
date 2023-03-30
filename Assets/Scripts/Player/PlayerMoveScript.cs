@@ -44,11 +44,12 @@ public class PlayerMoveScript : MonoBehaviour
             speed = WALK_MOVESPEED;
         }
 
-        switch (_cameraScript._mode) {
+        switch (_cameraScript._mode)
+        {
             case CameraScript.Mode.OrbitCam:
                 float rotationRelativeToCamera1 = _cameraTransform.rotation.eulerAngles.y;
                 moveDirection = Quaternion.Euler(0, rotationRelativeToCamera1, 0) * new Vector3(speed * Input.GetAxis("Horizontal"), 0, speed * Input.GetAxis("Vertical"));
-                
+
                 if (moveDirection != Vector3.zero)
                 {
                     Quaternion toRotation1 = Quaternion.LookRotation(moveDirection, Vector3.up);

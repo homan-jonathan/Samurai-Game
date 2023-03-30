@@ -19,5 +19,6 @@ public class PlayerAnimScript : MonoBehaviour
     {
         _anim.SetBool("isCrouched", _playerScript.IsCrouched());
         _anim.SetBool("isWalking", _playerScript.IsWalking());
+        _anim.SetBool("isRunning", _playerScript.IsRunning());
     }
 }

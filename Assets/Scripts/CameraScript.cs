@@ -37,38 +37,6 @@ public class CameraScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Update Look at Target
-        _lookAtLocation = new Vector3(_playerTransform.position.x, _lookAtLocation.y, _playerTransform.position.z);
-        if (Mathf.Abs(_playerTransform.position.y - _lookAtLocation.y) > VERTICAL_CAMERA_MOVEMENT)
-        {
-            _lookAtLocation.y = _playerTransform.position.y + Y_LOOKAT_OFFSET;
-        }
-
-        //Move the camera
-        if (sinceTransition <= 0)
-        {
-            Vector3 newPosn = _playerTransform.position
-                 + Quaternion.Euler(_rotAmtY, _rotAmtX, 0) * _offset;
-            _transform.position = newPosn;
-        }
-        else {
-            Vector3 newPosn = _playerTransform.position
-                    + Quaternion.Euler(_rotAmtY, _rotAmtX, 0) * _offset;
-            _transform.position = Vector3.SmoothDamp(_transform.position, newPosn, ref _cameraVelocity, SMOOTH_TIME * Time.deltaTime);
-            sinceTransition -= Time.deltaTime;
-        }
-
-        //Trend Y rotation to 0
-        if (Mathf.Abs(_rotAmtY) > Y_RETURN_SPEED * 2 - .1 && !Input.GetMouseButton(1)) {
-            if (_rotAmtY > 0)
-            {
-                _rotAmtY -= Y_RETURN_SPEED;
-            }
-            else {
-                _rotAmtY += Y_RETURN_SPEED;
-            }
-        }
-
         //Use the specified camera mode
         if (Input.GetKeyDown(KeyCode.C)) {
             if (_mode == Mode.FollowCam)
@@ -84,6 +52,28 @@ public class CameraScript : MonoBehaviour
 
     private void LateUpdate()
     {
+        //Update Look at Target
+        _lookAtLocation = new Vector3(_playerTransform.position.x, _lookAtLocation.y, _playerTransform.position.z);
+        if (Mathf.Abs(_playerTransform.position.y - _lookAtLocation.y) > VERTICAL_CAMERA_MOVEMENT)
+        {
+            _lookAtLocation.y = _playerTransform.position.y + Y_LOOKAT_OFFSET;
+        }
+
+        //Move the camera
+        if (sinceTransition <= 0)
+        {
+            Vector3 newPosn = _playerTransform.position
+                 + Quaternion.Euler(_rotAmtY, _rotAmtX, 0) * _offset;
+            _transform.position = newPosn;
+        }
+        else
+        {
+            Vector3 newPosn = _playerTransform.position
+                    + Quaternion.Euler(_rotAmtY, _rotAmtX, 0) * _offset;
+            _transform.position = Vector3.SmoothDamp(_transform.position, newPosn, ref _cameraVelocity, SMOOTH_TIME * Time.deltaTime);
+            sinceTransition -= Time.deltaTime;
+        }
+
         switch (_mode) {
             case Mode.FollowCam:
                 FollowCam();
@@ -91,6 +81,19 @@ public class CameraScript : MonoBehaviour
             case Mode.OrbitCam:
                 OrbitCam();
                 break;
+        }
+
+        //Trend Y rotation to 0
+        if (Mathf.Abs(_rotAmtY) > Y_RETURN_SPEED * 2 - .1 && !Input.GetMouseButton(1))
+        {
+            if (_rotAmtY > 0)
+            {
+                _rotAmtY -= Y_RETURN_SPEED;
+            }
+            else
+            {
+                _rotAmtY += Y_RETURN_SPEED;
+            }
         }
     }
 
