@@ -19,6 +19,9 @@ public class EnemyCharchterMoveScript : MonoBehaviour
     public float MAX_VIEW_DISTANCE = 1;
     public float PLAYER_CROUCHING_MULTIPLIER = .25f;
     public float PLAYER_RUNNING_MULTIPLIER = 1.5f;
+
+    public bool isWalking = false;
+    public bool isRunning = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,10 +44,15 @@ public class EnemyCharchterMoveScript : MonoBehaviour
     void SetNewWaypoint() {
         waypointIndx = (waypointIndx + 1) % waypoints.Length;
         agent.SetDestination(waypoints[waypointIndx].position);
+        isRunning = false;
+        isWalking = true;
+        
     }
 
     void PursuePlayer() {
         agent.SetDestination(_playerTransform.position);
+        isRunning = true;
+        isWalking = false;
     }
 
     bool CanSeePlayer() {
@@ -87,4 +95,5 @@ public class EnemyCharchterMoveScript : MonoBehaviour
 
         return false;
     }
+
 }
