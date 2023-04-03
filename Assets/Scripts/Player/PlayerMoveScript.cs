@@ -71,7 +71,7 @@ public class PlayerMoveScript : MonoBehaviour
     }
 
     public bool IsCrouched() {
-        if (Input.GetKey(KeyCode.LeftControl))
+        if (Input.GetKey(Setting.crouch))
         {
             return true;
         }
@@ -94,7 +94,7 @@ public class PlayerMoveScript : MonoBehaviour
     }
 
     public bool IsRunning() {
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(Setting.sprint))
         {
             return true;
         }
