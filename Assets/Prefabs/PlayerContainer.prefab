@@ -1080,7 +1080,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3378219447058907272
 Transform:
   m_ObjectHideFlags: 0
@@ -2058,7 +2058,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.4
+  m_Radius: 0.3
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
@@ -2074,7 +2074,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 2
-  m_Radius: 0.5
+  m_Radius: 0.3
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -2114,10 +2114,10 @@ MonoBehaviour:
   _rotAmt: 0
   _cameraTransform: {fileID: 4344790299875894499}
   _cameraScript: {fileID: 4344790299875894498}
+  JUMP_HEIGHT: 10
+  GRAVITY: 20
   rotationSpeed: 360
   speed: 5
-  jumpSpeed: 8
-  gravity: 20
 --- !u!114 &3598364532773958366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2144,6 +2144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _coinBag: {fileID: 6640268307204221406}
+  _hasCoins: 0
 --- !u!1 &5010772290406411069
 GameObject:
   m_ObjectHideFlags: 0

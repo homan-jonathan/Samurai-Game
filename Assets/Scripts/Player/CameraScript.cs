@@ -30,15 +30,21 @@ public class CameraScript : MonoBehaviour
         _transform = transform;
         _offset = _transform.position - _playerTransform.position;
         _lookAtLocation = _playerTransform.position + new Vector3(0, Y_LOOKAT_OFFSET, 0);
-
+    
         Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Time.timeScale == 0)
+        {
+            return;
+        }
+
+
         //Use the specified camera mode
-        if (Input.GetKeyDown(KeyCode.C)) {
+        if (Input.GetKeyDown(KeyBinding.cameraMode)) {
             if (_mode == Mode.FollowCam)
             {
                 _mode = Mode.OrbitCam;
@@ -46,12 +52,17 @@ public class CameraScript : MonoBehaviour
             else {
                 _mode = Mode.FollowCam;
             }
-            sinceTransition = SMOOTH_TIME * Time.deltaTime;
+            sinceTransition = SMOOTH_TIME;
         }
     }
 
     private void LateUpdate()
     {
+        if (Time.timeScale == 0)
+        {
+            return;
+        }
+
         //Update Look at Target
         _lookAtLocation = new Vector3(_playerTransform.position.x, _lookAtLocation.y, _playerTransform.position.z);
         if (Mathf.Abs(_playerTransform.position.y - _lookAtLocation.y) > VERTICAL_CAMERA_MOVEMENT)
