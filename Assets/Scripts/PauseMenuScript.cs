@@ -37,6 +37,7 @@ public class PauseMenuScript : MonoBehaviour
 
     public void OnHomeClicked()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(Scene.titleScene);
     }
 

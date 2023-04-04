@@ -16,11 +16,12 @@ public class PlayerMoveScript : MonoBehaviour
     public const float CROUCH_MOVESPEED = 2.0F;
     public const float WALK_MOVESPEED = 4.0F;
     public const float RUN_MOVESPEED = 6.0F;
+    public float JUMP_HEIGHT = 8.0F;
+    public float GRAVITY = 20.0F;
+    float _ySpeed = 0;
 
     public float rotationSpeed = 720F;
     public float speed;
-    public float jumpSpeed = 8.0F;
-    public float gravity = 20.0F;
     // Start is called before the first frame update
     void Start()
     {
@@ -44,6 +45,21 @@ public class PlayerMoveScript : MonoBehaviour
             speed = WALK_MOVESPEED;
         }
 
+
+        //ref passed by reference and allows modification of said thing
+        if (_charCon.isGrounded)
+        {
+            _ySpeed = -1;
+            if (Input.GetKeyDown(KeyBinding.jump))
+            {
+                _ySpeed = JUMP_HEIGHT;
+            }
+        }
+        else
+        {
+            _ySpeed -= Time.deltaTime * GRAVITY;
+        }
+
         switch (_cameraScript._mode)
         {
             case CameraScript.Mode.OrbitCam:
@@ -65,13 +81,13 @@ public class PlayerMoveScript : MonoBehaviour
 
                 break;
         }
-        _transform.Translate(moveDirection * speed * Time.deltaTime, Space.World);
+        _transform.Translate(moveDirection * speed * Time.deltaTime + new Vector3(0, _ySpeed, 0) * Time.deltaTime, Space.World);
 
-        _charCon.Move(moveDirection * Time.deltaTime);
+        _charCon.Move(moveDirection * Time.deltaTime + new Vector3(0, _ySpeed, 0) * Time.deltaTime);
     }
 
     public bool IsCrouched() {
-        if (Input.GetKey(Setting.crouch))
+        if (Input.GetKey(KeyBinding.crouch))
         {
             return true;
         }
@@ -84,7 +100,7 @@ public class PlayerMoveScript : MonoBehaviour
     public bool IsWalking()
     {
         if (moveDirection != Vector3.zero)
-        {
+        {   
             return true;
         }
         else
@@ -94,7 +110,7 @@ public class PlayerMoveScript : MonoBehaviour
     }
 
     public bool IsRunning() {
-        if (Input.GetKey(Setting.sprint))
+        if (Input.GetKey(KeyBinding.sprint))
         {
             return true;
         }

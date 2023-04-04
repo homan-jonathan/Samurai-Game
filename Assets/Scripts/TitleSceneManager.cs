@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class TitleSceneManager : MonoBehaviour
 {
+    public GameObject titleScreen;
+    public GameObject settingsScreen;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +23,18 @@ public class TitleSceneManager : MonoBehaviour
         SceneManager.LoadScene(Scene.gameScene);
     }
 
-    public void OnHowToPlayClicked() {
+    public void OnHowToPlayButtonClicked() {
         SceneManager.LoadScene(Scene.howToPlayScene);
+    }
+
+    public void OnSettingsButtonClicked() {
+        titleScreen.SetActive(false);
+        settingsScreen.SetActive(true);
+    }
+
+    public void OnBackButtonClicked()
+    {
+        titleScreen.SetActive(true);
+        settingsScreen.SetActive(false);
     }
 }

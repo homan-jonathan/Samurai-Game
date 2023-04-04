@@ -1,16 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameSceneManagerScript : MonoBehaviour
 {
     public GameObject _pauseMenu;
-    bool isPaused = false;
+    public bool isPaused = false;
     // Start is called before the first frame update
     void Start()
     {
-
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
@@ -25,7 +26,7 @@ public class GameSceneManagerScript : MonoBehaviour
         isPaused = !isPaused;
         _pauseMenu.SetActive(isPaused);
 
-        float timeScale = isPaused ? 0 : 1;
-        Time.timeScale = timeScale;
+        Cursor.lockState = isPaused ? CursorLockMode.None : CursorLockMode.Locked;
+        Time.timeScale = isPaused ? 0 : 1;
     }
 }
