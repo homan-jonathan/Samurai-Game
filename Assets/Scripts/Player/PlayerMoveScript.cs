@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.ConstrainedExecution;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class PlayerMoveScript : MonoBehaviour
 {
@@ -30,6 +31,14 @@ public class PlayerMoveScript : MonoBehaviour
     private bool isJumping = false;
     private bool isGrounded = true;
     private bool isFalling = false;
+
+    //variables for wallclimbing
+    public float open = 100f;
+    public float range = 1f;
+    public bool TouchingWall = false;
+    public float UpwardSpeed = 3.3f;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,6 +52,8 @@ public class PlayerMoveScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Shoot();
+
         if (IsCrouched())
         {
             ableToJump = false; 
@@ -110,6 +121,21 @@ public class PlayerMoveScript : MonoBehaviour
 
         _charCon.Move(moveDirection * Time.deltaTime + new Vector3(0, _ySpeed, 0) * Time.deltaTime);
     }
+
+    /*void Shoot()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(_transform.position, _transform.forward, out hit, range))
+        {
+            Debug.Log(hit.transform.name);
+
+            Target target = hit.transform.GetComponent<Target>();
+            if (target != null)
+            {
+                TouchingWall = true;
+            }
+        }
+    }*/
 
     public bool IsCrouched() {
         if (Input.GetKey(KeyBinding.crouch))
