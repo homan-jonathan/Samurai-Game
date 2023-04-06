@@ -44,7 +44,7 @@ public class CameraScript : MonoBehaviour
 
 
         //Use the specified camera mode
-        if (Input.GetKeyDown(KeyBinding.cameraMode())) {
+        if (Input.GetKeyDown(KeyBinding.cameraMode)) {
             if (_mode == Mode.FollowCam)
             {
                 _mode = Mode.OrbitCam;

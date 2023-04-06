@@ -50,7 +50,7 @@ public class PlayerMoveScript : MonoBehaviour
         if (_charCon.isGrounded)
         {
             _ySpeed = -1;
-            if (Input.GetKeyDown(KeyBinding.jump()))
+            if (Input.GetKeyDown(KeyBinding.jump))
             {
                 _ySpeed = JUMP_HEIGHT;
             }
@@ -87,7 +87,7 @@ public class PlayerMoveScript : MonoBehaviour
     }
 
     public bool IsCrouched() {
-        if (Input.GetKey(KeyBinding.crouch()))
+        if (Input.GetKey(KeyBinding.crouch))
         {
             return true;
         }
@@ -110,7 +110,7 @@ public class PlayerMoveScript : MonoBehaviour
     }
 
     public bool IsRunning() {
-        if (Input.GetKey(KeyBinding.sprint()))
+        if (Input.GetKey(KeyBinding.sprint))
         {
             return true;
         }

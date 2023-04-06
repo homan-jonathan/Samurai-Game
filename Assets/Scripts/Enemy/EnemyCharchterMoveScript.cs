@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyMoveScript : MonoBehaviour
+public class EnemyCharchterMoveScript : MonoBehaviour
 {
 
     NavMeshAgent agent;
@@ -35,47 +35,39 @@ public class EnemyMoveScript : MonoBehaviour
         {
             SetNewWaypoint();
         }
-        if (CanSeePlayer())
-        {
+        if (CanSeePlayer()) {
             PursuePlayer();
         }
     }
 
-    void SetNewWaypoint()
-    {
+    void SetNewWaypoint() {
         waypointIndx = (waypointIndx + 1) % waypoints.Length;
         agent.SetDestination(waypoints[waypointIndx].position);
         isRunning = false;
         isWalking = true;
-
+        
     }
 
-    void PursuePlayer()
-    {
+    void PursuePlayer() {
         agent.SetDestination(_playerTransform.position);
         isRunning = true;
         isWalking = false;
     }
 
-    bool CanSeePlayer()
-    {
+    bool CanSeePlayer() {
         Vector3 positionInFrontofHead = _headTransform.position + transform.rotation * new Vector3(0, 0, .25f);
         Vector3 directionToPlayer = (_playerTransform.position - transform.position).normalized;
 
         float viewDistanceMultiplier = 1;
-        if (_playerMoveScript.IsCrouched())
-        {
+        if (_playerMoveScript.IsCrouched()) {
             viewDistanceMultiplier = PLAYER_CROUCHING_MULTIPLIER;
-        }
-        else if (_playerMoveScript.IsRunning())
-        {
+        } else if (_playerMoveScript.IsRunning()) {
             viewDistanceMultiplier = PLAYER_RUNNING_MULTIPLIER;
         }
 
 
         RaycastHit hit;
-        if (Vector3.Angle(transform.forward, directionToPlayer) < VIEW_ANGLE / 2 && Physics.Raycast(positionInFrontofHead, directionToPlayer, out hit, MAX_VIEW_DISTANCE * viewDistanceMultiplier))
-        {
+        if (Vector3.Angle(transform.forward, directionToPlayer) < VIEW_ANGLE / 2 && Physics.Raycast(positionInFrontofHead, directionToPlayer, out hit, MAX_VIEW_DISTANCE * viewDistanceMultiplier)) {
             if (hit.collider.tag == Tag.player)
             {
                 return true;
