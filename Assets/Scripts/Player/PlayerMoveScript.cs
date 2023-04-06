@@ -67,7 +67,7 @@ public class PlayerMoveScript : MonoBehaviour
             isJumping = false;
             isFalling = false;
 
-            if (Input.GetKeyDown(KeyBinding.jump) && ableToJump)
+            if (Input.GetKeyDown(KeyBinding.jump()) && ableToJump)
             {
                 _ySpeed = JUMP_HEIGHT;
                 isJumping = true;
@@ -112,7 +112,7 @@ public class PlayerMoveScript : MonoBehaviour
     }
 
     public bool IsCrouched() {
-        if (Input.GetKey(KeyBinding.crouch))
+        if (Input.GetKey(KeyBinding.crouch()))
         {
             return true;
         }
@@ -135,7 +135,7 @@ public class PlayerMoveScript : MonoBehaviour
     }
 
     public bool IsRunning() {
-        if (Input.GetKey(KeyBinding.sprint))
+        if (Input.GetKey(KeyBinding.sprint()))
         {
             return true;
         }
