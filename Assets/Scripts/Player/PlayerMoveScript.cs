@@ -117,6 +117,10 @@ public class PlayerMoveScript : MonoBehaviour
 
                 break;
         }
+        float avoidFloorDistance = .1f;
+        float grabDistance = .4f;
+        Physics.Raycast(_transform.position)
+
         _transform.Translate(moveDirection * speed * Time.deltaTime + new Vector3(0, _ySpeed, 0) * Time.deltaTime, Space.World);
 
         _charCon.Move(moveDirection * Time.deltaTime + new Vector3(0, _ySpeed, 0) * Time.deltaTime);
