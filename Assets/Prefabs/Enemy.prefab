@@ -53,11 +53,24 @@ MonoBehaviour:
   _playerTransform: {fileID: 0}
   _playerMoveScript: {fileID: 0}
   VIEW_ANGLE: 150
-  MAX_VIEW_DISTANCE: 5
+  MAX_VIEW_DISTANCE: 10
   PLAYER_CROUCHING_MULTIPLIER: 0.25
   PLAYER_RUNNING_MULTIPLIER: 1.5
   isWalking: 0
   isRunning: 0
+--- !u!114 &1617460707559541331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7478198811963517004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c9e59bde8d5955448505a59a85e778e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemy: {fileID: 7478198811963517004}
 --- !u!1001 &7478198811963642232
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -117,6 +130,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9548500, guid: 3827052637b90d34087ce42945162d23, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: a0133e0d784c13c41aba0c9aca622dec, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3827052637b90d34087ce42945162d23, type: 3}
 --- !u!1 &7478198811963517004 stripped
