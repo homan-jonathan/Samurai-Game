@@ -51,10 +51,13 @@ MonoBehaviour:
   waypoints: []
   _headTransform: {fileID: 7478198811963287768}
   _playerTransform: {fileID: 0}
+  _playerMoveScript: {fileID: 0}
   VIEW_ANGLE: 150
   MAX_VIEW_DISTANCE: 5
   PLAYER_CROUCHING_MULTIPLIER: 0.25
   PLAYER_RUNNING_MULTIPLIER: 1.5
+  isWalking: 0
+  isRunning: 0
 --- !u!1001 &7478198811963642232
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -64,6 +67,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 145716, guid: 3827052637b90d34087ce42945162d23, type: 3}
       propertyPath: m_Name
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 145716, guid: 3827052637b90d34087ce42945162d23, type: 3}
+      propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 493054, guid: 3827052637b90d34087ce42945162d23, type: 3}

@@ -8,6 +8,8 @@ public class PlayerMainScript : MonoBehaviour
     public GameObject _coinBag;
 
     public bool _hasCoins;
+
+    public bool isDead = false;
     void Start()
     {
         
@@ -26,4 +28,18 @@ public class PlayerMainScript : MonoBehaviour
         _coinBag.SetActive(true);
         _hasCoins = true;
     }
+    public void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag.Equals("Enemy"))
+        {
+            isDead = true;
+        }
+    }
+
+    public bool IsDead()
+    {
+        return isDead;
+    }
+
+    
 }

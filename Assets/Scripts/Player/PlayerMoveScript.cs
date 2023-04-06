@@ -11,6 +11,8 @@ public class PlayerMoveScript : MonoBehaviour
     public CameraScript _cameraScript;
     Transform _transform;
 
+    PlayerAnimScript _animScript;
+
     private Vector3 moveDirection = Vector3.zero;
 
     public const float CROUCH_MOVESPEED = 2.0F;
@@ -22,12 +24,20 @@ public class PlayerMoveScript : MonoBehaviour
 
     public float rotationSpeed = 720F;
     public float speed;
+
+    private bool ableToJump = true;
+
+    private bool isJumping = false;
+    private bool isGrounded = true;
+    private bool isFalling = false;
     // Start is called before the first frame update
     void Start()
     {
         _charCon = GetComponent<CharacterController>();
         _transform = transform;
         speed = WALK_MOVESPEED;
+
+        _animScript= GetComponent<PlayerAnimScript>();
     }
 
     // Update is called once per frame
@@ -35,14 +45,17 @@ public class PlayerMoveScript : MonoBehaviour
     {
         if (IsCrouched())
         {
+            ableToJump = false; 
             speed = CROUCH_MOVESPEED;
         } else if (IsRunning()) 
         {
             speed = RUN_MOVESPEED;
+            ableToJump = true;
         } 
         else if (IsWalking())
         {
             speed = WALK_MOVESPEED;
+            ableToJump = true;
         }
 
 
@@ -50,14 +63,26 @@ public class PlayerMoveScript : MonoBehaviour
         if (_charCon.isGrounded)
         {
             _ySpeed = -1;
-            if (Input.GetKeyDown(KeyBinding.jump))
+            isGrounded = true;
+            isJumping = false;
+            isFalling = false;
+
+            if (Input.GetKeyDown(KeyBinding.jump) && ableToJump)
             {
                 _ySpeed = JUMP_HEIGHT;
+                isJumping = true;
+                //_animScript.PlayJumpAnimation();
             }
         }
         else
         {
             _ySpeed -= Time.deltaTime * GRAVITY;
+            isGrounded = false;
+
+            if((isJumping && _ySpeed < 0) || _ySpeed < -2)
+            {
+                isFalling = true;
+            }
         }
 
         switch (_cameraScript._mode)
@@ -118,5 +143,17 @@ public class PlayerMoveScript : MonoBehaviour
         {
             return false;
         }
+    }
+    public bool IsJumping()
+    {
+        return isJumping;
+    }
+    public bool IsGrounded()
+    {
+        return isGrounded;
+    }
+    public bool IsFalling()
+    {
+        return isFalling;
     }
 }
