@@ -6,12 +6,12 @@ public class EnemyAnimScript : MonoBehaviour
 {
     private Animator _anim;
     public GameObject _enemy;
-    EnemyCharchterMoveScript _enemyScript;
+    EnemyMoveScript _enemyScript;
     // Start is called before the first frame update
     void Start()
     {
         _anim = GetComponent<Animator>();
-        _enemyScript = _enemy.GetComponent<EnemyCharchterMoveScript>();
+        _enemyScript = _enemy.GetComponent<EnemyMoveScript>();
     }
 
     // Update is called once per frame
