@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.ConstrainedExecution;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class PlayerMoveScript : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class PlayerMoveScript : MonoBehaviour
     public Transform _cameraTransform;
     public CameraScript _cameraScript;
     Transform _transform;
+
+    PlayerAnimScript _animScript;
 
     private Vector3 moveDirection = Vector3.zero;
 
@@ -22,42 +25,74 @@ public class PlayerMoveScript : MonoBehaviour
 
     public float rotationSpeed = 720F;
     public float speed;
+
+    private bool ableToJump = true;
+
+    private bool isJumping = false;
+    private bool isGrounded = true;
+    private bool isFalling = false;
+
     // Start is called before the first frame update
     void Start()
     {
         _charCon = GetComponent<CharacterController>();
         _transform = transform;
         speed = WALK_MOVESPEED;
+
+        _animScript= GetComponent<PlayerAnimScript>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Shoot();
         if (IsCrouched())
         {
+            ableToJump = false; 
             speed = CROUCH_MOVESPEED;
         } else if (IsRunning()) 
         {
             speed = RUN_MOVESPEED;
+            ableToJump = true;
         } 
         else if (IsWalking())
         {
             speed = WALK_MOVESPEED;
+            ableToJump = true;
         }
 
-
+        float timePassed = 0.0f;
         //ref passed by reference and allows modification of said thing
         if (_charCon.isGrounded)
         {
+            timePassed = 0.0f;
             _ySpeed = -1;
-            if (Input.GetKeyDown(KeyBinding.jump))
+            isGrounded = true;
+            isJumping = false;
+            isFalling = false;
+
+            if (Input.GetKeyDown(KeyBinding.jump()) && ableToJump)
             {
                 _ySpeed = JUMP_HEIGHT;
+                isJumping = true;
+                //_animScript.PlayJumpAnimation();
             }
         }
         else
         {
+            timePassed += Time.deltaTime;
             _ySpeed -= Time.deltaTime * GRAVITY;
+            isGrounded = false;
+
+            /*if((isJumping && _ySpeed < 0) || _ySpeed < -2)
+            {
+                isFalling = true;
+            }*/
+
+            if(timePassed >= 0.25f)
+            {
+                isFalling = true;
+            }
         }
 
         switch (_cameraScript._mode)
@@ -81,13 +116,14 @@ public class PlayerMoveScript : MonoBehaviour
 
                 break;
         }
+
         _transform.Translate(moveDirection * speed * Time.deltaTime + new Vector3(0, _ySpeed, 0) * Time.deltaTime, Space.World);
 
         _charCon.Move(moveDirection * Time.deltaTime + new Vector3(0, _ySpeed, 0) * Time.deltaTime);
     }
 
     public bool IsCrouched() {
-        if (Input.GetKey(KeyBinding.crouch))
+        if (Input.GetKey(KeyBinding.crouch()))
         {
             return true;
         }
@@ -110,7 +146,7 @@ public class PlayerMoveScript : MonoBehaviour
     }
 
     public bool IsRunning() {
-        if (Input.GetKey(KeyBinding.sprint))
+        if (Input.GetKey(KeyBinding.sprint()))
         {
             return true;
         }
@@ -118,5 +154,17 @@ public class PlayerMoveScript : MonoBehaviour
         {
             return false;
         }
+    }
+    public bool IsJumping()
+    {
+        return isJumping;
+    }
+    public bool IsGrounded()
+    {
+        return isGrounded;
+    }
+    public bool IsFalling()
+    {
+        return isFalling;
     }
 }
