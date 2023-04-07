@@ -61,10 +61,11 @@ public class PlayerMoveScript : MonoBehaviour
             ableToJump = true;
         }
 
-
+        float timePassed = 0.0f;
         //ref passed by reference and allows modification of said thing
         if (_charCon.isGrounded)
         {
+            timePassed = 0.0f;
             _ySpeed = -1;
             isGrounded = true;
             isJumping = false;
@@ -79,10 +80,16 @@ public class PlayerMoveScript : MonoBehaviour
         }
         else
         {
+            timePassed += Time.deltaTime;
             _ySpeed -= Time.deltaTime * GRAVITY;
             isGrounded = false;
 
-            if((isJumping && _ySpeed < 0) || _ySpeed < -2)
+            /*if((isJumping && _ySpeed < 0) || _ySpeed < -2)
+            {
+                isFalling = true;
+            }*/
+
+            if(timePassed >= 0.25f)
             {
                 isFalling = true;
             }
