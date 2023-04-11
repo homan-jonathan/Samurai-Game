@@ -16,9 +16,9 @@ public class PlayerMoveScript : MonoBehaviour
 
     private Vector3 moveDirection = Vector3.zero;
 
-    public const float CROUCH_MOVESPEED = 2.0F;
-    public const float WALK_MOVESPEED = 4.0F;
-    public const float RUN_MOVESPEED = 6.0F;
+    public float CROUCH_MOVESPEED = 2.0F;
+    public float WALK_MOVESPEED = 4.0F;
+    public float RUN_MOVESPEED = 6.0F;
     public float JUMP_HEIGHT = 8.0F;
     public float GRAVITY = 20.0F;
     float _ySpeed = 0;
