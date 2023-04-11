@@ -7,6 +7,7 @@ public class TitleSceneManager : MonoBehaviour
 {
     public GameObject titleScreen;
     public GameObject settingsScreen;
+    public GameObject howToPlayScreen;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +25,8 @@ public class TitleSceneManager : MonoBehaviour
     }
 
     public void OnHowToPlayButtonClicked() {
-        SceneManager.LoadScene(Scene.howToPlayScene);
+        titleScreen.SetActive(false);
+        howToPlayScreen.SetActive(true);
     }
 
     public void OnSettingsButtonClicked() {
@@ -36,5 +38,11 @@ public class TitleSceneManager : MonoBehaviour
     {
         titleScreen.SetActive(true);
         settingsScreen.SetActive(false);
+        howToPlayScreen.SetActive(false);
+    }
+
+    public void OnQuitClicked()
+    {
+        Application.Quit();
     }
 }
