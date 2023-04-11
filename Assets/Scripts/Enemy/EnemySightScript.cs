@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySightScript : MonoBehaviour
-{
+{   
     public Transform _headTransform;
     public Transform _playerTransform;
     public PlayerMoveScript _playerMoveScript;
@@ -15,7 +15,7 @@ public class EnemySightScript : MonoBehaviour
     public float PLAYER_DETECTION_RADIUS = 1.5f;
     public float PLAYER_SPOTTED_DURATION = 1f;
 
-    float _seenPlayerRecently = 0;
+    public float _seenPlayerRecently = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +30,7 @@ public class EnemySightScript : MonoBehaviour
             _seenPlayerRecently -= Time.deltaTime;
         }
     }
+
     public bool CanSeePlayer()
     {
         Vector3 positionInFrontofHead = _headTransform.position + transform.rotation * new Vector3(0, 0, .25f);
@@ -91,5 +92,9 @@ public class EnemySightScript : MonoBehaviour
         }
 
         return false;
+    }
+
+    public float GetViewDistance() {
+        return VIEW_DISTANCE * CalculateViewDistance();
     }
 }

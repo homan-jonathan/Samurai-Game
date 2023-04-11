@@ -13,6 +13,9 @@ public class EnemyMoveScript : MonoBehaviour
     EnemySightScript enemySightScript;
     public Transform _playerTransform;
 
+    public float GUARD_WALK_SPEED = 1f;
+    public float GUARD_RUN_SPEED = 2f;
+
     public bool isWalking = false;
     public bool isRunning = false;
     // Start is called before the first frame update
@@ -29,10 +32,12 @@ public class EnemyMoveScript : MonoBehaviour
     {
         if (ReachedDestinationOrGaveUp())
         {
+            agent.speed = GUARD_WALK_SPEED;
             SetNewWaypoint();
         }
         if (enemySightScript.CanSeePlayer())
         {
+            agent.speed = GUARD_RUN_SPEED;
             PursuePlayer();
         }
     }
@@ -43,7 +48,6 @@ public class EnemyMoveScript : MonoBehaviour
         agent.SetDestination(waypoints[waypointIndx].position);
         isRunning = false;
         isWalking = true;
-
     }
 
     void PursuePlayer()
