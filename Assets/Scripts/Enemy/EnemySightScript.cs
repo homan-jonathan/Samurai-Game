@@ -49,7 +49,8 @@ public class EnemySightScript : MonoBehaviour
     bool PlayerInViewDistance(Vector3 positionInFrontofHead, Vector3 directionToPlayer)
     {
         RaycastHit hit;
-        if (Vector3.Angle(transform.forward, directionToPlayer) < VIEW_ANGLE / 2 && Physics.Raycast(positionInFrontofHead, directionToPlayer, out hit, VIEW_DISTANCE * CalculateViewDistance()))
+        if (Vector3.Angle(transform.forward, directionToPlayer) < VIEW_ANGLE / 2 && 
+            Physics.Raycast(positionInFrontofHead, directionToPlayer, out hit, VIEW_DISTANCE * CalculateViewDistance()))
         {
             if (hit.collider.tag == Tag.player)
             {

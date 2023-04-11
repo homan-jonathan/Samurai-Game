@@ -2013,7 +2013,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 114315479925819088}
-  - component: {fileID: 5109498168151001794}
   - component: {fileID: 6837360744069302963}
   - component: {fileID: 7697020516611261031}
   - component: {fileID: 6465012805945856950}
@@ -2049,20 +2048,6 @@ Transform:
   m_Father: {fileID: 4344790300505285016}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &5109498168151001794
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4824716656974472656}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.3
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!143 &6837360744069302963
 CharacterController:
   m_ObjectHideFlags: 0
@@ -2115,14 +2100,13 @@ MonoBehaviour:
   _rotAmt: 0
   _cameraTransform: {fileID: 4344790299875894499}
   _cameraScript: {fileID: 4344790299875894498}
+  CROUCH_MOVESPEED: 2
+  WALK_MOVESPEED: 4
+  RUN_MOVESPEED: 6
   JUMP_HEIGHT: 10
   GRAVITY: 20
   rotationSpeed: 360
   speed: 5
-  open: 100
-  range: 1
-  TouchingWall: 0
-  UpwardSpeed: 3.3
 --- !u!114 &3598364532773958366
 MonoBehaviour:
   m_ObjectHideFlags: 0
