@@ -19,7 +19,7 @@ public class GameCanvasScript : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        timerText.text = "Time: " + timer;
+        timerText.text = "Time: " + timer.ToString("#.##");
     }
     public IEnumerator DisplayZoneText(string locationName)
     {

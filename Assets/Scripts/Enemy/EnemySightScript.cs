@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySightScript : MonoBehaviour
-{   
+{
     public Transform _headTransform;
     public Transform _playerTransform;
     public PlayerMoveScript _playerMoveScript;
@@ -14,8 +14,11 @@ public class EnemySightScript : MonoBehaviour
     public float PLAYER_RUNNING_MULTIPLIER = 1.5f;
     public float PLAYER_DETECTION_RADIUS = 1.5f;
     public float PLAYER_SPOTTED_DURATION = 1f;
+    public float RAYCAST_COOLDOWN_TIME = .1f;
 
     public float _seenPlayerRecently = 0;
+    float _timeSinceLastRayCast = 0;
+    bool _playerInPossibleViewRange = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,13 +36,20 @@ public class EnemySightScript : MonoBehaviour
 
     public bool CanSeePlayer()
     {
+        _timeSinceLastRayCast -= Time.deltaTime; //Check if last raycast was recent, if it was than act like guard can still see player
+        if (_timeSinceLastRayCast > 0) {
+            return true;
+        }
+
+        if (!_playerInPossibleViewRange) { //check if in collider, minimize raycast need
+            return false;
+        }
+
         Vector3 positionInFrontofHead = _headTransform.position + transform.rotation * new Vector3(0, 0, .25f);
         Vector3 directionToPlayer = (_playerTransform.position - transform.position).normalized;
 
-        if (PlayerInViewDistance(positionInFrontofHead, directionToPlayer)) {
-            return true;
-        }
-        if (PlayerInCloseProximity()) {
+        if (PlayerInViewDistance(positionInFrontofHead, directionToPlayer) || PlayerInCloseProximity()) { //If can see player
+            _timeSinceLastRayCast = RAYCAST_COOLDOWN_TIME;
             return true;
         }
 
@@ -97,5 +107,21 @@ public class EnemySightScript : MonoBehaviour
 
     public float GetViewDistance() {
         return VIEW_DISTANCE * CalculateViewDistance();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag.Equals(Tag.player))
+        {
+            _playerInPossibleViewRange = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag.Equals(Tag.player))
+        {
+            _playerInPossibleViewRange = false;
+        }
     }
 }
