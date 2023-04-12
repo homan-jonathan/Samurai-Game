@@ -19,7 +19,8 @@ public class PlayerMoveScript : MonoBehaviour
     public float CROUCH_MOVESPEED = 2.0F;
     public float WALK_MOVESPEED = 4.0F;
     public float RUN_MOVESPEED = 6.0F;
-    public float JUMP_HEIGHT = 8.0F;
+    public float JUMP_HEIGHT = 7.0F;
+    public float CHARGED_JUMP_HEIGHT = 15.0f;
     public float GRAVITY = 20.0F;
     float _ySpeed = 0;
 
@@ -32,6 +33,9 @@ public class PlayerMoveScript : MonoBehaviour
     private bool isGrounded = true;
     private bool isFalling = false;
 
+    private bool hasChargedJump = false;
+    private float chargeJumpTimer = 0.0f;
+    public float NEEDED_TO_JUMP = 3.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -79,21 +83,23 @@ public class PlayerMoveScript : MonoBehaviour
 
             if (Input.GetKeyDown(KeyBinding.jump()) && ableToJump)
             {
-                _ySpeed = JUMP_HEIGHT;
+                if(hasChargedJump)
+                {
+                    _ySpeed = CHARGED_JUMP_HEIGHT;
+                    hasChargedJump = false;
+                }
+                else
+                {
+                    _ySpeed = JUMP_HEIGHT;
+                }
                 isJumping = true;
-                //_animScript.PlayJumpAnimation();
             }
         }
         else
         {
+            isGrounded = false;
             timePassed += Time.deltaTime;
             _ySpeed -= Time.deltaTime * GRAVITY;
-            isGrounded = false;
-
-            /*if((isJumping && _ySpeed < 0) || _ySpeed < -2)
-            {
-                isFalling = true;
-            }*/
 
             if(timePassed >= 0.25f)
             {
@@ -132,7 +138,12 @@ public class PlayerMoveScript : MonoBehaviour
         if (Input.GetKey(KeyBinding.crouch()))
         {
             //_transform.Rotate(0,40f,0);
-            _transform.rotation.Set(0, 40, 0, 0);
+            //_transform.rotation.Set(0, 40, 0, 0);
+            chargeJumpTimer += Time.deltaTime;
+            if (chargeJumpTimer >= NEEDED_TO_JUMP)
+            {
+                hasChargedJump = true;
+            }
             return true;
         }
         else
