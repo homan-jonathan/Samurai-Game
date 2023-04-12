@@ -2060,7 +2060,7 @@ CharacterController:
   serializedVersion: 2
   m_Height: 2
   m_Radius: 0.3
-  m_SlopeLimit: 45
+  m_SlopeLimit: 60
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
@@ -2103,9 +2103,11 @@ MonoBehaviour:
   WALK_MOVESPEED: 4
   RUN_MOVESPEED: 6
   JUMP_HEIGHT: 7
+  CHARGED_JUMP_HEIGHT: 15
   GRAVITY: 20
   rotationSpeed: 360
   speed: 5
+  NEEDED_TO_JUMP: 3
 --- !u!114 &3598364532773958366
 MonoBehaviour:
   m_ObjectHideFlags: 0
