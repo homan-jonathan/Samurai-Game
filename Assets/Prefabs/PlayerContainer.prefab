@@ -2103,7 +2103,7 @@ MonoBehaviour:
   CROUCH_MOVESPEED: 2
   WALK_MOVESPEED: 4
   RUN_MOVESPEED: 6
-  JUMP_HEIGHT: 10
+  JUMP_HEIGHT: 7
   GRAVITY: 20
   rotationSpeed: 360
   speed: 5
