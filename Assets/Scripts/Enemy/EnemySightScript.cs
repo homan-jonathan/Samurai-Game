@@ -55,13 +55,15 @@ public class EnemySightScript : MonoBehaviour
         RaycastHit hit2;
         if (Physics.Raycast(ray, out hit2, CalculateViewDistance() * _sightIndicatorScript.EPISLON_VISIBILITY_RANGE/* * PLAYER_RUNNING_MULTIPLIER*/))
         {
-            if (Vector3.Angle(transform.forward, directionToPlayer) < 90 && 
-                hit2.collider.tag != Tag.player && 
-                _seenPlayerRecently <= 0) {
+            if (!(Vector3.Angle(transform.forward, directionToPlayer) < 90) &&
+                hit2.collider.tag != Tag.player &&
+                _seenPlayerRecently <= 0)
+            {
                 warningImage.enabled = false;
             } //turn off image if, in angle, not the player, and wasnt seen recently
 
-            if (hit2.collider.tag == Tag.player) { //if ray hit player
+            if (hit2.collider.tag == Tag.player)
+            { //if ray hit player
                 if (Vector3.Angle(transform.forward, directionToPlayer) < 90)
                 { //inside the view arc(warning area)
                     warningImage.enabled = true;
