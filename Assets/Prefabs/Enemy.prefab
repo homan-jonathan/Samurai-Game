@@ -132,10 +132,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 990fac0b7c2877744adef6409f9eaa97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  warningImage: {fileID: 2882128291871194480}
-  warningColor: {r: 0.8679245, g: 0.7905776, b: 0.13646607, a: 0}
-  spottedColor: {r: 1, g: 0, b: 0, a: 0}
   _playerInPossibleViewRange: 0
+  EPISLON_VISIBILITY_RANGE: 2
 --- !u!1 &3580271282819117235
 GameObject:
   m_ObjectHideFlags: 0
@@ -2765,10 +2763,8 @@ MonoBehaviour:
   _playerMoveScript: {fileID: 0}
   VIEW_ANGLE: 150
   VIEW_DISTANCE: 10
-  PLAYER_CROUCHING_MULTIPLIER: 0.25
-  PLAYER_RUNNING_MULTIPLIER: 1.5
+  PLAYER_CROUCHING_MULTIPLIER: 0.5
   PLAYER_SPOTTED_DURATION: 2.5
-  RAYCAST_COOLDOWN_TIME: 0.01
   _seenPlayerRecently: 0
   warningImage: {fileID: 2882128291871194480}
   warningColor: {r: 0.8666667, g: 0.7921569, b: 0.13725491, a: 0}
