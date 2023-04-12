@@ -2018,7 +2018,6 @@ GameObject:
   - component: {fileID: 6465012805945856950}
   - component: {fileID: 3598364532773958366}
   - component: {fileID: 441411187408652103}
-  - component: {fileID: 3293622027363865286}
   m_Layer: 0
   m_Name: PlayerPrefab
   m_TagString: Player
@@ -2135,22 +2134,6 @@ MonoBehaviour:
   _coinBag: {fileID: 6640268307204221406}
   _hasCoins: 0
   isDead: 0
---- !u!54 &3293622027363865286
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4824716656974472656}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
 --- !u!1 &5010772290406411069
 GameObject:
   m_ObjectHideFlags: 0
