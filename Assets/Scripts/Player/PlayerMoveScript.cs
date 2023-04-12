@@ -45,9 +45,15 @@ public class PlayerMoveScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Shoot();
+        float max = 0, min = -40f;
+        float angle = 0;
+
         if (IsCrouched())
         {
+            angle -= speed * Time.deltaTime;
+            angle = Mathf.Clamp(angle, min, max);
+            transform.localRotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, angle);
+
             ableToJump = false; 
             speed = CROUCH_MOVESPEED;
         } else if (IsRunning()) 
@@ -125,6 +131,8 @@ public class PlayerMoveScript : MonoBehaviour
     public bool IsCrouched() {
         if (Input.GetKey(KeyBinding.crouch()))
         {
+            //_transform.Rotate(0,40f,0);
+            _transform.rotation.Set(0, 40, 0, 0);
             return true;
         }
         else
