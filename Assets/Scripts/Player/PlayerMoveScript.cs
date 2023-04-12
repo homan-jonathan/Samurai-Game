@@ -139,7 +139,11 @@ public class PlayerMoveScript : MonoBehaviour
         {
             //_transform.Rotate(0,40f,0);
             //_transform.rotation.Set(0, 40, 0, 0);
-            chargeJumpTimer += Time.deltaTime;
+            if(!IsWalking() && !IsRunning())
+            {
+                chargeJumpTimer += Time.deltaTime;
+            }
+
             if (chargeJumpTimer >= NEEDED_TO_JUMP)
             {
                 hasChargedJump = true;
