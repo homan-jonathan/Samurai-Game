@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Serialization.Json;
 using UnityEngine;
 
 public class CoinPickupScript : MonoBehaviour
@@ -21,15 +22,20 @@ public class CoinPickupScript : MonoBehaviour
             
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         /*if(Input.GetKeyDown(KeyCode.E)) 
         {
             _playerScript.pickupCoin();
             Destroy(gameObject);
         }*/
+        if (Input.GetKeyDown(KeyBinding.interact()))
+        {
+            _playerScript.pickupCoin();
 
-        _playerScript.pickupCoin();
-        Destroy(gameObject);
+            //Destroy(gameObject);
+            gameObject.SetActive(false);
+        }
+        
     }
 }
