@@ -28,8 +28,6 @@ public class PlayerMainScript : MonoBehaviour
 
     public void pickupCoin()
     {
-        //play animation for picking up item
-        //do something with scoring
         _coinBag.SetActive(true);
         _hasCoins = true;
     }

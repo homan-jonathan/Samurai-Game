@@ -28,15 +28,17 @@ public class PlayerMoveScript : MonoBehaviour
     public float rotationSpeed = 720F;
     public float speed;
 
+    //movement logic
     private bool ableToJump = true;
-
     private bool isJumping = false;
     private bool isGrounded = true;
     private bool isFalling = false;
 
+    //logic for charging jump
     private bool hasChargedJump = false;
     public float chargeJumpTimer = 0.0f;
     public float NEEDED_TO_JUMP = 3.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -50,23 +52,11 @@ public class PlayerMoveScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(chargeJumpTimer);
-
-        float max = 0, min = -40f;
-        float angle = 0;
-
         if (IsCrouched())
         {
-            /*angle -= speed * Time.deltaTime;
-            angle = Mathf.Clamp(angle, min, max);
-            transform.localRotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, angle);
-            _transform.Rotate(0,40f,0);
-            _transform.rotation.Set(0, 40, 0, 0);*/
-
             if (!IsWalking() && !IsRunning())
             {
                 chargeJumpTimer += Time.deltaTime;
-                //print(chargeJumpTimer);
             }
 
             if (chargeJumpTimer >= NEEDED_TO_JUMP)
@@ -92,7 +82,7 @@ public class PlayerMoveScript : MonoBehaviour
         }
 
         float timePassed = 0.0f;
-        //ref passed by reference and allows modification of said thing
+
         if (_charCon.isGrounded)
         {
             timePassed = 0.0f;
@@ -158,7 +148,6 @@ public class PlayerMoveScript : MonoBehaviour
     public bool IsCrouched() {
         if (Input.GetKey(KeyBinding.crouch()))
         {
-            
             return true;
         }
         else
