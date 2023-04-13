@@ -13,7 +13,7 @@ public class SliderScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         _transform.LookAt(_playerCam.transform.position);
     }
