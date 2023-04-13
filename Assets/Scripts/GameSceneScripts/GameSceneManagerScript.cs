@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class GameSceneManagerScript : MonoBehaviour
 {
     public GameObject _pauseMenu;
+    public GameCanvasScript _GameCanvas;
     public bool isPaused = false;
     // Start is called before the first frame update
     void Start()
@@ -28,5 +29,18 @@ public class GameSceneManagerScript : MonoBehaviour
 
         Cursor.lockState = isPaused ? CursorLockMode.None : CursorLockMode.Locked;
         Time.timeScale = isPaused ? 0 : 1;
+    }
+
+    public void HasWon() {
+        StartCoroutine(_GameCanvas.DisplayEndGameText("Mission Succssesful", Color.green));
+    }
+
+    public void HasLost()
+    {
+        StartCoroutine(_GameCanvas.DisplayEndGameText("Mission Failed", Color.red));
+    }
+
+    public void EndScreen() {
+        SceneManager.LoadScene(Scene.titleScene);
     }
 }

@@ -5,8 +5,10 @@ using UnityEngine.UI;
 
 public class GameCanvasScript : MonoBehaviour
 {
+    public GameSceneManagerScript gameSceneManager;
     public Text timerText;
     public Text zoneText;
+    public GameObject endGameObject;
 
     float timer = 0;
     // Start is called before the first frame update
@@ -26,5 +28,13 @@ public class GameCanvasScript : MonoBehaviour
         zoneText.text = "Entering: " + locationName;
         yield return new WaitForSeconds(3f);
         zoneText.text = "";
+    }
+
+    public IEnumerator DisplayEndGameText(string msg, Color color) {
+        endGameObject.GetComponentInChildren<Text>().text = msg;
+        endGameObject.GetComponentInChildren<Text>().color = color;
+        endGameObject.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        gameSceneManager.EndScreen();
     }
 }
