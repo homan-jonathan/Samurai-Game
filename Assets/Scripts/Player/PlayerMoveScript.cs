@@ -63,7 +63,7 @@ public class PlayerMoveScript : MonoBehaviour
 
         if (IsCrouched())
         {
-            if (!IsWalking() && !IsRunning())
+            if (!IsWalking() && !IsRunning() && !IsJumping() && !IsFalling())
             {
                 chargeJumpTimer += Time.deltaTime;
             }
@@ -113,6 +113,7 @@ public class PlayerMoveScript : MonoBehaviour
                     _ySpeed = JUMP_HEIGHT;
                 }
                 isJumping = true;
+                _animScript.PlayJumpAnim();
             }
         }
         else
@@ -121,11 +122,12 @@ public class PlayerMoveScript : MonoBehaviour
             timePassed += Time.deltaTime;
             _ySpeed -= Time.deltaTime * GRAVITY;
 
-            if(timePassed >= 0.25f)
+            if (timePassed >= 0.25f)
             {
                 isFalling = true;
             }
         }
+        
 
         switch (_cameraScript._mode)
         {
@@ -167,7 +169,7 @@ public class PlayerMoveScript : MonoBehaviour
 
     public bool IsWalking()
     {
-        if (moveDirection != Vector3.zero)
+        if (moveDirection != Vector3.zero && !IsRunning())
         {   
             return true;
         }
@@ -178,7 +180,7 @@ public class PlayerMoveScript : MonoBehaviour
     }
 
     public bool IsRunning() {
-        if (Input.GetKey(KeyBinding.sprint()))
+        if (moveDirection != Vector3.zero && Input.GetKey(KeyBinding.sprint()))
         {
             return true;
         }

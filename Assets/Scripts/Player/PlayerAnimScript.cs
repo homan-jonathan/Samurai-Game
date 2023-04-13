@@ -23,7 +23,7 @@ public class PlayerAnimScript : MonoBehaviour
         _anim.SetBool("isWalking", _playerMoveScript.IsWalking());
         _anim.SetBool("isRunning", _playerMoveScript.IsRunning());
 
-        _anim.SetBool("isJumping", _playerMoveScript.IsJumping());
+        //_anim.SetBool("isJumping", _playerMoveScript.IsJumping());
         _anim.SetBool("isGrounded", _playerMoveScript.IsGrounded());
         _anim.SetBool("isFalling", _playerMoveScript.IsFalling());
 
@@ -34,7 +34,14 @@ public class PlayerAnimScript : MonoBehaviour
     }
 
     public void PlayDeathAnim() {
+        //_anim.Play("Dead");
         _anim.SetTrigger("isDead");
+        
+    }
+
+    public void PlayJumpAnim()
+    {
+        _anim.SetTrigger("hasJumped");
     }
 
     /*public void PlayJumpAnimation()
