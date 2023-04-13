@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class PlayerMainScript : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameObject _coinBag;
     PlayerAnimScript _anim;
     PlayerMoveScript _moveScript;
 
