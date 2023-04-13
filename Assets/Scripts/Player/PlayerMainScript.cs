@@ -5,18 +5,21 @@ using UnityEngine.UI;
 
 public class PlayerMainScript : MonoBehaviour
 {
+    // Start is called before the first frame update
+    public GameObject _coinBag;
+    PlayerAnimScript _anim;
     PlayerMoveScript _moveScript;
 
     public GameObject _coinBag;
     public bool _hasCoins;
 
-    public bool isDead = false;
-
     public Slider _healthBar;
     public Image _healthFilledImage;
-
+    bool isDead = false;
+    
     void Start()
     {
+        _anim = GetComponent<PlayerAnimScript>();
         _moveScript = GetComponent<PlayerMoveScript>();
     }
 
@@ -31,11 +34,13 @@ public class PlayerMainScript : MonoBehaviour
         _coinBag.SetActive(true);
         _hasCoins = true;
     }
-    public void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.tag.Equals("Enemy"))
+        if (other.gameObject.tag.Equals(Tag.sword) && !isDead)
         {
+            GetComponent<CharacterController>().detectCollisions = false;
             isDead = true;
+            _anim.PlayDeathAnim();
         }
     }
 
@@ -43,6 +48,4 @@ public class PlayerMainScript : MonoBehaviour
     {
         return isDead;
     }
-
-    
 }

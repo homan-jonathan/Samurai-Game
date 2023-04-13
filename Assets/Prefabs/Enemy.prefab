@@ -2629,7 +2629,6 @@ GameObject:
   - component: {fileID: 8500355956349859287}
   - component: {fileID: 4284662578763624563}
   - component: {fileID: 7403562234416991926}
-  - component: {fileID: 1892454401768953813}
   - component: {fileID: 7840071130355193417}
   m_Layer: 0
   m_Name: Enemy
@@ -2764,7 +2763,7 @@ MonoBehaviour:
   _headTransform: {fileID: 6349057183427284085}
   _playerTransform: {fileID: 0}
   _playerMoveScript: {fileID: 0}
-  VIEW_ANGLE: 150
+  VIEW_ANGLE: 170
   VIEW_DISTANCE: 10
   PLAYER_CROUCHING_MULTIPLIER: 0.5
   PLAYER_SPOTTED_DURATION: 2.5
@@ -2785,18 +2784,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 2.5
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &1892454401768953813
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6349057183427579105}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d676bdffb1a634748a06d6390d0f9678, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7840071130355193417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2809,6 +2796,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9cf145dfa088a842ae08168cd47ef35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SWING_DISTANCE: 2.5
+  playerTransform: {fileID: 0}
 --- !u!1 &6349057183427579137
 GameObject:
   m_ObjectHideFlags: 0
@@ -3244,6 +3233,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 132852, guid: ac53f9d05b915884ab3ce6d0a7113315, type: 3}
+      propertyPath: m_TagString
+      value: Sword
+      objectReference: {fileID: 0}
     - target: {fileID: 431322, guid: ac53f9d05b915884ab3ce6d0a7113315, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -3299,6 +3292,10 @@ PrefabInstance:
     - target: {fileID: 431322, guid: ac53f9d05b915884ab3ce6d0a7113315, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 64490741587574428, guid: ac53f9d05b915884ab3ce6d0a7113315, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac53f9d05b915884ab3ce6d0a7113315, type: 3}
