@@ -13,6 +13,7 @@ public class PlayerMoveScript : MonoBehaviour
     Transform _transform;
 
     PlayerAnimScript _animScript;
+    PlayerMainScript _mainScript;
 
     private Vector3 moveDirection = Vector3.zero;
 
@@ -43,12 +44,17 @@ public class PlayerMoveScript : MonoBehaviour
         _transform = transform;
         speed = WALK_MOVESPEED;
 
-        _animScript= GetComponent<PlayerAnimScript>();
+        _animScript = GetComponent<PlayerAnimScript>();
+        _mainScript = GetComponent<PlayerMainScript>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (_mainScript.IsDead()) {
+            return;
+        }
+
         float max = 0, min = -40f;
         float angle = 0;
 

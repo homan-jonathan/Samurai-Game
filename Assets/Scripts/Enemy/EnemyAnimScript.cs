@@ -20,4 +20,21 @@ public class EnemyAnimScript : MonoBehaviour
         _anim.SetBool("isWalking", _enemyScript.isWalking);
         _anim.SetBool("isRunning", _enemyScript.isRunning);
     }
+
+    public void PlayAttackAnim() {
+        _anim.SetTrigger("swingSword");
+    }
+
+    //from edu4hd0
+    bool AnimatorIsPlaying()
+    {
+        return _anim.GetCurrentAnimatorStateInfo(0).length >
+               _anim.GetCurrentAnimatorStateInfo(0).normalizedTime;
+    }
+
+    //from edu4hd0
+    public bool AnimationIsPlaying(string stateName)
+    {
+        return AnimatorIsPlaying() && _anim.GetCurrentAnimatorStateInfo(0).IsName(stateName);
+    }
 }

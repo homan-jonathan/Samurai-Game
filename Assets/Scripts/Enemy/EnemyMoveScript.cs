@@ -16,6 +16,7 @@ public class EnemyMoveScript : MonoBehaviour
     public float GUARD_WALK_SPEED = 1f;
     public float GUARD_RUN_SPEED = 2f;
 
+    EnemyAnimScript anim;
     public bool isWalking = false;
     public bool isRunning = false;
     // Start is called before the first frame update
@@ -25,11 +26,22 @@ public class EnemyMoveScript : MonoBehaviour
         agent.SetDestination(waypoints[waypointIndx].position);
 
         enemySightScript = GetComponent<EnemySightScript>();
+        anim = GetComponent<EnemyAnimScript>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (anim.AnimationIsPlaying(AnimationState.swingSword)) //If attacking then stop moving
+        {
+            agent.isStopped = true;
+            return;
+        }
+        else {
+            agent.isStopped = false;
+        }
+
+
         if (ReachedDestinationOrGaveUp())
         {
             agent.speed = GUARD_WALK_SPEED;

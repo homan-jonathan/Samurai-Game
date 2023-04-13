@@ -27,10 +27,14 @@ public class PlayerAnimScript : MonoBehaviour
         _anim.SetBool("isGrounded", _playerMoveScript.IsGrounded());
         _anim.SetBool("isFalling", _playerMoveScript.IsFalling());
 
-        _anim.SetBool("isDead", _playerMainScript.IsDead());
+        //_anim.SetBool("isDead", _playerMainScript.IsDead());
 
 
         
+    }
+
+    public void PlayDeathAnim() {
+        _anim.SetTrigger("isDead");
     }
 
     /*public void PlayJumpAnimation()

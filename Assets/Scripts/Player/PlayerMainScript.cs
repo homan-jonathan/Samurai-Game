@@ -6,13 +6,14 @@ public class PlayerMainScript : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject _coinBag;
+    PlayerAnimScript _anim;
 
     public bool _hasCoins;
 
-    public bool isDead = false;
+    bool isDead = false;
     void Start()
     {
-        
+        _anim = GetComponent<PlayerAnimScript>();
     }
 
     // Update is called once per frame
@@ -28,11 +29,13 @@ public class PlayerMainScript : MonoBehaviour
         _coinBag.SetActive(true);
         _hasCoins = true;
     }
-    public void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.tag.Equals("Enemy"))
+        if (other.gameObject.tag.Equals(Tag.sword) && !isDead)
         {
+            GetComponent<CharacterController>().detectCollisions = false;
             isDead = true;
+            _anim.PlayDeathAnim();
         }
     }
 
@@ -40,6 +43,4 @@ public class PlayerMainScript : MonoBehaviour
     {
         return isDead;
     }
-
-    
 }
