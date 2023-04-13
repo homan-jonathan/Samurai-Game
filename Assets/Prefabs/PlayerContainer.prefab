@@ -1925,7 +1925,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2563126180405920437}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 3
+  m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
@@ -2435,7 +2435,7 @@ MonoBehaviour:
   rotationSpeed: 360
   speed: 5
   chargeJumpTimer: 0
-  NEEDED_TO_JUMP: 3
+  NEEDED_TO_JUMP: 1
 --- !u!114 &3598364532773958366
 MonoBehaviour:
   m_ObjectHideFlags: 0

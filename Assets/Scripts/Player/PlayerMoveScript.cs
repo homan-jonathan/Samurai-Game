@@ -37,7 +37,7 @@ public class PlayerMoveScript : MonoBehaviour
     //logic for charging jump
     private bool hasChargedJump = false;
     public float chargeJumpTimer = 0.0f;
-    public float NEEDED_TO_JUMP = 3.0f;
+    public float NEEDED_TO_JUMP = 1.0f;
 
     // Start is called before the first frame update
     void Start()
