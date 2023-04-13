@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.ConstrainedExecution;
@@ -28,15 +29,17 @@ public class PlayerMoveScript : MonoBehaviour
     public float rotationSpeed = 720F;
     public float speed;
 
+    //movement logic
     private bool ableToJump = true;
-
     private bool isJumping = false;
     private bool isGrounded = true;
     private bool isFalling = false;
 
+    //logic for charging jump
     private bool hasChargedJump = false;
-    private float chargeJumpTimer = 0.0f;
-    public float NEEDED_TO_JUMP = 3.0f;
+    public float chargeJumpTimer = 0.0f;
+    public float NEEDED_TO_JUMP = 1.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -60,11 +63,21 @@ public class PlayerMoveScript : MonoBehaviour
 
         if (IsCrouched())
         {
-            angle -= speed * Time.deltaTime;
-            angle = Mathf.Clamp(angle, min, max);
-            transform.localRotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, angle);
+            if (!IsWalking() && !IsRunning())
+            {
+                chargeJumpTimer += Time.deltaTime;
+            }
 
-            ableToJump = false; 
+            if (chargeJumpTimer >= NEEDED_TO_JUMP)
+            {
+                hasChargedJump = true;
+            }
+            else
+            {
+                hasChargedJump = false;
+            }
+
+            //ableToJump = false; 
             speed = CROUCH_MOVESPEED;
         } else if (IsRunning()) 
         {
@@ -78,7 +91,7 @@ public class PlayerMoveScript : MonoBehaviour
         }
 
         float timePassed = 0.0f;
-        //ref passed by reference and allows modification of said thing
+
         if (_charCon.isGrounded)
         {
             timePassed = 0.0f;
@@ -93,6 +106,7 @@ public class PlayerMoveScript : MonoBehaviour
                 {
                     _ySpeed = CHARGED_JUMP_HEIGHT;
                     hasChargedJump = false;
+                    chargeJumpTimer = 0.0f;
                 }
                 else
                 {
@@ -143,17 +157,6 @@ public class PlayerMoveScript : MonoBehaviour
     public bool IsCrouched() {
         if (Input.GetKey(KeyBinding.crouch()))
         {
-            //_transform.Rotate(0,40f,0);
-            //_transform.rotation.Set(0, 40, 0, 0);
-            if(!IsWalking() && !IsRunning())
-            {
-                chargeJumpTimer += Time.deltaTime;
-            }
-
-            if (chargeJumpTimer >= NEEDED_TO_JUMP)
-            {
-                hasChargedJump = true;
-            }
             return true;
         }
         else
