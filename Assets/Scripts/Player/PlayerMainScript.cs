@@ -8,6 +8,7 @@ public class PlayerMainScript : MonoBehaviour
     // Start is called before the first frame update
     PlayerAnimScript _anim;
     PlayerMoveScript _moveScript;
+    public GameSceneManagerScript _gameSceneManager;
 
     public GameObject _coinBag;
     public bool _hasCoins;
@@ -40,6 +41,7 @@ public class PlayerMainScript : MonoBehaviour
             GetComponent<CharacterController>().detectCollisions = false;
             isDead = true;
             _anim.PlayDeathAnim();
+            _gameSceneManager.HasLost();
         }
     }
 
