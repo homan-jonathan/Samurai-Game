@@ -2,14 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SliderScript : MonoBehaviour
+public class BillboardScript : MonoBehaviour
 {
     Transform _transform;
-    public GameObject _playerCam;
+    public CameraScript _playerCam;
+    public PlayerMoveScript _player;
+
     // Start is called before the first frame update
     void Start()
     {
         _transform = transform;
+        /*_player = FindObjectOfType<PlayerMoveScript>();
+        _playerCam = _player*/
+        _playerCam = FindObjectOfType<CameraScript>();
     }
 
     // Update is called once per frame
