@@ -44,9 +44,8 @@ public class PlayerAnimScript : MonoBehaviour
         _anim.SetTrigger("hasJumped");
     }
 
-    /*public void PlayJumpAnimation()
+    public void PlayPickupCoinsAnim()
     {
-        _anim.SetTrigger("HasJumped");
-        _anim.ResetTrigger("HasJumped");
-    }*/
+        _anim.SetTrigger("pickupCoins");
+    }
 }

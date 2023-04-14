@@ -35,6 +35,7 @@ public class PlayerMainScript : MonoBehaviour
     {
         _coinBag.SetActive(true);
         _hasCoins = true;
+        _anim.PlayPickupCoinsAnim();
     }
     private void OnTriggerEnter(Collider other)
     {
