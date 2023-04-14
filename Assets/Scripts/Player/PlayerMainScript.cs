@@ -10,6 +10,8 @@ public class PlayerMainScript : MonoBehaviour
     PlayerMoveScript _moveScript;
     public GameSceneManagerScript _gameSceneManager;
 
+    SliderScript _sliderScript;
+
     public GameObject _coinBag;
     public bool _hasCoins;
 
