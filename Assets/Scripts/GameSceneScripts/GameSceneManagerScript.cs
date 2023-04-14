@@ -41,6 +41,7 @@ public class GameSceneManagerScript : MonoBehaviour
     }
 
     public void EndScreen() {
+        Cursor.lockState = CursorLockMode.None;
         SceneManager.LoadScene(Scene.titleScene);
     }
 }

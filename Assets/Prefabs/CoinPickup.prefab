@@ -128,6 +128,7 @@ MonoBehaviour:
   _player: {fileID: 0}
   _interactPopupText: {fileID: 6546894283104596317}
   _text: {fileID: 7478113891097265459}
+  _objectivePointerScript: {fileID: 0}
 --- !u!1 &6546894283104596317
 GameObject:
   m_ObjectHideFlags: 0
@@ -240,15 +241,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6442033623362948354, guid: c0dbe3b15c7b44f41ade7a2190af4115, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -31.115854
+      value: -26.157547
       objectReference: {fileID: 0}
     - target: {fileID: 6442033623362948354, guid: c0dbe3b15c7b44f41ade7a2190af4115, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.40059254
+      value: 5.208981
       objectReference: {fileID: 0}
     - target: {fileID: 6442033623362948354, guid: c0dbe3b15c7b44f41ade7a2190af4115, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 175.31567
+      value: 159.06036
       objectReference: {fileID: 0}
     - target: {fileID: 6442033623362948354, guid: c0dbe3b15c7b44f41ade7a2190af4115, type: 3}
       propertyPath: m_LocalRotation.w
