@@ -19,7 +19,7 @@ public class EnemyAttackScript : MonoBehaviour
     void Update()
     {
         if (Vector3.Distance(playerTransform.position, transform.position) <= SWING_DISTANCE &&
-            Vector3.Angle(transform.forward, playerTransform.position - transform.position) < SWING_ANGLE &&
+            Vector3.Angle(transform.forward, playerTransform.position - transform.position) < SWING_ANGLE/2 &&
             !enemyAnimScript.AnimationIsPlaying(AnimationState.swingSword)
             )
         {
