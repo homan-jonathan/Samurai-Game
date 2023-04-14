@@ -10,6 +10,8 @@ public class EnemySightScript : MonoBehaviour
     public PlayerMoveScript _playerMoveScript;
     [Range(0, 360)]
     public float VIEW_ANGLE;
+    [Range(0, 360)]
+    public float WARNING_VIEW_ANGLE;
     public float VIEW_DISTANCE = 1;
     public float PLAYER_CROUCHING_MULTIPLIER = .25f;
     //public float PLAYER_RUNNING_MULTIPLIER = 1.5f;
@@ -45,17 +47,18 @@ public class EnemySightScript : MonoBehaviour
             return false;
         }
 
-        Vector3 positionInFrontofHead = _headTransform.position + transform.rotation * new Vector3(0, 0, .25f);
-        Vector3 directionToPlayer = (_playerTransform.position - transform.position).normalized;
+        Vector3 positionInFrontofHead = _headTransform.position + transform.rotation * new Vector3(0, 0, 1);
+        Vector3 directionToPlayer = (new Vector3(_playerTransform.position.x, positionInFrontofHead.y - .5f, _playerTransform.position.z) - positionInFrontofHead).normalized;
 
         //Updates Ray position
         ray.origin = positionInFrontofHead;
         ray.direction = directionToPlayer;
+        Debug.DrawRay(positionInFrontofHead, directionToPlayer * CalculateViewDistance() * _sightIndicatorScript.EPISLON_VISIBILITY_RANGE, Color.green);
 
         RaycastHit hit2;
         if (Physics.Raycast(ray, out hit2, CalculateViewDistance() * _sightIndicatorScript.EPISLON_VISIBILITY_RANGE/* * PLAYER_RUNNING_MULTIPLIER*/))
         {
-            if ((!(Vector3.Angle(transform.forward, directionToPlayer) < 100) ||
+            if ((!(Vector3.Angle(transform.forward, directionToPlayer) < WARNING_VIEW_ANGLE/2) ||
                 hit2.collider.tag != Tag.player) &&
                 _seenPlayerRecently <= 0)
             {
@@ -64,7 +67,7 @@ public class EnemySightScript : MonoBehaviour
 
             if (hit2.collider.tag == Tag.player)
             { //if ray hit player
-                if (Vector3.Angle(transform.forward, directionToPlayer) < 100)
+                if (Vector3.Angle(transform.forward, directionToPlayer) < WARNING_VIEW_ANGLE/2)
                 { //inside the view arc(warning area)
                     warningImage.enabled = true;
                     warningImage.color = new Color(warningColor.r, warningColor.g, warningColor.b);

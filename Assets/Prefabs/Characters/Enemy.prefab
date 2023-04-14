@@ -2764,6 +2764,7 @@ MonoBehaviour:
   _playerTransform: {fileID: 0}
   _playerMoveScript: {fileID: 0}
   VIEW_ANGLE: 170
+  WARNING_VIEW_ANGLE: 250
   VIEW_DISTANCE: 10
   PLAYER_CROUCHING_MULTIPLIER: 0.5
   PLAYER_SPOTTED_DURATION: 4
@@ -2798,7 +2799,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SWING_DISTANCE: 1.5
   playerTransform: {fileID: 0}
-  SWING_ANGLE: 90
+  SWING_ANGLE: 120
 --- !u!1 &6349057183427579137
 GameObject:
   m_ObjectHideFlags: 0
@@ -3248,7 +3249,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 431322, guid: ac53f9d05b915884ab3ce6d0a7113315, type: 3}
       propertyPath: m_LocalScale.y
-      value: 80
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 431322, guid: ac53f9d05b915884ab3ce6d0a7113315, type: 3}
       propertyPath: m_LocalScale.z
