@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9339623, g: 0.76042664, b: 0.20852609, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2644,7 +2644,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6349057183427579105}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2766,7 +2766,7 @@ MonoBehaviour:
   VIEW_ANGLE: 170
   VIEW_DISTANCE: 10
   PLAYER_CROUCHING_MULTIPLIER: 0.5
-  PLAYER_SPOTTED_DURATION: 2.5
+  PLAYER_SPOTTED_DURATION: 4
   _seenPlayerRecently: 0
   warningImage: {fileID: 2882128291871194480}
   warningColor: {r: 0.8666667, g: 0.7921569, b: 0.13725491, a: 0}
@@ -2796,8 +2796,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9cf145dfa088a842ae08168cd47ef35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SWING_DISTANCE: 2.5
+  SWING_DISTANCE: 1.5
   playerTransform: {fileID: 0}
+  SWING_ANGLE: 90
 --- !u!1 &6349057183427579137
 GameObject:
   m_ObjectHideFlags: 0
