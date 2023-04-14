@@ -22,21 +22,13 @@ public class PlayerAnimScript : MonoBehaviour
         _anim.SetBool("isCrouched", _playerMoveScript.IsCrouched());
         _anim.SetBool("isWalking", _playerMoveScript.IsWalking());
         _anim.SetBool("isRunning", _playerMoveScript.IsRunning());
-
-        //_anim.SetBool("isJumping", _playerMoveScript.IsJumping());
         _anim.SetBool("isGrounded", _playerMoveScript.IsGrounded());
         _anim.SetBool("isFalling", _playerMoveScript.IsFalling());
 
-        //_anim.SetBool("isDead", _playerMainScript.IsDead());
-
-
-        
     }
 
     public void PlayDeathAnim() {
-        //_anim.Play("Dead");
         _anim.SetTrigger("isDead");
-        
     }
 
     public void PlayJumpAnim()
