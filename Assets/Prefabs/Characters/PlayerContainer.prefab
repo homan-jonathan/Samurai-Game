@@ -192,6 +192,10 @@ MonoBehaviour:
   objective:
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   canvas: {fileID: 1046038689}
 --- !u!1 &37426781964297576
 GameObject:
@@ -1779,7 +1783,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6113089253837846762}
   - component: {fileID: 3016952081287736772}
-  - component: {fileID: 6807705634005208596}
+  - component: {fileID: 1931653318}
   m_Layer: 5
   m_Name: ChargedJumpSlider
   m_TagString: Untagged
@@ -1860,7 +1864,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &6807705634005208596
+--- !u!114 &1931653318
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1869,11 +1873,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4361546607666411553}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0a83b6b21c7eac46bee0d79e413ec5a, type: 3}
+  m_Script: {fileID: 11500000, guid: c3859e687ba0ed24cb7ff5abc6fa5330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _playerCam: {fileID: 0}
   _player: {fileID: 0}
+  _canvas: {fileID: 5818150219429447242}
 --- !u!1 &4551294824716898679
 GameObject:
   m_ObjectHideFlags: 0
@@ -2088,8 +2093,8 @@ MonoBehaviour:
   _cameraTransform: {fileID: 4344790299875894499}
   _cameraScript: {fileID: 4344790299875894498}
   CROUCH_MOVESPEED: 2
-  WALK_MOVESPEED: 4
-  RUN_MOVESPEED: 6
+  WALK_MOVESPEED: 3
+  RUN_MOVESPEED: 5
   JUMP_HEIGHT: 7
   CHARGED_JUMP_HEIGHT: 15
   GRAVITY: 20

@@ -2763,10 +2763,10 @@ MonoBehaviour:
   _headTransform: {fileID: 6349057183427284085}
   _playerTransform: {fileID: 0}
   _playerMoveScript: {fileID: 0}
-  VIEW_ANGLE: 170
+  VIEW_ANGLE: 180
   VIEW_DISTANCE: 10
   PLAYER_CROUCHING_MULTIPLIER: 0.5
-  PLAYER_SPOTTED_DURATION: 4
+  PLAYER_SPOTTED_DURATION: 6
   _seenPlayerRecently: 0
   warningImage: {fileID: 2882128291871194480}
   warningColor: {r: 0.8666667, g: 0.7921569, b: 0.13725491, a: 0}

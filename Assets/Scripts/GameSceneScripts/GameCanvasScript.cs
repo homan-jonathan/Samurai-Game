@@ -34,7 +34,7 @@ public class GameCanvasScript : MonoBehaviour
         endGameObject.GetComponentInChildren<Text>().text = msg;
         endGameObject.GetComponentInChildren<Text>().color = color;
         endGameObject.SetActive(true);
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(5f);
         gameSceneManager.EndScreen();
     }
 }
