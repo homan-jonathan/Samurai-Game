@@ -10,6 +10,7 @@ public class CoinPickupScript : MonoBehaviour
     public GameObject _player;
     public GameObject _interactPopupText;
     public Text _text;
+    public ObjectivePointerScript _objectivePointerScript;
 
     PlayerMainScript _playerScript;
 
@@ -38,6 +39,7 @@ public class CoinPickupScript : MonoBehaviour
 
             //Destroy(gameObject);
             gameObject.SetActive(false);
+            _objectivePointerScript.ReachedObjective();
         }
         
     }
