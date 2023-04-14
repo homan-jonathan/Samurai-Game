@@ -17,21 +17,17 @@ public class SliderScript : MonoBehaviour
         _transform = transform;
         _player = FindObjectOfType<PlayerMoveScript>();
         _playerCam = FindObjectOfType<CameraScript>();
-        //gameObject.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        //print(_player.IsCrouched());
         if (_player.IsCrouched())
         {
-            //gameObject.SetActive(true);
             _canvas.enabled = true;
         }
         else
         {
-            //gameObject.SetActive(false);
             _canvas.enabled = false;
         }
     }
