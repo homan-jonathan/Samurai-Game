@@ -24,6 +24,5 @@ public class ObjectivePointerScript : MonoBehaviour
 
     public void ReachedObjective() {
         objectiveCounter++;
-        print(objectiveCounter);
     }
 }
