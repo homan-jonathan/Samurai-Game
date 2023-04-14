@@ -8,10 +8,7 @@ public class SliderScript : MonoBehaviour
     Transform _transform;
     public CameraScript _playerCam;
     public PlayerMoveScript _player;
-
     public Canvas _canvas;
-
-    public bool showSlider;
     void Start()
     {
         _transform = transform;
