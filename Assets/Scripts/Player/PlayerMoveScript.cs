@@ -54,6 +54,7 @@ public class PlayerMoveScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //print(IsCrouched());
         if (_mainScript.IsDead()) {
             return;
         }
