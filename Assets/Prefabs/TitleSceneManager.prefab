@@ -248,8 +248,8 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: To play this game, you the ninja must sneak past the guards and attain
-    the _______. Once you have collected the ______ you must sneak back out to complete
-    your objective.
+    a coin bag full of gold. Once you have collected the coin bag you must sneak
+    back out to complete your objective.
 --- !u!1 &944303830
 GameObject:
   m_ObjectHideFlags: 0
@@ -540,10 +540,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Goal: Retrieve the ____
+  m_Text: 'Goal: Retrieve the coin bag
 
-    Accompolish this task by sneaking past the
-    guards and climbing on the buildings'
+    Accompolish this task by sneaking past
+    the guards and climbing on the buildings'
 --- !u!1 &1230701816
 GameObject:
   m_ObjectHideFlags: 0
