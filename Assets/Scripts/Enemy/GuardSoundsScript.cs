@@ -28,4 +28,9 @@ public class GuardSoundsScript : MonoBehaviour
     public void GuardAlertedNoise() {
         audioSource.PlayOneShot(guardAlerted);
     }
+
+    public void GuardSpottedNoise()
+    {
+        audioSource.PlayOneShot(guardSpotted);
+    }
 }

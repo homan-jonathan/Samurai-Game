@@ -23,6 +23,9 @@ public class EnemySightScript : MonoBehaviour
 
     public Ray ray = new Ray();
 
+    float _inCautionRange = 0;
+    float RESET_TIME = 2.5f;
+
     GuardSoundsScript guardSoundScript;
     public Image warningImage;
     public Color warningColor;
@@ -40,7 +43,10 @@ public class EnemySightScript : MonoBehaviour
         {
             _seenPlayerRecently -= Time.deltaTime;
         }
-
+        if (_inCautionRange > 0)
+        {
+            _seenPlayerRecently -= Time.deltaTime;
+        }
     }
 
     public bool CanSeePlayer()
@@ -65,6 +71,7 @@ public class EnemySightScript : MonoBehaviour
                 _seenPlayerRecently <= 0)
             {
                 warningImage.enabled = false;
+                _inCautionRange = 0;
             } //turn off image if, in angle, not the player, and wasnt seen recently
 
             if (hit2.collider.tag == Tag.player)
@@ -73,6 +80,10 @@ public class EnemySightScript : MonoBehaviour
                 { //inside the view arc(warning area)
                     warningImage.enabled = true;
                     warningImage.color = new Color(warningColor.r, warningColor.g, warningColor.b);
+                    if (_inCautionRange <= 0) { 
+                        guardSoundScript.GuardSpottedNoise();
+                    }
+                    _inCautionRange = RESET_TIME;
                 }
 
                 if (Vector3.Angle(transform.forward, directionToPlayer) < VIEW_ANGLE / 2)

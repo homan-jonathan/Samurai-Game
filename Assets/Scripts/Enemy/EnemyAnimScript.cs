@@ -8,6 +8,7 @@ public class EnemyAnimScript : MonoBehaviour
     public GameObject _enemy;
     EnemyMoveScript _enemyScript;
     GuardSoundsScript _guardSounds;
+
     // Start is called before the first frame update
     void Start()
     {

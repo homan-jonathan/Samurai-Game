@@ -8,12 +8,14 @@ public class PlayerAnimScript : MonoBehaviour
     public GameObject _player;
     PlayerMoveScript _playerMoveScript;
     PlayerMainScript _playerMainScript;
+    PlayerSoundsScript _playerSoundsScript;
     // Start is called before the first frame update
     void Start()
     {
         _anim = GetComponent<Animator>();
         _playerMoveScript = _player.GetComponent<PlayerMoveScript>();
         _playerMainScript= _player.GetComponent<PlayerMainScript>();
+        _playerSoundsScript = _player.GetComponent<PlayerSoundsScript>();
     }
 
     // Update is called once per frame
@@ -29,6 +31,7 @@ public class PlayerAnimScript : MonoBehaviour
 
     public void PlayDeathAnim() {
         _anim.SetTrigger("isDead");
+        _playerSoundsScript.PlayerHitNoise();
     }
 
     public void PlayJumpAnim()
@@ -39,5 +42,6 @@ public class PlayerAnimScript : MonoBehaviour
     public void PlayPickupCoinsAnim()
     {
         _anim.SetTrigger("pickupCoins");
+        _playerSoundsScript.PickedUpCoinsNoise();
     }
 }

@@ -9,22 +9,36 @@ public class EnemyAttackScript : MonoBehaviour
     public Transform playerTransform;
     [Range(0,360)]
     public float SWING_ANGLE = 0;
-    bool canSwing = true;
+    bool hasSwung = false;
     // Start is called before the first frame update
     void Start()
     {
         enemyAnimScript = GetComponent<EnemyAnimScript>();
+        StartCoroutine(AttemptAttack());
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(playerTransform.position, transform.position) <= SWING_DISTANCE &&
-            Vector3.Angle(transform.forward, playerTransform.position - transform.position) < SWING_ANGLE/2 &&
-            !enemyAnimScript.AnimationIsPlaying(AnimationState.swingSword)
-            )
+        
+        /*if (!enemyAnimScript.AnimationIsPlaying(AnimationState.swingSword)) {
+            hasSwung = false;
+        }*/
+    }
+
+    IEnumerator AttemptAttack() {
+        while (true)
         {
-            enemyAnimScript.PlayAttackAnim();
+            if (Vector3.Distance(playerTransform.position, transform.position) <= SWING_DISTANCE &&
+                    Vector3.Angle(transform.forward, playerTransform.position - transform.position) < SWING_ANGLE / 2 &&
+                    !enemyAnimScript.AnimationIsPlaying(AnimationState.swingSword) &&
+                    !hasSwung
+                    )
+            {
+                //hasSwung = true;
+                enemyAnimScript.PlayAttackAnim();
+            }
+            yield return new WaitForSeconds(.5f);
         }
     }
 }
