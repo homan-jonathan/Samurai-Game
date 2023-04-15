@@ -27,6 +27,7 @@ public class ZoneTriggerScript : MonoBehaviour
             if (flipVar)
             {
                 StartCoroutine(gameCanvasScript.DisplayZoneText(entertingString));
+                FindObjectOfType<PlayerSoundsScript>().ZoneChangeNoise();
             }
             else
             {
