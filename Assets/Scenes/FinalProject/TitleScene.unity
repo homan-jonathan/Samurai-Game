@@ -6032,7 +6032,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 0.5
+  m_Intensity: 0.33
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -18403,7 +18403,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 27418762, guid: a78d963474d8f7f42beba04bd8e1187d, type: 3}
       propertyPath: m_FontData.m_Alignment
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1086906146, guid: a78d963474d8f7f42beba04bd8e1187d, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -18441,6 +18441,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.AudioClip, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 1230701816, guid: a78d963474d8f7f42beba04bd8e1187d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1234395452, guid: a78d963474d8f7f42beba04bd8e1187d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2
@@ -18477,6 +18481,10 @@ PrefabInstance:
       propertyPath: m_FontData.m_Font
       value: 
       objectReference: {fileID: 12800000, guid: aef4a3f67ab92964e896ca6a3792c020, type: 3}
+    - target: {fileID: 928961051493883444, guid: a78d963474d8f7f42beba04bd8e1187d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2982581874627802844, guid: a78d963474d8f7f42beba04bd8e1187d, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 140
