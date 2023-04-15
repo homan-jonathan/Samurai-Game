@@ -9,6 +9,7 @@ public class GameSceneManagerScript : MonoBehaviour
     public GameObject _pauseMenu;
     public GameCanvasScript _GameCanvas;
     public bool isPaused = false;
+    bool hasWon = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +34,7 @@ public class GameSceneManagerScript : MonoBehaviour
 
     public void HasWon() {
         StartCoroutine(_GameCanvas.DisplayEndGameText("Mission Succssesful", Color.green));
+        hasWon = true;
     }
 
     public void HasLost()
@@ -45,7 +47,7 @@ public class GameSceneManagerScript : MonoBehaviour
         if (PlayerPrefs.HasKey("Score")) {
             bestTime = PlayerPrefs.GetFloat("Score");
         }
-        if (_GameCanvas.timer > bestTime) {
+        if (hasWon && _GameCanvas.timer > bestTime) {
             bestTime = _GameCanvas.timer;
         }
         PlayerPrefs.SetFloat("Score", bestTime);
