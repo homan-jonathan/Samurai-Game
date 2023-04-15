@@ -9,6 +9,7 @@ public class EnemyAttackScript : MonoBehaviour
     public Transform playerTransform;
     [Range(0,360)]
     public float SWING_ANGLE = 0;
+    bool canSwing = true;
     // Start is called before the first frame update
     void Start()
     {

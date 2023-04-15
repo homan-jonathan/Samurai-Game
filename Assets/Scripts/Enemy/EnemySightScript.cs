@@ -23,12 +23,14 @@ public class EnemySightScript : MonoBehaviour
 
     public Ray ray = new Ray();
 
+    GuardSoundsScript guardSoundScript;
     public Image warningImage;
     public Color warningColor;
     public Color spottedColor;
     void Start()
     {
         _sightIndicatorScript = GetComponentInChildren<SightIndicatorScript>();
+        guardSoundScript = GetComponent<GuardSoundsScript>();
     }
 
     // Update is called once per frame
@@ -53,7 +55,7 @@ public class EnemySightScript : MonoBehaviour
         //Updates Ray position
         ray.origin = positionInFrontofHead;
         ray.direction = directionToPlayer;
-        Debug.DrawRay(positionInFrontofHead, directionToPlayer * CalculateViewDistance() * _sightIndicatorScript.EPISLON_VISIBILITY_RANGE, Color.green);
+        //Debug.DrawRay(positionInFrontofHead, directionToPlayer * CalculateViewDistance() * _sightIndicatorScript.EPISLON_VISIBILITY_RANGE, Color.green);
 
         RaycastHit hit2;
         if (Physics.Raycast(ray, out hit2, CalculateViewDistance() * _sightIndicatorScript.EPISLON_VISIBILITY_RANGE/* * PLAYER_RUNNING_MULTIPLIER*/))
@@ -78,8 +80,11 @@ public class EnemySightScript : MonoBehaviour
                     if (hit2.distance <= CalculateViewDistance())
                     {
                         //seen player
-                        _seenPlayerRecently = PLAYER_SPOTTED_DURATION;
                         warningImage.color = new Color(spottedColor.r, spottedColor.g, spottedColor.b);
+                        if (_seenPlayerRecently <= 0) {
+                            guardSoundScript.GuardAlertedNoise();
+                        }
+                        _seenPlayerRecently = PLAYER_SPOTTED_DURATION;
                         return true;
                     }
                 }
