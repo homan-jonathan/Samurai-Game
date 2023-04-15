@@ -39,7 +39,7 @@ public class CoinPickupScript : MonoBehaviour
 
             //Destroy(gameObject);
             gameObject.SetActive(false);
-            //_objectivePointerScript.ReachedObjective();
+            _objectivePointerScript.ReachedObjective();
         }
         
     }
