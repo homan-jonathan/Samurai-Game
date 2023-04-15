@@ -62,6 +62,10 @@ public class PlayerMoveScript : MonoBehaviour
             {
                 chargeJumpTimer += Time.deltaTime;
             }
+            else
+            {
+                chargeJumpTimer += Time.deltaTime * 0.10f;
+            }
 
             if (chargeJumpTimer >= NEEDED_TO_JUMP)
             {
