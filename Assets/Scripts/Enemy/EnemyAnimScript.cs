@@ -7,11 +7,13 @@ public class EnemyAnimScript : MonoBehaviour
     private Animator _anim;
     public GameObject _enemy;
     EnemyMoveScript _enemyScript;
+    GuardSoundsScript _guardSounds;
     // Start is called before the first frame update
     void Start()
     {
         _anim = GetComponent<Animator>();
         _enemyScript = _enemy.GetComponent<EnemyMoveScript>();
+        _guardSounds = GetComponent<GuardSoundsScript>();
     }
 
     // Update is called once per frame
@@ -23,6 +25,7 @@ public class EnemyAnimScript : MonoBehaviour
 
     public void PlayAttackAnim() {
         _anim.SetTrigger("swingSword");
+        _guardSounds.SwordSlashNoise();
     }
 
     //from edu4hd0
