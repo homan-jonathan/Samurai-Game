@@ -11,6 +11,7 @@ public class GameCanvasScript : MonoBehaviour
     public GameObject endGameObject;
 
     public float timer = 0;
+    public bool gameOver = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +21,10 @@ public class GameCanvasScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (gameOver) {
+            return;
+        }
+
         timer += Time.deltaTime;
         timerText.text = "Time: " + timer.ToString("#.##");
     }
@@ -34,7 +39,7 @@ public class GameCanvasScript : MonoBehaviour
         endGameObject.GetComponentInChildren<Text>().text = msg;
         endGameObject.GetComponentInChildren<Text>().color = color;
         endGameObject.SetActive(true);
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(5f);
         gameSceneManager.EndScreen();
     }
 }

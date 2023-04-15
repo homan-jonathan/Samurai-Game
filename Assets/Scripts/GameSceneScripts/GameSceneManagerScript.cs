@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -28,18 +27,28 @@ public class GameSceneManagerScript : MonoBehaviour
         isPaused = !isPaused;
         _pauseMenu.SetActive(isPaused);
 
+        foreach (AudioSource audioSource in FindObjectsOfType<AudioSource>()) {
+            if (isPaused) {
+                audioSource.Pause(); 
+            } else {
+                audioSource.Play();
+            }
+        }
+
         Cursor.lockState = isPaused ? CursorLockMode.None : CursorLockMode.Locked;
         Time.timeScale = isPaused ? 0 : 1;
     }
 
     public void HasWon() {
         StartCoroutine(_GameCanvas.DisplayEndGameText("Mission Succssesful", Color.green));
+        _GameCanvas.gameOver = true;
         hasWon = true;
     }
 
     public void HasLost()
     {
         StartCoroutine(_GameCanvas.DisplayEndGameText("Mission Failed", Color.red));
+        _GameCanvas.gameOver = true;
     }
 
     public void EndScreen() {

@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.ConstrainedExecution;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class PlayerMoveScript : MonoBehaviour
 {

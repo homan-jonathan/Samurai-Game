@@ -2831,7 +2831,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   swordSlash: {fileID: 8300000, guid: 54f6a6492bec48f4eaccc10455463c8c, type: 3}
   guardAlerted: {fileID: 8300000, guid: da9ac9fa118421c43b43c722d5e84bea, type: 3}
-  guardSpotted: {fileID: 0}
+  guardSpotted: {fileID: 8300000, guid: 8b5d80395e736354bbececcb3c558353, type: 3}
 --- !u!82 &-7103917339593578378
 AudioSource:
   m_ObjectHideFlags: 0
