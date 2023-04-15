@@ -10,7 +10,7 @@ public class GameCanvasScript : MonoBehaviour
     public Text zoneText;
     public GameObject endGameObject;
 
-    float timer = 0;
+    public float timer = 0;
     // Start is called before the first frame update
     void Start()
     {

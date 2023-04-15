@@ -41,6 +41,15 @@ public class GameSceneManagerScript : MonoBehaviour
     }
 
     public void EndScreen() {
+        float bestTime = 0;
+        if (PlayerPrefs.HasKey("Score")) {
+            bestTime = PlayerPrefs.GetFloat("Score");
+        }
+        if (_GameCanvas.timer > bestTime) {
+            bestTime = _GameCanvas.timer;
+        }
+        PlayerPrefs.SetFloat("Score", bestTime);
+
         Cursor.lockState = CursorLockMode.None;
         SceneManager.LoadScene(Scene.titleScene);
     }
