@@ -4,18 +4,15 @@ using UnityEngine;
 
 public class PlayerAnimScript : MonoBehaviour
 {
-    private Animator _anim;
-    public GameObject _player;
+    Animator _anim;
     PlayerMoveScript _playerMoveScript;
-    PlayerMainScript _playerMainScript;
     PlayerSoundsScript _playerSoundsScript;
     // Start is called before the first frame update
     void Start()
     {
         _anim = GetComponent<Animator>();
-        _playerMoveScript = _player.GetComponent<PlayerMoveScript>();
-        _playerMainScript= _player.GetComponent<PlayerMainScript>();
-        _playerSoundsScript = _player.GetComponent<PlayerSoundsScript>();
+        _playerMoveScript = GetComponent<PlayerMoveScript>();
+        _playerSoundsScript = GetComponent<PlayerSoundsScript>();
     }
 
     // Update is called once per frame
@@ -26,7 +23,6 @@ public class PlayerAnimScript : MonoBehaviour
         _anim.SetBool("isRunning", _playerMoveScript.IsRunning());
         _anim.SetBool("isGrounded", _playerMoveScript.IsGrounded());
         _anim.SetBool("isFalling", _playerMoveScript.IsFalling());
-
     }
 
     public void PlayDeathAnim() {

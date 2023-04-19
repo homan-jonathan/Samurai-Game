@@ -5,9 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenuScript : MonoBehaviour
 {
-    public GameSceneManagerScript _gameManager;
-    public GameObject _pausedScreen;
-    public GameObject _settingsScreen;
+    public GameSceneManagerScript gameManager;
+    public GameObject pausedScreen;
+    public GameObject settingsScreen;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,13 +26,13 @@ public class PauseMenuScript : MonoBehaviour
 
     public void OnUnpauseClicked()
     {
-        _gameManager.PauseGame();
+        gameManager.PauseGame();
     }
 
     public void OnSettingsClicked()
     {
-        _pausedScreen.SetActive(false);
-        _settingsScreen.SetActive(true);
+        pausedScreen.SetActive(false);
+        settingsScreen.SetActive(true);
     }
 
     public void OnHomeClicked()
@@ -46,7 +46,7 @@ public class PauseMenuScript : MonoBehaviour
     }
 
     void ShowDefaultScreen() {
-        _settingsScreen.SetActive(false);
-        _pausedScreen.SetActive(true);
+        settingsScreen.SetActive(false);
+        pausedScreen.SetActive(true);
     }
 }

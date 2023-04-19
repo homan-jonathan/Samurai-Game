@@ -5,10 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class GameSceneManagerScript : MonoBehaviour
 {
-    public GameObject _pauseMenu;
-    public GameCanvasScript _GameCanvas;
-    public bool isPaused = false;
-    bool hasWon = false;
+    public GameObject pauseMenu;
+    public GameCanvasScript gameCanvas;
+    
+    bool _isPaused = false;
+    bool _gameOver = false;
+    float _timer = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,43 +23,54 @@ public class GameSceneManagerScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape)) {
             PauseGame();
         }
+
+        if (!_gameOver) { 
+            _timer += Time.deltaTime;
+        }
     }
 
     public void PauseGame() {
-        isPaused = !isPaused;
-        _pauseMenu.SetActive(isPaused);
+        _isPaused = !_isPaused;
+        pauseMenu.SetActive(_isPaused);
 
         foreach (AudioSource audioSource in FindObjectsOfType<AudioSource>()) {
-            if (isPaused) {
+            if (_isPaused) {
                 audioSource.Pause(); 
             } else {
                 audioSource.Play();
             }
         }
 
-        Cursor.lockState = isPaused ? CursorLockMode.None : CursorLockMode.Locked;
-        Time.timeScale = isPaused ? 0 : 1;
+        Cursor.lockState = _isPaused ? CursorLockMode.None : CursorLockMode.Locked;
+        Time.timeScale = _isPaused ? 0 : 1;
+    }
+
+    public float GetTimeElapsed() {
+        return _timer;
     }
 
     public void HasWon() {
-        StartCoroutine(_GameCanvas.DisplayEndGameText("Mission Succssesful", Color.green));
-        _GameCanvas.gameOver = true;
-        hasWon = true;
+        gameCanvas.DisplayEndGameText("Mission Succssesful", Color.green);
+        _gameOver = true;
+        StartCoroutine(EndScreen(true));
     }
 
     public void HasLost()
     {
-        StartCoroutine(_GameCanvas.DisplayEndGameText("Mission Failed", Color.red));
-        _GameCanvas.gameOver = true;
+        gameCanvas.DisplayEndGameText("Mission Failed", Color.red);
+        _gameOver = true;
+        StartCoroutine(EndScreen(false));
     }
 
-    public void EndScreen() {
+    public IEnumerator EndScreen(bool hasWon)
+    {
+        yield return new WaitForSeconds(5f);
         float bestTime = 0;
         if (PlayerPrefs.HasKey("Score")) {
             bestTime = PlayerPrefs.GetFloat("Score");
         }
-        if (hasWon && _GameCanvas.timer > bestTime) {
-            bestTime = _GameCanvas.timer;
+        if (hasWon && _timer > bestTime) {
+            bestTime = _timer;
         }
         PlayerPrefs.SetFloat("Score", bestTime);
 

@@ -4,39 +4,33 @@ using UnityEngine;
 
 public class EnemyAttackScript : MonoBehaviour
 {
-    EnemyAnimScript enemyAnimScript;
     public float SWING_DISTANCE = 1;
-    public Transform playerTransform;
     [Range(0,360)]
     public float SWING_ANGLE = 0;
-    bool hasSwung = false;
+
+    EnemyAnimScript _enemyAnimScript;
+    Transform _playerTransform;
     // Start is called before the first frame update
     void Start()
     {
-        enemyAnimScript = GetComponent<EnemyAnimScript>();
+        _enemyAnimScript = GetComponent<EnemyAnimScript>();
+        _playerTransform = _enemyAnimScript.GetPlayerReference().transform;
         StartCoroutine(AttemptAttack());
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        /*if (!enemyAnimScript.AnimationIsPlaying(AnimationState.swingSword)) {
-            hasSwung = false;
-        }*/
     }
 
     IEnumerator AttemptAttack() {
         while (true)
         {
-            if (Vector3.Distance(playerTransform.position, transform.position) <= SWING_DISTANCE &&
-                    Vector3.Angle(transform.forward, playerTransform.position - transform.position) < SWING_ANGLE / 2 &&
-                    !enemyAnimScript.AnimationIsPlaying(AnimationState.swingSword) &&
-                    !hasSwung
-                    )
+            if (Vector3.Distance(_playerTransform.position, transform.position) <= SWING_DISTANCE &&
+                    Vector3.Angle(transform.forward, _playerTransform.position - transform.position) < SWING_ANGLE / 2 &&
+                    !_enemyAnimScript.AnimationIsPlaying(AnimationState.swingSword))
             {
-                //hasSwung = true;
-                enemyAnimScript.PlayAttackAnim();
+                _enemyAnimScript.PlayAttackAnim();
             }
             yield return new WaitForSeconds(.5f);
         }

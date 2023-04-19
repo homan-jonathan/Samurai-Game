@@ -9,9 +9,6 @@ public class GameCanvasScript : MonoBehaviour
     public Text timerText;
     public Text zoneText;
     public GameObject endGameObject;
-
-    public float timer = 0;
-    public bool gameOver = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,12 +18,7 @@ public class GameCanvasScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameOver) {
-            return;
-        }
-
-        timer += Time.deltaTime;
-        timerText.text = "Time: " + timer.ToString("#.##");
+        timerText.text = "Time: " + gameSceneManager.GetTimeElapsed().ToString("#.##");
     }
     public IEnumerator DisplayZoneText(string locationName)
     {
@@ -35,11 +27,9 @@ public class GameCanvasScript : MonoBehaviour
         zoneText.text = "";
     }
 
-    public IEnumerator DisplayEndGameText(string msg, Color color) {
+    public void DisplayEndGameText(string msg, Color color) {
         endGameObject.GetComponentInChildren<Text>().text = msg;
         endGameObject.GetComponentInChildren<Text>().color = color;
         endGameObject.SetActive(true);
-        yield return new WaitForSeconds(5f);
-        gameSceneManager.EndScreen();
     }
 }
