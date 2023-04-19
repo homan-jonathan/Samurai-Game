@@ -12,8 +12,8 @@
  * Usage examples:
  	1. Messenger.AddListener<GameObject>("prop collected", PropCollected);
  	   Messenger.Broadcast<GameObject>("prop collected", prop);
- 	2. Messenger.AddListener<float>("speed changed", SpeedChanged);
- 	   Messenger.Broadcast<float>("speed changed", 0.5f);
+ 	2. Messenger.AddListener<float>("_speed changed", SpeedChanged);
+ 	   Messenger.Broadcast<float>("_speed changed", 0.5f);
  * 
  * Messenger cleans up its evenTable automatically upon loading of a new level.
  * 

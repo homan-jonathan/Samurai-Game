@@ -18,7 +18,7 @@ public class GameOverTriggerScipt : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag.Equals(Tag.player) && playerMainScript.hasCoins)
+        if (other.gameObject.tag.Equals(Tag.player) && playerMainScript.HasCoins())
         {
             gameSceneManagerScript.HasWon();
         }

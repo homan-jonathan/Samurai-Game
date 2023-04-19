@@ -6,16 +6,13 @@ using UnityEngine;
 
 public class PlayerMoveScript : MonoBehaviour
 {
-    CharacterController _charCon;
-    public float _rotAmt = 0;
-    public Transform _cameraTransform;
-    public CameraScript _cameraScript;
-    Transform _transform;
+    public Transform cameraTransform;
 
+    CharacterController _charCon;
     PlayerAnimScript _animScript;
     PlayerMainScript _mainScript;
-
-    private Vector3 moveDirection = Vector3.zero;
+    CameraScript _cameraScript;
+    Transform _transform;
 
     public float CROUCH_MOVESPEED = 2.0F;
     public float WALK_MOVESPEED = 4.0F;
@@ -23,31 +20,33 @@ public class PlayerMoveScript : MonoBehaviour
     public float JUMP_HEIGHT = 7.0F;
     public float CHARGED_JUMP_HEIGHT = 15.0f;
     public float GRAVITY = 20.0F;
+    public float ROTATION_SPEED = 720F;
+
+    Vector3 _moveDirection = Vector3.zero;
+    float _speed;
     float _ySpeed = 0;
 
-    public float rotationSpeed = 720F;
-    public float speed;
-
     //movement logic
-    private bool ableToJump = true;
-    private bool isJumping = false;
-    private bool isGrounded = true;
-    private bool isFalling = false;
+    bool _ableToJump = true;
+    bool _isJumping = false;
+    bool _isGrounded = true;
+    bool _isFalling = false;
 
     //logic for charging jump
-    private bool hasChargedJump = false;
-    public float chargeJumpTimer = 0.0f;
+    bool _hasChargedJump = false;
+    float _chargeJumpTimer = 0.0f;
     public float NEEDED_TO_JUMP = 1.0f;
 
     // Start is called before the first frame update
     void Start()
     {
         _charCon = GetComponent<CharacterController>();
-        _transform = transform;
-        speed = WALK_MOVESPEED;
-
+        _cameraScript = cameraTransform.GetComponent<CameraScript>();
         _animScript = GetComponent<PlayerAnimScript>();
         _mainScript = GetComponent<PlayerMainScript>();
+        _transform = transform;
+
+        _speed = WALK_MOVESPEED;
     }
 
     // Update is called once per frame
@@ -56,37 +55,20 @@ public class PlayerMoveScript : MonoBehaviour
         if (_mainScript.IsDead()) {
             return;
         }
+
         if (IsCrouched())
         {
-            if (!IsWalking() && !IsRunning() && !IsJumping() && !IsFalling())
-            {
-                chargeJumpTimer += Time.deltaTime;
-            }
-            else
-            {
-                chargeJumpTimer += Time.deltaTime * 0.10f;
-            }
-
-            if (chargeJumpTimer >= NEEDED_TO_JUMP)
-            {
-                hasChargedJump = true;
-            }
-            else
-            {
-                hasChargedJump = false;
-            }
-
-            //ableToJump = false; 
-            speed = CROUCH_MOVESPEED;
+            ChargeJump();
+            _speed = CROUCH_MOVESPEED;
         } else if (IsRunning()) 
         {
-            speed = RUN_MOVESPEED;
-            ableToJump = true;
+            _speed = RUN_MOVESPEED;
+            _ableToJump = true;
         } 
         else if (IsWalking())
         {
-            speed = WALK_MOVESPEED;
-            ableToJump = true;
+            _speed = WALK_MOVESPEED;
+            _ableToJump = true;
         }
 
         float timePassed = 0.0f;
@@ -95,35 +77,25 @@ public class PlayerMoveScript : MonoBehaviour
         {
             timePassed = 0.0f;
             _ySpeed = -1;
-            isGrounded = true;
-            isJumping = false;
-            isFalling = false;
+            _isGrounded = true;
+            _isJumping = false;
+            _isFalling = false;
 
-            if (Input.GetKeyDown(KeyBinding.jump()) && ableToJump)
+            if (Input.GetKeyDown(KeyBinding.jump()) && _ableToJump)
             {
-                if(hasChargedJump)
-                {
-                    _ySpeed = CHARGED_JUMP_HEIGHT;
-                    hasChargedJump = false;
-                    chargeJumpTimer = 0.0f;
-                }
-                else
-                {
-                    _ySpeed = JUMP_HEIGHT;
-                }
-                isJumping = true;
+                Jump();
                 _animScript.PlayJumpAnim();
             }
         }
         else
         {
-            isGrounded = false;
+            _isGrounded = false;
             timePassed += Time.deltaTime;
             _ySpeed -= Time.deltaTime * GRAVITY;
 
             if (timePassed >= 0.25f)
             {
-                isFalling = true;
+                _isFalling = true;
             }
         }
         
@@ -131,28 +103,61 @@ public class PlayerMoveScript : MonoBehaviour
         switch (_cameraScript._mode)
         {
             case CameraScript.Mode.OrbitCam:
-                float rotationRelativeToCamera1 = _cameraTransform.rotation.eulerAngles.y;
-                moveDirection = Quaternion.Euler(0, rotationRelativeToCamera1, 0) * new Vector3(speed * Input.GetAxis("Horizontal"), 0, speed * Input.GetAxis("Vertical"));
+                float rotationRelativeToCamera1 = cameraTransform.rotation.eulerAngles.y;
+                _moveDirection = Quaternion.Euler(0, rotationRelativeToCamera1, 0) * new Vector3(_speed * Input.GetAxis("Horizontal"), 0, _speed * Input.GetAxis("Vertical"));
 
-                if (moveDirection != Vector3.zero)
+                if (_moveDirection != Vector3.zero)
                 {
-                    Quaternion toRotation1 = Quaternion.LookRotation(moveDirection, Vector3.up);
-                    transform.rotation = Quaternion.RotateTowards(_transform.rotation, toRotation1, rotationSpeed * Time.deltaTime);
+                    Quaternion toRotation1 = Quaternion.LookRotation(_moveDirection, Vector3.up);
+                    transform.rotation = Quaternion.RotateTowards(_transform.rotation, toRotation1, ROTATION_SPEED * Time.deltaTime);
                 }
                 break;
             case CameraScript.Mode.FollowCam:
                 float rotationRelativeToCamera2 = _cameraScript._rotAmtX;
-                moveDirection = Quaternion.Euler(0, rotationRelativeToCamera2, 0) * new Vector3(0, 0, speed * Input.GetAxis("Vertical"));
+                _moveDirection = Quaternion.Euler(0, rotationRelativeToCamera2, 0) * new Vector3(0, 0, _speed * Input.GetAxis("Vertical"));
 
-                Quaternion toRotation2 = Quaternion.Euler(0, rotationRelativeToCamera2 + speed * Input.GetAxis("Horizontal"), 0);
-                transform.rotation = Quaternion.RotateTowards(_transform.rotation, toRotation2, rotationSpeed * Time.deltaTime);
+                Quaternion toRotation2 = Quaternion.Euler(0, rotationRelativeToCamera2 + _speed * Input.GetAxis("Horizontal"), 0);
+                transform.rotation = Quaternion.RotateTowards(_transform.rotation, toRotation2, ROTATION_SPEED * Time.deltaTime);
 
                 break;
         }
 
-        _transform.Translate(moveDirection * speed * Time.deltaTime + new Vector3(0, _ySpeed, 0) * Time.deltaTime, Space.World);
+        _transform.Translate(_moveDirection * _speed * Time.deltaTime + new Vector3(0, _ySpeed, 0) * Time.deltaTime, Space.World);
 
-        _charCon.Move(moveDirection * Time.deltaTime + new Vector3(0, _ySpeed, 0) * Time.deltaTime);
+        _charCon.Move(_moveDirection * Time.deltaTime + new Vector3(0, _ySpeed, 0) * Time.deltaTime);
+    }
+
+    void ChargeJump() {
+        if (!IsWalking() && !IsRunning() && !IsJumping() && !IsFalling())
+        {
+            _chargeJumpTimer += Time.deltaTime;
+        }
+        else
+        {
+            _chargeJumpTimer += Time.deltaTime * 0.10f;
+        }
+
+        if (_chargeJumpTimer >= NEEDED_TO_JUMP)
+        {
+            _hasChargedJump = true;
+        }
+        else
+        {
+            _hasChargedJump = false;
+        }
+    }
+    void Jump() {
+        if (_hasChargedJump)
+        {
+            _ySpeed = CHARGED_JUMP_HEIGHT;
+            _hasChargedJump = false;
+            _chargeJumpTimer = 0.0f;
+        }
+        else
+        {
+            _ySpeed = JUMP_HEIGHT;
+        }
+        _isJumping = true;
     }
 
     public bool IsCrouched() {
@@ -168,7 +173,7 @@ public class PlayerMoveScript : MonoBehaviour
 
     public bool IsWalking()
     {
-        if (moveDirection != Vector3.zero && !IsRunning())
+        if (_moveDirection != Vector3.zero && !IsRunning())
         {   
             return true;
         }
@@ -179,7 +184,7 @@ public class PlayerMoveScript : MonoBehaviour
     }
 
     public bool IsRunning() {
-        if (moveDirection != Vector3.zero && Input.GetKey(KeyBinding.sprint()))
+        if (_moveDirection != Vector3.zero && Input.GetKey(KeyBinding.sprint()))
         {
             return true;
         }
@@ -190,14 +195,16 @@ public class PlayerMoveScript : MonoBehaviour
     }
     public bool IsJumping()
     {
-        return isJumping;
+        return _isJumping;
     }
     public bool IsGrounded()
     {
-        return isGrounded;
+        return _isGrounded;
     }
     public bool IsFalling()
     {
-        return isFalling;
+        return _isFalling;
     }
+
+    public float GetChargeJumpTimer() { return _chargeJumpTimer; }
 }

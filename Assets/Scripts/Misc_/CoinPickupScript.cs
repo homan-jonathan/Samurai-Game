@@ -6,40 +6,29 @@ using UnityEngine.UI;
 
 public class CoinPickupScript : MonoBehaviour
 {
+    public PlayerMainScript _playerScript;
 
-    public GameObject _player;
-    public GameObject _interactPopupText;
-    public Text _text;
-    public ObjectivePointerScript _objectivePointerScript;
-
-    PlayerMainScript _playerScript;
-
+    Text _interactPopupText;
     
     // Start is called before the first frame update
     void Start()
     {
-        _playerScript = _player.GetComponent<PlayerMainScript>();
-        _interactPopupText.SetActive(false);
-
-        _text = _interactPopupText.GetComponent<Text>();
+        _playerScript = FindObjectOfType<PlayerMainScript>();
+        _interactPopupText = GetComponentInChildren<Text>();
+        _interactPopupText.text = "";
     }
 
     // Update is called once per frame
     void Update()
     {
-        _text.text = "Press " + KeyBinding.interact() + " to interact";
     }
 
     private void OnTriggerStay(Collider other)
     {
-        
         if (Input.GetKeyDown(KeyBinding.interact()))
         {
-            _playerScript.pickupCoin();
-
-            //Destroy(gameObject);
+            _playerScript.PickupCoin();
             gameObject.SetActive(false);
-            _objectivePointerScript.ReachedObjective();
         }
         
     }
@@ -47,7 +36,7 @@ public class CoinPickupScript : MonoBehaviour
     {
         if (collision.gameObject.tag == Tag.player)
         {
-            _interactPopupText.SetActive(true);
+            _interactPopupText.text = "Press " + KeyBinding.interact() + " to interact";
         }
 
     }
@@ -56,7 +45,7 @@ public class CoinPickupScript : MonoBehaviour
     {
         if (collision.gameObject.tag == Tag.player)
         {
-            _interactPopupText.SetActive(false);
+            _interactPopupText.text = "";
         }
 
     }

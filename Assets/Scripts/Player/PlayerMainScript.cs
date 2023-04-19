@@ -3,20 +3,16 @@ using UnityEngine.UI;
 
 public class PlayerMainScript : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public GameSceneManagerScript GAME_SCENE_MANAGER;
+    public Slider healthBar;
+
     PlayerAnimScript _anim;
     PlayerMoveScript _moveScript;
-    public GameSceneManagerScript gameSceneManager;
 
-    SliderScript _sliderScript;
+    bool _isDead = false;
+    bool _hasCoins = false;
 
-    public GameObject _coinBag;
-    public bool hasCoins;
-
-    public Slider healthBar;
-    public Image healthFilledImage;
-    bool isDead = false;
-    
+    // Start is called before the first frame update
     void Start()
     {
         _anim = GetComponent<PlayerAnimScript>();
@@ -26,28 +22,31 @@ public class PlayerMainScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        healthBar.value = _moveScript.chargeJumpTimer;
+        healthBar.value = _moveScript.GetChargeJumpTimer();
     }
 
-    public void pickupCoin()
+    public void PickupCoin()
     {
-        _coinBag.SetActive(true);
-        hasCoins = true;
         _anim.PlayPickupCoinsAnim();
+        _hasCoins = true;
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag.Equals(Tag.sword) && !isDead)
+        if (other.gameObject.tag.Equals(Tag.sword) && !_isDead)
         {
             GetComponent<CharacterController>().detectCollisions = false;
-            isDead = true;
             _anim.PlayDeathAnim();
-            gameSceneManager.HasLost();
+            GAME_SCENE_MANAGER.HasLost();
+            _isDead = true;
         }
     }
 
     public bool IsDead()
     {
-        return isDead;
+        return _isDead;
+    }
+
+    public bool HasCoins() { 
+        return _hasCoins;
     }
 }
