@@ -6,17 +6,17 @@ using UnityEngine.UI;
 
 public class SettingsScript : MonoBehaviour
 {
-    public Button _sprint, _crouch, _cameraMode, _jump, _interact;
+    public Button sprint, crouch, cameraMode, jump, interact;
 
-    GameObject currentKey;
+    GameObject _currentKey;
     // Start is called before the first frame update
     void Start()
     {
-        _sprint.GetComponentInChildren<Text>().text = KeyBinding.keys["Sprint"].ToString();
-        _crouch.GetComponentInChildren<Text>().text = KeyBinding.keys["Crouch"].ToString();
-        _cameraMode.GetComponentInChildren<Text>().text = KeyBinding.keys["CameraMode"].ToString();
-        _jump.GetComponentInChildren<Text>().text = KeyBinding.keys["Jump"].ToString();
-        _interact.GetComponentInChildren<Text>().text = KeyBinding.keys["Interact"].ToString();
+        sprint.GetComponentInChildren<Text>().text = KeyBinding.keys["Sprint"].ToString();
+        crouch.GetComponentInChildren<Text>().text = KeyBinding.keys["Crouch"].ToString();
+        cameraMode.GetComponentInChildren<Text>().text = KeyBinding.keys["CameraMode"].ToString();
+        jump.GetComponentInChildren<Text>().text = KeyBinding.keys["Jump"].ToString();
+        interact.GetComponentInChildren<Text>().text = KeyBinding.keys["Interact"].ToString();
     }
 
     // Update is called once per frame
@@ -27,17 +27,17 @@ public class SettingsScript : MonoBehaviour
 
     private void OnGUI()
     {
-        if (currentKey) {
+        if (_currentKey) {
             Event e = Event.current;
             if (e.isKey) {
-                KeyBinding.keys[currentKey.name] = e.keyCode;
-                currentKey.GetComponentInChildren<Text>().text = e.keyCode.ToString();
-                currentKey = null;
+                KeyBinding.keys[_currentKey.name] = e.keyCode;
+                _currentKey.GetComponentInChildren<Text>().text = e.keyCode.ToString();
+                _currentKey = null;
             }
         }
     }
 
     public void ChangeKey(GameObject clicked) {
-        currentKey = clicked;
+        _currentKey = clicked;
     }
 }

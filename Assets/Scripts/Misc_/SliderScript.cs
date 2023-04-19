@@ -6,14 +6,15 @@ using UnityEngine.UI;
 public class SliderScript : MonoBehaviour
 {
     Transform _transform;
-    public CameraScript _playerCam;
-    public PlayerMoveScript _player;
-    public Canvas _canvas;
+    CameraScript _playerCam;
+    PlayerMoveScript _player;
+    Canvas _canvas;
     void Start()
     {
         _transform = transform;
         _player = FindObjectOfType<PlayerMoveScript>();
         _playerCam = FindObjectOfType<CameraScript>();
+        _canvas = GetComponentInParent<Canvas>();
     }
 
     // Update is called once per frame

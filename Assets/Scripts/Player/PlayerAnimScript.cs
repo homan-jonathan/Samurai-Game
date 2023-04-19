@@ -26,7 +26,7 @@ public class PlayerAnimScript : MonoBehaviour
     }
 
     public void PlayDeathAnim() {
-        _anim.SetTrigger("isDead");
+        _anim.SetTrigger("_isDead");
         _playerSoundsScript.PlayerHitNoise();
     }
 

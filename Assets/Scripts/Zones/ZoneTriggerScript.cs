@@ -8,7 +8,7 @@ public class ZoneTriggerScript : MonoBehaviour
     public string exitingString;
     public GameCanvasScript gameCanvasScript;
 
-    bool flipVar = true;
+    bool _flipVar = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +24,7 @@ public class ZoneTriggerScript : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag.Equals(Tag.player)) {
-            if (flipVar)
+            if (_flipVar)
             {
                 StartCoroutine(gameCanvasScript.DisplayZoneText(entertingString));
                 FindObjectOfType<PlayerSoundsScript>().ZoneChangeNoise();
@@ -33,7 +33,7 @@ public class ZoneTriggerScript : MonoBehaviour
             {
                 StartCoroutine(gameCanvasScript.DisplayZoneText(exitingString));
             }
-            flipVar = !flipVar;
+            _flipVar = !_flipVar;
         }
     }
 }

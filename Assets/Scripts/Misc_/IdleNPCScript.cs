@@ -5,7 +5,7 @@ using UnityEngine;
 public class IdleNPCScript : MonoBehaviour
 {
     Transform _transform;
-    public Transform _playerTransform;
+    Transform _playerTransform;
     PlayerMoveScript _playerScript;
     // Start is called before the first frame update
     void Start()
@@ -18,7 +18,6 @@ public class IdleNPCScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         _transform.LookAt(_playerTransform);
         _transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
     }
