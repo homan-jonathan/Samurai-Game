@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,15 +6,15 @@ public class PlayerMainScript : MonoBehaviour
     // Start is called before the first frame update
     PlayerAnimScript _anim;
     PlayerMoveScript _moveScript;
-    public GameSceneManagerScript _gameSceneManager;
+    public GameSceneManagerScript gameSceneManager;
 
     SliderScript _sliderScript;
 
     public GameObject _coinBag;
-    public bool _hasCoins;
+    public bool hasCoins;
 
-    public Slider _healthBar;
-    public Image _healthFilledImage;
+    public Slider healthBar;
+    public Image healthFilledImage;
     bool isDead = false;
     
     void Start()
@@ -28,13 +26,13 @@ public class PlayerMainScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _healthBar.value = _moveScript.chargeJumpTimer;
+        healthBar.value = _moveScript.chargeJumpTimer;
     }
 
     public void pickupCoin()
     {
         _coinBag.SetActive(true);
-        _hasCoins = true;
+        hasCoins = true;
         _anim.PlayPickupCoinsAnim();
     }
     private void OnTriggerEnter(Collider other)
@@ -44,7 +42,7 @@ public class PlayerMainScript : MonoBehaviour
             GetComponent<CharacterController>().detectCollisions = false;
             isDead = true;
             _anim.PlayDeathAnim();
-            _gameSceneManager.HasLost();
+            gameSceneManager.HasLost();
         }
     }
 

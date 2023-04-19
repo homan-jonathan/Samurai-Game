@@ -6,34 +6,32 @@ using UnityEngine.UI;
 public class EnemySightScript : MonoBehaviour
 {
     public Transform _headTransform;
-    public Transform _playerTransform;
-    public PlayerMoveScript _playerMoveScript;
     [Range(0, 360)]
     public float VIEW_ANGLE;
     [Range(0, 360)]
     public float WARNING_VIEW_ANGLE;
     public float VIEW_DISTANCE = 1;
     public float PLAYER_CROUCHING_MULTIPLIER = .25f;
-    //public float PLAYER_RUNNING_MULTIPLIER = 1.5f;
     public float PLAYER_SPOTTED_DURATION = 1f;
-
-    SightIndicatorScript _sightIndicatorScript;
-    public float _seenPlayerRecently = 0;
-    bool _playerCloseToGaurd = false;
-
-    public Ray ray = new Ray();
-
-    float _inCautionRange = 0;
-    float RESET_TIME = 2.5f;
-
-    GuardSoundsScript guardSoundScript;
+    public float RESET_TIME = 2.5f;
     public Image warningImage;
     public Color warningColor;
     public Color spottedColor;
+
+    Transform _playerTransform;
+    PlayerMoveScript _playerMoveScript;
+    SightIndicatorScript _sightIndicatorScript;
+    GuardSoundsScript _guardSoundScript;
+    bool _playerCloseToGaurd = false;
+    float _seenPlayerRecently = 0;
+    float _inCautionRange = 0;
+
     void Start()
     {
         _sightIndicatorScript = GetComponentInChildren<SightIndicatorScript>();
-        guardSoundScript = GetComponent<GuardSoundsScript>();
+        _guardSoundScript = GetComponent<GuardSoundsScript>();
+        _playerTransform = GetComponent<EnemyAnimScript>().GetPlayerReference().transform;
+        _playerMoveScript = GetComponent<EnemyAnimScript>().GetPlayerReference().GetComponent<PlayerMoveScript>();
     }
 
     // Update is called once per frame
@@ -51,7 +49,7 @@ public class EnemySightScript : MonoBehaviour
 
     public bool CanSeePlayer()
     {
-        if (!_sightIndicatorScript._playerInPossibleViewRange) { //check if in collider, minimize raycast need
+        if (!_sightIndicatorScript.IsPlayerInPossibleViewRange()) { //check if in collider, minimize raycast need
             return false;
         }
 
@@ -59,12 +57,10 @@ public class EnemySightScript : MonoBehaviour
         Vector3 directionToPlayer = (new Vector3(_playerTransform.position.x, positionInFrontofHead.y - .5f, _playerTransform.position.z) - positionInFrontofHead).normalized;
 
         //Updates Ray position
-        ray.origin = positionInFrontofHead;
-        ray.direction = directionToPlayer;
-        //Debug.DrawRay(positionInFrontofHead, directionToPlayer * CalculateViewDistance() * _sightIndicatorScript.EPISLON_VISIBILITY_RANGE, Color.green);
-
+        Ray ray = new Ray(positionInFrontofHead, directionToPlayer);
+        
         RaycastHit hit2;
-        if (Physics.Raycast(ray, out hit2, CalculateViewDistance() * _sightIndicatorScript.EPISLON_VISIBILITY_RANGE/* * PLAYER_RUNNING_MULTIPLIER*/))
+        if (Physics.Raycast(ray, out hit2, CalculateViewDistance() * _sightIndicatorScript.GetVisibilityInicatorRange()))
         {
             if ((!(Vector3.Angle(transform.forward, directionToPlayer) < WARNING_VIEW_ANGLE/2) ||
                 hit2.collider.tag != Tag.player) &&
@@ -81,7 +77,7 @@ public class EnemySightScript : MonoBehaviour
                     warningImage.enabled = true;
                     warningImage.color = new Color(warningColor.r, warningColor.g, warningColor.b);
                     if (_inCautionRange <= 0) { 
-                        guardSoundScript.GuardSpottedNoise();
+                        _guardSoundScript.GuardSpottedNoise();
                     }
                     _inCautionRange = RESET_TIME;
                 }
@@ -93,7 +89,7 @@ public class EnemySightScript : MonoBehaviour
                         //seen player
                         warningImage.color = new Color(spottedColor.r, spottedColor.g, spottedColor.b);
                         if (_seenPlayerRecently <= 0) {
-                            guardSoundScript.GuardAlertedNoise();
+                            _guardSoundScript.GuardAlertedNoise();
                         }
                         _seenPlayerRecently = PLAYER_SPOTTED_DURATION;
                         return true;
@@ -119,10 +115,6 @@ public class EnemySightScript : MonoBehaviour
         {
             viewDistanceMultiplier = PLAYER_CROUCHING_MULTIPLIER;
         }
-        /*else if (_playerMoveScript.IsRunning())
-        {
-            viewDistanceMultiplier = PLAYER_RUNNING_MULTIPLIER;
-        }*/
 
         return viewDistanceMultiplier * VIEW_DISTANCE;
     }

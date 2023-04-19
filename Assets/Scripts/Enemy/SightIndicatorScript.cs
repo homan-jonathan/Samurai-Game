@@ -5,10 +5,11 @@ using UnityEngine.UI;
 
 public class SightIndicatorScript : MonoBehaviour
 {
-    EnemySightScript _enemySightScript;
-    SphereCollider _sphereCollider;
     public bool _playerInPossibleViewRange = false;
     public float EPISLON_VISIBILITY_RANGE = 2f;
+
+    EnemySightScript _enemySightScript;
+    SphereCollider _sphereCollider;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,5 +41,13 @@ public class SightIndicatorScript : MonoBehaviour
         {
             _playerInPossibleViewRange = false;
         }
+    }
+
+    public bool IsPlayerInPossibleViewRange() {
+        return _playerInPossibleViewRange;
+    }
+
+    public float GetVisibilityInicatorRange() {
+        return EPISLON_VISIBILITY_RANGE;
     }
 }

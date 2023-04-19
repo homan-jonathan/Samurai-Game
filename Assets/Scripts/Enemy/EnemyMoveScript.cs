@@ -5,78 +5,76 @@ using UnityEngine.AI;
 
 public class EnemyMoveScript : MonoBehaviour
 {
-
-    NavMeshAgent agent;
-    public Transform[] waypoints;
-    int waypointIndx = 0;
-
-    EnemySightScript enemySightScript;
-    public Transform _playerTransform;
-
     public float GUARD_WALK_SPEED = 1f;
     public float GUARD_RUN_SPEED = 2f;
 
-    EnemyAnimScript anim;
-    public bool isWalking = false;
-    public bool isRunning = false;
+    EnemySightScript _enemySightScript;
+    Transform _playerTransform;
+    NavMeshAgent _agent;
+    EnemyAnimScript _anim;
+
+    public Transform[] waypoints;
+    int _waypointIndx = 0;
+    bool _isWalking = false;
+    bool _isRunning = false;
     // Start is called before the first frame update
     void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
-        agent.SetDestination(waypoints[waypointIndx].position);
+        _agent = GetComponent<NavMeshAgent>();
+        _agent.SetDestination(waypoints[_waypointIndx].position);
 
-        enemySightScript = GetComponent<EnemySightScript>();
-        anim = GetComponent<EnemyAnimScript>();
+        _enemySightScript = GetComponent<EnemySightScript>();
+        _anim = GetComponent<EnemyAnimScript>();
+        _playerTransform = _anim.GetPlayerReference().transform;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (anim.AnimationIsPlaying(AnimationState.swingSword)) //If attacking then stop moving
+        if (_anim.AnimationIsPlaying(AnimationState.swingSword)) //If attacking then stop moving
         {
-            agent.isStopped = true;
+            _agent.isStopped = true;
             return;
         }
         else {
-            agent.isStopped = false;
+            _agent.isStopped = false;
         }
-
 
         if (ReachedDestinationOrGaveUp())
         {
-            agent.speed = GUARD_WALK_SPEED;
+            _agent.speed = GUARD_WALK_SPEED;
             SetNewWaypoint();
         }
-        if (enemySightScript.CanSeePlayer())
+        if (_enemySightScript.CanSeePlayer())
         {
-            agent.speed = GUARD_RUN_SPEED;
+            _agent.speed = GUARD_RUN_SPEED;
             PursuePlayer();
         }
     }
 
     void SetNewWaypoint()
     {
-        waypointIndx = (waypointIndx + 1) % waypoints.Length;
-        agent.SetDestination(waypoints[waypointIndx].position);
-        isRunning = false;
-        isWalking = true;
+        _waypointIndx = (_waypointIndx + 1) % waypoints.Length;
+        _agent.SetDestination(waypoints[_waypointIndx].position);
+        _isRunning = false;
+        _isWalking = true;
     }
 
     void PursuePlayer()
     {
-        agent.SetDestination(_playerTransform.position);
-        isRunning = true;
-        isWalking = false;
+        _agent.SetDestination(_playerTransform.position);
+        _isRunning = true;
+        _isWalking = false;
     }
 
     //from DataGreed/UnityNavMeshCheck.cs github
     bool ReachedDestinationOrGaveUp()
     {
-        if (!agent.pathPending)
+        if (!_agent.pathPending)
         {
-            if (agent.remainingDistance <= agent.stoppingDistance)
+            if (_agent.remainingDistance <= _agent.stoppingDistance)
             {
-                if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+                if (!_agent.hasPath || _agent.velocity.sqrMagnitude == 0f)
                 {
                     return true;
                 }
@@ -85,5 +83,8 @@ public class EnemyMoveScript : MonoBehaviour
 
         return false;
     }
+
+    public bool IsWalking() { return _isWalking; }
+    public bool IsRunning() { return _isRunning; }
 
 }
