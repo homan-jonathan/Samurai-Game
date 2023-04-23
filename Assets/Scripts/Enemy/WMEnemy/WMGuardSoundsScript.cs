@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GuardSoundsScript : MonoBehaviour
+public class WMGuardSoundsScript : MonoBehaviour
 {
     AudioSource audioSource;
 

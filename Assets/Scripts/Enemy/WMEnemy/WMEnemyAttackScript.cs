@@ -2,18 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAttackScript : MonoBehaviour
+public class WMEnemyAttackScript : MonoBehaviour
 {
     public float SWING_DISTANCE = 1;
     [Range(0,360)]
     public float SWING_ANGLE = 0;
 
-    EnemyAnimScript _enemyAnimScript;
+    WMEnemyAnimScript _enemyAnimScript;
     Transform _playerTransform;
     // Start is called before the first frame update
     void Start()
     {
-        _enemyAnimScript = GetComponent<EnemyAnimScript>();
+        _enemyAnimScript = GetComponent<WMEnemyAnimScript>();
         _playerTransform = _enemyAnimScript.GetPlayerReference().transform;
         StartCoroutine(AttemptAttack());
     }
