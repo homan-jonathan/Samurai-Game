@@ -129,6 +129,6 @@ public class CameraScript : MonoBehaviour
 
     void UpdateYRotation() {
         _rotAmtY += Input.GetAxis("Mouse Y") * ROTATION_SPEED / 4;
-        _rotAmtY = Mathf.Clamp(_rotAmtY, -20, 20);
+        _rotAmtY = Mathf.Clamp(_rotAmtY, -20, 25);
     }
 }
