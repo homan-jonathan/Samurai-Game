@@ -61,20 +61,24 @@ public class WMEnemySightScript : MonoBehaviour
         Ray ray = new Ray(positionInFrontofHead, directionToPlayer);
 
         //Can See the player
+        bool hitPlayer = false;
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
         {
-            if (hit.collider.tag.Equals(Tag.player)) {
-                //In View Radius
-                if (Vector3.Angle(transform.forward, directionToPlayer) < VIEW_ANGLE/2 && (_seenPlayerRecently > 0 || hit.distance <= CalculateViewDistance())) {
-                    _seenPlayerRecently = PLAYER_SPOTTED_DURATION;
-                    _alertGuardScript.AlertNearbyGuards();
-                    return true;
-                }
+            if (hit.collider.tag.Equals(Tag.player) || (hit.collider.tag.Equals(Tag.hiddenPlayer) && _seenPlayerRecently > 0))
+            {
+                hitPlayer = true;
             }
         }
 
-        //Physically clost to the player
+        //In View Radius
+        if (hitPlayer && Vector3.Angle(transform.forward, directionToPlayer) < VIEW_ANGLE/2 && (_seenPlayerRecently > 0 || hit.distance <= CalculateViewDistance())) {
+            _seenPlayerRecently = PLAYER_SPOTTED_DURATION;
+            _alertGuardScript.AlertNearbyGuards();
+            return true;
+        }
+
+        //Physically close to the player
         if (PlayerInCloseProximity()) {
             _seenPlayerRecently = PLAYER_SPOTTED_DURATION;
             _alertGuardScript.AlertNearbyGuards();
@@ -99,7 +103,7 @@ public class WMEnemySightScript : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                if (hit.collider.tag.Equals(Tag.player))
+                if (hit.collider.tag.Equals(Tag.player) || (hit.collider.tag.Equals(Tag.hiddenPlayer) && _seenPlayerRecently > 0))
                 {
                     hitPlayer = true;
                 }

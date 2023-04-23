@@ -5,6 +5,7 @@ using UnityEngine;
 public class Tag
 {
     public const string player = "Player";
+    public const string hiddenPlayer = "HiddenPlayer";
     public const string enemy = "Enemy";
     public const string sword = "Sword";
 }
