@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyMoveScript : MonoBehaviour
+public class WMEnemyMoveScript : MonoBehaviour
 {
     public float GUARD_WALK_SPEED = 1f;
     public float GUARD_RUN_SPEED = 2f;
 
-    EnemySightScript _enemySightScript;
+    WMEnemySightScript _enemySightScript;
     Transform _playerTransform;
     NavMeshAgent _agent;
-    EnemyAnimScript _anim;
+    WMEnemyAnimScript _anim;
 
     public Transform[] waypoints;
     int _waypointIndx = 0;
@@ -23,8 +23,8 @@ public class EnemyMoveScript : MonoBehaviour
         _agent = GetComponent<NavMeshAgent>();
         _agent.SetDestination(waypoints[_waypointIndx].position);
 
-        _enemySightScript = GetComponent<EnemySightScript>();
-        _anim = GetComponent<EnemyAnimScript>();
+        _enemySightScript = GetComponent<WMEnemySightScript>();
+        _anim = GetComponent<WMEnemyAnimScript>();
         _playerTransform = _anim.GetPlayerReference().transform;
     }
 
@@ -45,7 +45,7 @@ public class EnemyMoveScript : MonoBehaviour
             _agent.speed = GUARD_WALK_SPEED;
             SetNewWaypoint();
         }
-        if (_enemySightScript.CanSeePlayer())
+        if (_enemySightScript.CanSeePlayer2())
         {
             _agent.speed = GUARD_RUN_SPEED;
             PursuePlayer();
@@ -70,7 +70,10 @@ public class EnemyMoveScript : MonoBehaviour
     //from DataGreed/UnityNavMeshCheck.cs github
     bool ReachedDestinationOrGaveUp()
     {
-        if (!_agent.pathPending)
+        if (_agent.remainingDistance <= _agent.stoppingDistance) {
+            return true;
+        }
+        /*if (!_agent.pathPending)
         {
             if (_agent.remainingDistance <= _agent.stoppingDistance)
             {
@@ -79,7 +82,7 @@ public class EnemyMoveScript : MonoBehaviour
                     return true;
                 }
             }
-        }
+        }*/
 
         return false;
     }

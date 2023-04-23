@@ -188,11 +188,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1370c223a7602fb409828ca9c212037a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTransform: {fileID: 114315479925819088}
   objective:
   - {fileID: 0}
   - {fileID: 0}
-  canvas: {fileID: 1046038689}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &37426781964297576
 GameObject:
   m_ObjectHideFlags: 0
@@ -1779,7 +1781,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6113089253837846762}
   - component: {fileID: 3016952081287736772}
-  - component: {fileID: 6807705634005208596}
+  - component: {fileID: 1931653318}
   m_Layer: 5
   m_Name: ChargedJumpSlider
   m_TagString: Untagged
@@ -1860,7 +1862,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &6807705634005208596
+--- !u!114 &1931653318
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1869,11 +1871,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4361546607666411553}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0a83b6b21c7eac46bee0d79e413ec5a, type: 3}
+  m_Script: {fileID: 11500000, guid: c3859e687ba0ed24cb7ff5abc6fa5330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerCam: {fileID: 0}
-  _player: {fileID: 0}
 --- !u!1 &4551294824716898679
 GameObject:
   m_ObjectHideFlags: 0
@@ -2086,18 +2086,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8bb4792396dd9d49be988c73f7097de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rotAmt: 0
-  _cameraTransform: {fileID: 4344790299875894499}
-  _cameraScript: {fileID: 4344790299875894498}
+  cameraTransform: {fileID: 4344790299875894499}
   CROUCH_MOVESPEED: 2
   WALK_MOVESPEED: 4
   RUN_MOVESPEED: 6
   JUMP_HEIGHT: 7
   CHARGED_JUMP_HEIGHT: 15
   GRAVITY: 20
-  rotationSpeed: 360
-  speed: 5
-  chargeJumpTimer: 0
+  ROTATION_SPEED: 360
   NEEDED_TO_JUMP: 1
 --- !u!114 &3598364532773958366
 MonoBehaviour:
@@ -2111,7 +2107,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7471804c515629c4f93106bfed069be7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 4824716656974472656}
 --- !u!114 &441411187408652103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2124,11 +2119,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63a1e0cf7c621ad40a798ee6ef9ca66f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameSceneManager: {fileID: 0}
-  _coinBag: {fileID: 6640268307204221406}
-  _hasCoins: 0
-  _healthBar: {fileID: 3016952081287736772}
-  _healthFilledImage: {fileID: 4760758589077754552}
+  GAME_SCENE_MANAGER: {fileID: 0}
+  healthBar: {fileID: 3016952081287736772}
 --- !u!114 &6209863415291061643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2143,7 +2135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHit: {fileID: 8300000, guid: 6465446654cbcfc468114c0ca2ab4378, type: 3}
   zoneChange: {fileID: 8300000, guid: d12e2fefd48726040a39cb59b94cd63e, type: 3}
-  pickedUpCoins: {fileID: 8300000, guid: d2479b3a397d3b6458f949d8d7648f12, type: 3}
+  pickedUpCoins: {fileID: 8300000, guid: 71b78ea405332ab4db5e776693ff05aa, type: 3}
 --- !u!82 &8467639094983063295
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2156,7 +2148,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.75
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
