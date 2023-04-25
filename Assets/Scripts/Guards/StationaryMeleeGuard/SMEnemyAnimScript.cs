@@ -4,18 +4,16 @@ using UnityEngine;
 
 public class SMEnemyAnimScript : MonoBehaviour
 {
-    public GameObject PLAYER;
-    
     Animator _anim;
     SMEnemyMoveScript _enemyScript;
-    SMGuardSoundsScript _guardSounds;
+    GuardSoundScript _guardSounds;
 
     // Start is called before the first frame update
     void Start()
     {
         _anim = GetComponent<Animator>();
         _enemyScript = GetComponent<SMEnemyMoveScript>();
-        _guardSounds = GetComponent<SMGuardSoundsScript>();
+        _guardSounds = GetComponent<GuardSoundScript>();
     }
 
     // Update is called once per frame
@@ -40,9 +38,5 @@ public class SMEnemyAnimScript : MonoBehaviour
     public bool AnimationIsPlaying(string stateName)
     {
         return AnimatorIsPlaying() && _anim.GetCurrentAnimatorStateInfo(0).IsName(stateName);
-    }
-
-    public GameObject GetPlayerReference() {
-        return PLAYER;
     }
 }

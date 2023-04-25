@@ -25,7 +25,7 @@ public class WMEnemyMoveScript : MonoBehaviour
 
         _sightScript = GetComponent<GuardSightScript>();
         _anim = GetComponent<WMEnemyAnimScript>();
-        _playerTransform = _anim.GetPlayerReference().transform;
+        _playerTransform = GetComponent<GuardMainScript>().GetPlayerReference().transform;
     }
 
     // Update is called once per frame
@@ -43,10 +43,12 @@ public class WMEnemyMoveScript : MonoBehaviour
         if (ReachedDestinationOrGaveUp())
         {
             _agent.speed = GUARD_WALK_SPEED;
+            print("gave up");
             SetNewWaypoint();
         }
         if (_sightScript.IsPlayerVisible())
         {
+            print("player visibile");
             _agent.speed = GUARD_RUN_SPEED;
             PursuePlayer();
         }

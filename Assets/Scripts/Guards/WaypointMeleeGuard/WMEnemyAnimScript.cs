@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class WMEnemyAnimScript : MonoBehaviour
 {
-    public GameObject PLAYER;
-    
     Animator _anim;
     WMEnemyMoveScript _enemyScript;
     GuardSoundScript _guardSounds;
@@ -41,9 +39,5 @@ public class WMEnemyAnimScript : MonoBehaviour
     public bool AnimationIsPlaying(string stateName)
     {
         return AnimatorIsPlaying() && _anim.GetCurrentAnimatorStateInfo(0).IsName(stateName);
-    }
-
-    public GameObject GetPlayerReference() {
-        return PLAYER;
     }
 }
