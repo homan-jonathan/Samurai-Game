@@ -24,7 +24,7 @@ public class SMSightIndicatorScript : MonoBehaviour
             _sphereCollider.radius = _enemySightScript.CalculateViewDistance() * EPISLON_VISIBILITY_RANGE;
             _enemySightScript.warningImage.enabled = false;
         }
-        //_sphereCollider.radius = _enemySightScript.VIEW_DISTANCE * _enemySightScript.PLAYER_RUNNING_MULTIPLIER;
+        //_sphereCollider.radius = _sightScript.VIEW_DISTANCE * _sightScript.PLAYER_RUNNING_MULTIPLIER;
     }
 
     private void OnTriggerEnter(Collider other)
