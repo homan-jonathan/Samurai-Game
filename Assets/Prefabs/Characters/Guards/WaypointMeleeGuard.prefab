@@ -85,8 +85,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8322089499175260592}
   - component: {fileID: 7612473983724339543}
-  - component: {fileID: 8964469726294587983}
-  - component: {fileID: 1623235841}
+  - component: {fileID: 782344609}
+  - component: {fileID: 782344610}
   m_Layer: 0
   m_Name: ViewDistance
   m_TagString: Untagged
@@ -121,7 +121,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 10
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8964469726294587983
+--- !u!114 &782344609
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -130,12 +130,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 3102604958972257954}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 990fac0b7c2877744adef6409f9eaa97, type: 3}
+  m_Script: {fileID: 11500000, guid: d2be4cad81bec854b91c6379ee409b4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _playerInPossibleViewRange: 0
   EPISLON_VISIBILITY_RANGE: 2
---- !u!114 &1623235841
+--- !u!114 &782344610
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3102604958972257954}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9063c2836b8719447bf9a4eff8984b7d, type: 3}
+  m_Script: {fileID: 11500000, guid: 524ea1c439f9be84d820b195f762ef99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &3580271282819117235
@@ -160,6 +160,7 @@ GameObject:
   - component: {fileID: 2361880608871936835}
   - component: {fileID: 526603695527901354}
   - component: {fileID: 1945054722}
+  - component: {fileID: 21662883}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -260,6 +261,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0a83b6b21c7eac46bee0d79e413ec5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &21662883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3580271282819117235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de6d0f9beaa35f64ca4ef5a8746cead1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WARNING_VIEW_ANGLE: 200
+  warningColor: {r: 0.8666667, g: 0.7921569, b: 0.13725491, a: 0}
+  spottedColor: {r: 1, g: 0, b: 0, a: 0}
+  RESET_TIME: 2.5
+  _headTransform: {fileID: 6349057183427284085}
 --- !u!1 &6349057183427330113
 GameObject:
   m_ObjectHideFlags: 0
@@ -2655,12 +2673,13 @@ GameObject:
   - component: {fileID: -7103917339593578378}
   - component: {fileID: 3002168249950383870}
   - component: {fileID: 8500355956349859287}
-  - component: {fileID: 4284662578763624563}
   - component: {fileID: 7840071130355193417}
-  - component: {fileID: -8913547878366972928}
   - component: {fileID: 702339052}
+  - component: {fileID: 702339042}
+  - component: {fileID: 702339043}
+  - component: {fileID: 702339044}
   m_Layer: 0
-  m_Name: WMEnemy
+  m_Name: WaypointMeleeGuard
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2883,28 +2902,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
---- !u!114 &4284662578763624563
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6349057183427579105}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce2b2f0a869b0e3458ca426488502b53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _headTransform: {fileID: 6349057183427284085}
-  VIEW_ANGLE: 170
-  WARNING_VIEW_ANGLE: 250
-  VIEW_DISTANCE: 10
-  PLAYER_CROUCHING_MULTIPLIER: 0.5
-  PLAYER_SPOTTED_DURATION: 4
-  RESET_TIME: 2.5
-  warningImage: {fileID: 2882128291871194480}
-  warningColor: {r: 0.8666667, g: 0.7921569, b: 0.13725491, a: 0}
-  spottedColor: {r: 1, g: 0, b: 0, a: 0}
 --- !u!114 &7840071130355193417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2919,21 +2916,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SWING_DISTANCE: 1.5
   SWING_ANGLE: 120
---- !u!114 &-8913547878366972928
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6349057183427579105}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70502cfe268675341980c66c3f6e19d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  swordSlash: {fileID: 8300000, guid: 54f6a6492bec48f4eaccc10455463c8c, type: 3}
-  guardAlerted: {fileID: 8300000, guid: da9ac9fa118421c43b43c722d5e84bea, type: 3}
-  guardSpotted: {fileID: 8300000, guid: 8b5d80395e736354bbececcb3c558353, type: 3}
 --- !u!54 &702339052
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2950,6 +2932,51 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &702339042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6349057183427579105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec8dde0636bce7d47aace746601575be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PLAYER: {fileID: 0}
+--- !u!114 &702339043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6349057183427579105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4b7b98bf0d48994a948c5582ee01c49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  swordSlash: {fileID: 8300000, guid: 54f6a6492bec48f4eaccc10455463c8c, type: 3}
+  guardAlerted: {fileID: 8300000, guid: da9ac9fa118421c43b43c722d5e84bea, type: 3}
+  guardSpotted: {fileID: 8300000, guid: 8b5d80395e736354bbececcb3c558353, type: 3}
+--- !u!114 &702339044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6349057183427579105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96063ebb046c262468e39f840984a0f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _headTransform: {fileID: 6349057183427284085}
+  VIEW_ANGLE: 170
+  VIEW_DISTANCE: 10
+  PLAYER_CROUCHING_MULTIPLIER: 0.5
+  PLAYER_SPOTTED_DURATION: 4
 --- !u!1 &6349057183427579137
 GameObject:
   m_ObjectHideFlags: 0

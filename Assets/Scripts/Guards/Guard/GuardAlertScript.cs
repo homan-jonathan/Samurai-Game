@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AlertGuardScript : MonoBehaviour
+public class GuardAlertScript : MonoBehaviour
 {
     List<GameObject> _nearbyEnemies = new List<GameObject>();
     // Start is called before the first frame update
@@ -16,8 +16,9 @@ public class AlertGuardScript : MonoBehaviour
 
     }
 
-    public void AlertNearbyGuards() {
-        _nearbyEnemies.ForEach(e => { e.GetComponent<WMEnemySightScript>().PlayerIsVisible(); });
+    public void AlertNearbyGuards()
+    {
+        _nearbyEnemies.ForEach(e => { e.GetComponent<GuardSightScript>().SetPlayerIsVisible(); });
     }
 
     private void OnTriggerEnter(Collider other)
@@ -35,5 +36,4 @@ public class AlertGuardScript : MonoBehaviour
             _nearbyEnemies.Remove(other.gameObject);
         }
     }
-
 }

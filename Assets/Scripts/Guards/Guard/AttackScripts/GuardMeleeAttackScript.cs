@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WMEnemyAttackScript : MonoBehaviour
+public class GuardMeleeAttackScript : MonoBehaviour
 {
     public float SWING_DISTANCE = 1;
     [Range(0,360)]
@@ -14,7 +14,7 @@ public class WMEnemyAttackScript : MonoBehaviour
     void Start()
     {
         _enemyAnimScript = GetComponent<WMEnemyAnimScript>();
-        _playerTransform = _enemyAnimScript.GetPlayerReference().transform;
+        _playerTransform = GetComponent<GuardMainScript>().GetPlayerReference().transform;
         StartCoroutine(AttemptAttack());
     }
 

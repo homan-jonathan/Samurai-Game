@@ -34,7 +34,7 @@ public class PlayerMainScript : MonoBehaviour
     {
         if (other.gameObject.tag.Equals(Tag.sword) && !_isDead)
         {
-            GetComponent<CharacterController>().detectCollisions = false;
+            GetComponent<CharacterController>().enabled = false;
             _anim.PlayDeathAnim();
             GAME_SCENE_MANAGER.HasLost();
             _isDead = true;

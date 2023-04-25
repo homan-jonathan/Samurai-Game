@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WMGuardSoundsScript : MonoBehaviour
+public class GuardSoundScript : MonoBehaviour
 {
     AudioSource audioSource;
 
@@ -18,14 +18,16 @@ public class WMGuardSoundsScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    public void SwordSlashNoise() {
+    public void SwordSlashNoise()
+    {
         audioSource.PlayOneShot(swordSlash);
     }
 
-    public void GuardAlertedNoise() {
+    public void GuardAlertedNoise()
+    {
         audioSource.PlayOneShot(guardAlerted);
     }
 
