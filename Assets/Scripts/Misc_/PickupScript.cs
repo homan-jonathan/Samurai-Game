@@ -4,7 +4,7 @@ using System.Runtime.Serialization.Json;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CoinPickupScript : MonoBehaviour
+public class PickupScript : MonoBehaviour
 {
     public PlayerMainScript _playerScript;
     public GameSceneManagerScript _gameSceneManagerScript;
