@@ -15,6 +15,7 @@ public class GuardSightScript : MonoBehaviour
     PlayerMoveScript _playerMoveScript;
     GuardViewDistance _sightIndicatorScript;
     GuardAlertScript _alertGuardScript;
+    GuardSoundScript _guardSoundScript;
     bool _playerCloseToGaurd = false;
     float _seenPlayerRecently = 0;
 
@@ -25,6 +26,7 @@ public class GuardSightScript : MonoBehaviour
         _playerTransform = GetComponent<GuardMainScript>().GetPlayerReference().transform;
         _playerMoveScript = GetComponent<GuardMainScript>().GetPlayerReference().GetComponent<PlayerMoveScript>();
         _alertGuardScript = GetComponentInChildren<GuardAlertScript>();
+        _guardSoundScript = GetComponent<GuardSoundScript>();
     }
 
     // Update is called once per frame
@@ -74,11 +76,16 @@ public class GuardSightScript : MonoBehaviour
     }
 
     public bool IsPlayerVisible() {
+        print(_seenPlayerRecently);
         return _seenPlayerRecently > 0;
     }
 
     public void SetPlayerIsVisible()
     {
+        if (!IsPlayerVisible())
+        {
+            _guardSoundScript.GuardAlertedNoise();
+        }
         _seenPlayerRecently = PLAYER_SPOTTED_DURATION;
     }
 

@@ -5,15 +5,24 @@ using UnityEngine;
 public class GuardAlertScript : MonoBehaviour
 {
     List<GameObject> _nearbyEnemies = new List<GameObject>();
+    public float EPISLON_ALERT_RANGE = .5f;
+
+    GuardSightScript _enemySightScript;
+    SphereCollider _sphereCollider;
     // Start is called before the first frame update
     void Start()
     {
+        _enemySightScript = GetComponentInParent<GuardSightScript>();
+        _sphereCollider = GetComponent<SphereCollider>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (_sphereCollider.radius != _enemySightScript.CalculateViewDistance() * EPISLON_ALERT_RANGE)
+        {
+            _sphereCollider.radius = _enemySightScript.CalculateViewDistance() * EPISLON_ALERT_RANGE;
+        }
     }
 
     public void AlertNearbyGuards()
