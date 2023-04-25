@@ -79,11 +79,10 @@ public class GaurdCanvasScript : MonoBehaviour
                 warningImage.color = new Color(warningColor.r, warningColor.g, warningColor.b);
                 if (_inCautionRange <= 0)
                 {
-                    _guardSoundScript.GuardSpottedNoise();
+                    _guardSoundScript.GuardAlertedNoise();
                 }
                 _inCautionRange = RESET_TIME;
-            }
-            else
+            } else if (_inCautionRange <= 0)
             {
                 warningImage.enabled = false;
             }

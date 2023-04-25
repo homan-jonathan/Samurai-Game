@@ -225,7 +225,7 @@ MonoBehaviour:
   WARNING_VIEW_ANGLE: 200
   warningColor: {r: 0.8666667, g: 0.7921569, b: 0.13725491, a: 0}
   spottedColor: {r: 1, g: 0, b: 0, a: 0}
-  RESET_TIME: 2.5
+  RESET_TIME: 1
 --- !u!1 &1287127991729177886
 GameObject:
   m_ObjectHideFlags: 0
