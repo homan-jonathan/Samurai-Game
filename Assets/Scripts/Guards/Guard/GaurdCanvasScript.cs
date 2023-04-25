@@ -68,7 +68,7 @@ public class GaurdCanvasScript : MonoBehaviour
             }
 
             //In View Radius
-            if (_guardSightScript.IsPlayerVisible() || (hitPlayer && Vector3.Angle(_transform.forward, directionToPlayer) < _guardSightScript.VIEW_ANGLE / 2 && hit.distance <= _guardSightScript.CalculateViewDistance()))
+            if (_guardSightScript.IsPlayerVisible())
             {
                 warningImage.enabled = true;
                 warningImage.color = new Color(spottedColor.r, spottedColor.g, spottedColor.b);
