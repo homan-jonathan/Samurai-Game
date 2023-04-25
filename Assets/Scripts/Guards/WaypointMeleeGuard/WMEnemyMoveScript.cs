@@ -43,12 +43,10 @@ public class WMEnemyMoveScript : MonoBehaviour
         if (ReachedDestinationOrGaveUp())
         {
             _agent.speed = GUARD_WALK_SPEED;
-            print("gave up");
             SetNewWaypoint();
         }
         if (_sightScript.IsPlayerVisible())
         {
-            print("player visibile");
             _agent.speed = GUARD_RUN_SPEED;
             PursuePlayer();
         }

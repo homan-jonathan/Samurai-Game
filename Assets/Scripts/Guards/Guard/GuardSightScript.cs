@@ -76,7 +76,6 @@ public class GuardSightScript : MonoBehaviour
     }
 
     public bool IsPlayerVisible() {
-        print(_seenPlayerRecently);
         return _seenPlayerRecently > 0;
     }
 
