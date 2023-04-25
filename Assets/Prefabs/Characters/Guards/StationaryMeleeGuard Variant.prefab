@@ -32,6 +32,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 89907135832529822, guid: 25180feac5ff241438fdd00eee64e5b1, type: 3}
+      propertyPath: m_Radius
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4238563257734804568, guid: 25180feac5ff241438fdd00eee64e5b1, type: 3}
       propertyPath: VIEW_DISTANCE
       value: 20
@@ -39,6 +43,10 @@ PrefabInstance:
     - target: {fileID: 4238563257734804574, guid: 25180feac5ff241438fdd00eee64e5b1, type: 3}
       propertyPath: PLAYER
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6014159357314867947, guid: 25180feac5ff241438fdd00eee64e5b1, type: 3}
+      propertyPath: m_Radius
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7119635816594314135, guid: 25180feac5ff241438fdd00eee64e5b1, type: 3}
       propertyPath: m_RootOrder
@@ -86,7 +94,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7119635816594616157, guid: 25180feac5ff241438fdd00eee64e5b1, type: 3}
       propertyPath: m_Name
-      value: StationaryMeleeGuard
+      value: StationaryMeleeGuard Variant
       objectReference: {fileID: 0}
     - target: {fileID: 7119635816599925221, guid: 25180feac5ff241438fdd00eee64e5b1, type: 3}
       propertyPath: m_Materials.Array.data[0]

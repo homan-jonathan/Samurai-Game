@@ -8,12 +8,12 @@ public class GuardMeleeAttackScript : MonoBehaviour
     [Range(0,360)]
     public float SWING_ANGLE = 0;
 
-    WMEnemyAnimScript _enemyAnimScript;
+    GuardAnimatorScript _enemyAnimScript;
     Transform _playerTransform;
     // Start is called before the first frame update
     void Start()
     {
-        _enemyAnimScript = GetComponent<WMEnemyAnimScript>();
+        _enemyAnimScript = GetComponent<GuardAnimatorScript>();
         _playerTransform = GetComponent<GuardMainScript>().GetPlayerReference().transform;
         StartCoroutine(AttemptAttack());
     }

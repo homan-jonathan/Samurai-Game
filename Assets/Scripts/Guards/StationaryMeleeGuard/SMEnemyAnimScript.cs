@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SMEnemyAnimScript : MonoBehaviour
+public class SMEnemyAnimScript : GuardAnimatorScript
 {
-    Animator _anim;
     SMEnemyMoveScript _enemyScript;
     GuardSoundScript _guardSounds;
 
@@ -22,21 +21,9 @@ public class SMEnemyAnimScript : MonoBehaviour
         _anim.SetBool("isRunning", _enemyScript.IsRunning());
     }
 
-    public void PlayAttackAnim() {
+    public override void PlayAttackAnim() {
         _anim.SetTrigger("swingSword");
         _guardSounds.SwordSlashNoise();
     }
 
-    //from edu4hd0
-    bool AnimatorIsPlaying()
-    {
-        return _anim.GetCurrentAnimatorStateInfo(0).length >
-               _anim.GetCurrentAnimatorStateInfo(0).normalizedTime;
-    }
-
-    //from edu4hd0
-    public bool AnimationIsPlaying(string stateName)
-    {
-        return AnimatorIsPlaying() && _anim.GetCurrentAnimatorStateInfo(0).IsName(stateName);
-    }
 }
