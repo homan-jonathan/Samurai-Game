@@ -134,7 +134,7 @@ public class PlayerMoveScript : MonoBehaviour
         }
         else
         {
-            _chargeJumpTimer += Time.deltaTime * 0.10f;
+            _chargeJumpTimer += Time.deltaTime * 0.5f;
         }
 
         if (_chargeJumpTimer >= NEEDED_TO_JUMP)

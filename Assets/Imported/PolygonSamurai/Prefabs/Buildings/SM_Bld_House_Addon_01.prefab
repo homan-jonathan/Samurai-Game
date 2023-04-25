@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3382782}
   - component: {fileID: 2334014}
   - component: {fileID: 64125119432929542}
+  - component: {fileID: 8064331545209340061}
   m_Layer: 0
   m_Name: SM_Bld_House_Addon_01
   m_TagString: Untagged
@@ -60,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4eaaa3032586832468e97a6452e498a4, type: 2}
+  - {fileID: 2100000, guid: 812c74b7f623a484c94aab57ba457ede, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -91,8 +92,21 @@ MeshCollider:
   m_GameObject: {fileID: 151898}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 43528127389443672, guid: 27cbc5bdc6f31e7438ce8dd546324095, type: 2}
+--- !u!65 &8064331545209340061
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 151898}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.254334, y: 2.1450834, z: 1.5922893}
+  m_Center: {x: 0.7557718, y: 1.0725417, z: -0.000017166138}
