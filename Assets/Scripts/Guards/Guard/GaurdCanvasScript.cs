@@ -72,10 +72,6 @@ public class GaurdCanvasScript : MonoBehaviour
             {
                 warningImage.enabled = true;
                 warningImage.color = new Color(spottedColor.r, spottedColor.g, spottedColor.b);
-                if (!_guardSightScript.IsPlayerVisible())
-                {
-                    _guardSoundScript.GuardAlertedNoise();
-                }
             } //In caution view radius
             else if (hitPlayer && Vector3.Angle(_transform.forward, directionToPlayer) < WARNING_VIEW_ANGLE / 2)
             {

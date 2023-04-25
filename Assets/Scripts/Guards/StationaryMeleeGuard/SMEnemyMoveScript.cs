@@ -7,7 +7,7 @@ public class SMEnemyMoveScript : MonoBehaviour
 {
     public float GUARD_RUN_SPEED = 2f;
 
-    SMEnemySightScript _enemySightScript;
+    GuardSightScript _sightScript;
     Transform _playerTransform;
     NavMeshAgent _agent;
     SMEnemyAnimScript _anim;
@@ -21,9 +21,9 @@ public class SMEnemyMoveScript : MonoBehaviour
         _agent = GetComponent<NavMeshAgent>();
         _wayPoint = transform.position;
 
-        _enemySightScript = GetComponent<SMEnemySightScript>();
+        _sightScript = GetComponent<GuardSightScript>();
         _anim = GetComponent<SMEnemyAnimScript>();
-        _playerTransform = _anim.GetPlayerReference().transform;
+        _playerTransform = GetComponent<GuardMainScript>().GetPlayerReference().transform;
 
         _agent.speed = GUARD_RUN_SPEED;
     }
@@ -50,7 +50,7 @@ public class SMEnemyMoveScript : MonoBehaviour
         {
             SetNewWaypoint();
         }
-        if (_enemySightScript.CanSeePlayer2())
+        if (_sightScript.IsPlayerVisible())
         {
             PursuePlayer();
         }
