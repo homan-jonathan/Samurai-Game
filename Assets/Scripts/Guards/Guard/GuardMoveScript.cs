@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class GuardMoveScript : MonoBehaviour
 {
     protected NavMeshAgent _agent;
-    bool _stopMovement = false;
+    public bool _stopMovement = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,13 +16,13 @@ public class GuardMoveScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _agent.isStopped = _stopMovement;
+        //_agent.isStopped = _stopMovement;
     }
 
     public void Die()
     {
         //print("TAKEDOWN");
-        _stopMovement = true;        
+        _stopMovement = true;
         //_agent.SetDestination(gameObject.transform.position);
         //Destroy(gameObject);
     }

@@ -11,6 +11,7 @@ public class GGuardMoveScript : GuardMoveScript
     GuardSightScript _sightScript;
     Transform _playerTransform;
     GGuardAnimScript _anim;
+    GuardMoveScript _baseMoveScript;
 
     public Transform waypoint;
     public GuardGroupingScript _guardGroup;
@@ -26,6 +27,7 @@ public class GGuardMoveScript : GuardMoveScript
         _sightScript = GetComponent<GuardSightScript>();
         _anim = GetComponent<GGuardAnimScript>();
         _playerTransform = GetComponent<GuardMainScript>().GetPlayerReference().transform;
+        _baseMoveScript = GetComponent<GuardMoveScript>();
     }
 
     // Update is called once per frame
@@ -40,6 +42,12 @@ public class GGuardMoveScript : GuardMoveScript
             }
 
             PursuePlayer(); 
+        }
+        else if (_baseMoveScript._stopMovement)
+        {
+            _isWalking = false;
+            _isRunning = false;
+            _agent.isStopped = true;
         }
         else 
         {

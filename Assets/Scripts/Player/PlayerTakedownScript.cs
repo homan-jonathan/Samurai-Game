@@ -9,7 +9,6 @@ public class PlayerTakedownScript : MonoBehaviour
     public InteractTextScript _popupTextScript;
     Text _interactPopupText;
 
-
     // Start is called before the first frame update
     void Start()
     {
