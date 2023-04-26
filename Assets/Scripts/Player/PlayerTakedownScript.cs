@@ -29,7 +29,7 @@ public class PlayerTakedownScript : MonoBehaviour
         {
             GuardSightScript _thisGuardSight = other.gameObject.GetComponent<GuardSightScript>();
             GuardMoveScript _thisGuardMove = other.gameObject.GetComponent<GuardMoveScript>();
-            if (!_thisGuardSight.IsPlayerVisible())
+            if (!_thisGuardSight.IsPlayerVisible() && !_thisGuardMove._stopMovement)
             {
                 _popupTextScript.SetText();
             }
@@ -40,6 +40,7 @@ public class PlayerTakedownScript : MonoBehaviour
             if (Input.GetKeyDown(KeyBinding.interact()) && !_thisGuardSight.IsPlayerVisible())
             {
                 //print("TAKEDOWN");
+                _popupTextScript.RemoveText();
                 _thisGuardMove.Die();
             }
         }

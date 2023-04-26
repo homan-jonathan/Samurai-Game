@@ -16,15 +16,12 @@ public class GuardMoveScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //_agent.isStopped = _stopMovement;
+
     }
 
     public void Die()
     {
-        //print("TAKEDOWN");
         _stopMovement = true;
-        //_agent.SetDestination(gameObject.transform.position);
-        //Destroy(gameObject);
     }
 
     //from DataGreed/UnityNavMeshCheck.cs github
