@@ -10,7 +10,8 @@ public class SMEnemyMoveScript : GuardMoveScript
     GuardSightScript _sightScript;
     Transform _playerTransform;
     SMEnemyAnimScript _anim;
-
+    GuardMoveScript _baseMoveScript;
+    
     Vector3 _wayPoint;
     bool _isRunning = false;
     bool _reachedWayPoint = true;
@@ -23,6 +24,7 @@ public class SMEnemyMoveScript : GuardMoveScript
         _sightScript = GetComponent<GuardSightScript>();
         _anim = GetComponent<SMEnemyAnimScript>();
         _playerTransform = GetComponent<GuardMainScript>().GetPlayerReference().transform;
+        _baseMoveScript = GetComponent<GuardMoveScript>();
 
         _agent.speed = GUARD_RUN_SPEED;
     }
@@ -34,6 +36,11 @@ public class SMEnemyMoveScript : GuardMoveScript
         {
             _agent.isStopped = true;
             return;
+        }
+        else if (_baseMoveScript._stopMovement)
+        {
+            _isRunning = false;
+            _agent.isStopped = true;
         }
         else
         {
