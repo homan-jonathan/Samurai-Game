@@ -2024,6 +2024,7 @@ GameObject:
   - component: {fileID: 3598364532773958366}
   - component: {fileID: 441411187408652103}
   - component: {fileID: 6209863415291061643}
+  - component: {fileID: 1173466891183987285}
   - component: {fileID: 8467639094983063295}
   m_Layer: 0
   m_Name: PlayerPrefab
@@ -2149,6 +2150,18 @@ MonoBehaviour:
   playerHit: {fileID: 8300000, guid: 6465446654cbcfc468114c0ca2ab4378, type: 3}
   zoneChange: {fileID: 8300000, guid: d12e2fefd48726040a39cb59b94cd63e, type: 3}
   pickedUpCoins: {fileID: 8300000, guid: 71b78ea405332ab4db5e776693ff05aa, type: 3}
+--- !u!114 &1173466891183987285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4824716656974472656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5e2386aa8322694f961f690c6cb1f5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!82 &8467639094983063295
 AudioSource:
   m_ObjectHideFlags: 0
