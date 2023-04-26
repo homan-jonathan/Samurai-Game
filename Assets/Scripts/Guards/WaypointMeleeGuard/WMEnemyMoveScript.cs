@@ -8,6 +8,7 @@ public class WMEnemyMoveScript : GuardMoveScript
     public float GUARD_WALK_SPEED = 1f;
     public float GUARD_RUN_SPEED = 2f;
 
+    GuardMoveScript _baseMoveScript;
     GuardSightScript _sightScript;
     Transform _playerTransform;
     WMEnemyAnimScript _anim;
@@ -25,6 +26,7 @@ public class WMEnemyMoveScript : GuardMoveScript
         _sightScript = GetComponent<GuardSightScript>();
         _anim = GetComponent<WMEnemyAnimScript>();
         _playerTransform = GetComponent<GuardMainScript>().GetPlayerReference().transform;
+        _baseMoveScript = GetComponent<GuardMoveScript>();
     }
 
     // Update is called once per frame
@@ -35,7 +37,14 @@ public class WMEnemyMoveScript : GuardMoveScript
             _agent.isStopped = true;
             return;
         }
-        else {
+        else if (_baseMoveScript._stopMovement){
+            _isWalking = false;
+            _isRunning = false;
+            _agent.isStopped = true;
+            _anim.PlayDeathAnim();
+        }
+        else
+        {
             _agent.isStopped = false;
         }
 
