@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class WMEnemyMoveScript : MonoBehaviour
+public class WMEnemyMoveScript : GuardMoveScript
 {
     public float GUARD_WALK_SPEED = 1f;
     public float GUARD_RUN_SPEED = 2f;
 
     GuardSightScript _sightScript;
     Transform _playerTransform;
-    NavMeshAgent _agent;
     WMEnemyAnimScript _anim;
 
     public Transform[] waypoints;
@@ -65,26 +64,6 @@ public class WMEnemyMoveScript : MonoBehaviour
         _agent.SetDestination(_playerTransform.position);
         _isRunning = true;
         _isWalking = false;
-    }
-
-    //from DataGreed/UnityNavMeshCheck.cs github
-    bool ReachedDestinationOrGaveUp()
-    {
-        if (_agent.remainingDistance <= _agent.stoppingDistance) {
-            return true;
-        }
-        /*if (!_agent.pathPending)
-        {
-            if (_agent.remainingDistance <= _agent.stoppingDistance)
-            {
-                if (!_agent.hasPath || _agent.velocity.sqrMagnitude == 0f)
-                {
-                    return true;
-                }
-            }
-        }*/
-
-        return false;
     }
 
     public bool IsWalking() { return _isWalking; }

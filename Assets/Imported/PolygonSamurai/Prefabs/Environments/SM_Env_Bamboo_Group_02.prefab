@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2305000}
   - component: {fileID: 5866339209582921246}
   - component: {fileID: 2775328714245115551}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: SM_Env_Bamboo_Group_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}

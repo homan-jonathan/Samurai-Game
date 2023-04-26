@@ -1782,6 +1782,7 @@ GameObject:
   - component: {fileID: 6113089253837846762}
   - component: {fileID: 3016952081287736772}
   - component: {fileID: 1931653318}
+  - component: {fileID: 757412800410835908}
   m_Layer: 5
   m_Name: ChargedJumpSlider
   m_TagString: Untagged
@@ -1863,6 +1864,18 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &1931653318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4361546607666411553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3859e687ba0ed24cb7ff5abc6fa5330, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &757412800410835908
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2051,7 +2064,7 @@ CharacterController:
   m_Height: 2
   m_Radius: 0.3
   m_SlopeLimit: 60
-  m_StepOffset: 0.3
+  m_StepOffset: 0.5
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1, z: 0}
@@ -2090,7 +2103,7 @@ MonoBehaviour:
   CROUCH_MOVESPEED: 2
   WALK_MOVESPEED: 4
   RUN_MOVESPEED: 6
-  JUMP_HEIGHT: 7
+  JUMP_HEIGHT: 9
   CHARGED_JUMP_HEIGHT: 15
   GRAVITY: 20
   ROTATION_SPEED: 360
