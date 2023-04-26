@@ -8,6 +8,7 @@ public class PlayerMainScript : MonoBehaviour
 
     PlayerAnimScript _anim;
     PlayerMoveScript _moveScript;
+    PlayerTakedownScript _takedownScript;
 
     bool _isDead = false;
     bool _hasCoins = false;
@@ -17,6 +18,7 @@ public class PlayerMainScript : MonoBehaviour
     {
         _anim = GetComponent<PlayerAnimScript>();
         _moveScript = GetComponent<PlayerMoveScript>();
+        _takedownScript = GetComponent<PlayerTakedownScript>();
     }
 
     // Update is called once per frame
