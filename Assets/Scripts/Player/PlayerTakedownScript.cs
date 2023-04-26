@@ -28,10 +28,16 @@ public class PlayerTakedownScript : MonoBehaviour
     {
         if (other.gameObject.tag == Tag.enemy)
         {
-            _popupTextScript.SetText();
             GuardSightScript _thisGuardSight = other.gameObject.GetComponent<GuardSightScript>();
             GuardMoveScript _thisGuardMove = other.gameObject.GetComponent<GuardMoveScript>();
-
+            if (!_thisGuardSight.IsPlayerVisible())
+            {
+                _popupTextScript.SetText();
+            }
+            else
+            {
+                _popupTextScript.RemoveText();
+            }
             if (Input.GetKeyDown(KeyBinding.interact()) && !_thisGuardSight.IsPlayerVisible())
             {
                 //print("TAKEDOWN");
