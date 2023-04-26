@@ -48,6 +48,7 @@ public class GGuardMoveScript : GuardMoveScript
             _isWalking = false;
             _isRunning = false;
             _agent.isStopped = true;
+            _anim.PlayDeathAnim();
         }
         else 
         {

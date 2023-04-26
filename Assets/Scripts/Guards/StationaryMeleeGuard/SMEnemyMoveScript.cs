@@ -41,6 +41,7 @@ public class SMEnemyMoveScript : GuardMoveScript
         {
             _isRunning = false;
             _agent.isStopped = true;
+            _anim.PlayDeathAnim();
         }
         else
         {

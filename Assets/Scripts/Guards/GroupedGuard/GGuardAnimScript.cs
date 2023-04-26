@@ -21,7 +21,7 @@ public class GGuardAnimScript : GuardAnimatorScript
         _anim.SetBool("isWalking", _enemyScript.IsWalking());
         _anim.SetBool("isRunning", _enemyScript.IsRunning());
     }
-
+    
     public override void PlayAttackAnim()
     {
         _anim.SetTrigger("swingSword");
