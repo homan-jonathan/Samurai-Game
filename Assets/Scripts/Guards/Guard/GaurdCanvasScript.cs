@@ -8,7 +8,7 @@ public class GaurdCanvasScript : MonoBehaviour
     [Range(0, 360)]
     public float WARNING_VIEW_ANGLE;
 
-    Image warningImage;
+    Image _warningImage;
     public Color warningColor;
     public Color spottedColor;
 
@@ -21,6 +21,7 @@ public class GaurdCanvasScript : MonoBehaviour
     GuardViewDistance _guardViewDistanceScript;
     GuardSightScript _guardSightScript;
     GuardSoundScript _guardSoundScript;
+    EnemyPointersScript _enemyPointersScript;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,7 +31,8 @@ public class GaurdCanvasScript : MonoBehaviour
         _guardSoundScript = GetComponentInParent<GuardSoundScript>();
         _playerTransform = GetComponentInParent<GuardMainScript>().GetPlayerReference().transform;
         _transform = GetComponentInParent<GuardMainScript>().transform;
-        warningImage = GetComponentInChildren<Image>();
+        _warningImage = GetComponentInChildren<Image>();
+        _enemyPointersScript = FindObjectOfType<EnemyPointersScript>();
     }
 
     // Update is called once per frame
@@ -48,7 +50,8 @@ public class GaurdCanvasScript : MonoBehaviour
     {
         if (!_guardViewDistanceScript.IsPlayerInPossibleViewRange() && !_guardSightScript.IsPlayerVisible())
         {
-            warningImage.enabled = false;
+            _warningImage.enabled = false;
+            _enemyPointersScript.ClearTarget(transform);
         }
         else
         {
@@ -70,13 +73,17 @@ public class GaurdCanvasScript : MonoBehaviour
             //In View Radius
             if (_guardSightScript.IsPlayerVisible())
             {
-                warningImage.enabled = true;
-                warningImage.color = new Color(spottedColor.r, spottedColor.g, spottedColor.b);
+                _warningImage.enabled = true;
+                Color color = new Color(spottedColor.r, spottedColor.g, spottedColor.b);
+                _warningImage.color = color;
+                _enemyPointersScript.SetTarget(transform, color);
             } //In caution view radius
             else if (hitPlayer && Vector3.Angle(_transform.forward, directionToPlayer) < WARNING_VIEW_ANGLE / 2)
             {
-                warningImage.enabled = true;
-                warningImage.color = new Color(warningColor.r, warningColor.g, warningColor.b);
+                _warningImage.enabled = true;
+                Color color =  new Color(warningColor.r, warningColor.g, warningColor.b);
+                _warningImage.color = color;
+                _enemyPointersScript.SetTarget(transform, color);
                 if (_inCautionRange <= 0)
                 {
                     _guardSoundScript.GuardAlertedNoise();
@@ -84,7 +91,7 @@ public class GaurdCanvasScript : MonoBehaviour
                 _inCautionRange = RESET_TIME;
             } else if (_inCautionRange <= 0)
             {
-                warningImage.enabled = false;
+                _warningImage.enabled = false;
             }
         }
     }
