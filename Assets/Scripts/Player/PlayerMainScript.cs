@@ -9,7 +9,7 @@ public class PlayerMainScript : MonoBehaviour
     PlayerAnimScript _anim;
     PlayerMoveScript _moveScript;
     PlayerTakedownScript _takedownScript;
-
+    
     bool _isDead = false;
     bool _hasCoins = false;
 
