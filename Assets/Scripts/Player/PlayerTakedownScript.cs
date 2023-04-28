@@ -39,7 +39,7 @@ public class PlayerTakedownScript : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyBinding.interact()) && !_thisGuardSight.IsPlayerVisible())
             {
-                //print("TAKEDOWN");
+
                 _popupTextScript.RemoveText();
                 _thisGuardMove.Die();
             }

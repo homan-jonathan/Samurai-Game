@@ -18,7 +18,6 @@ public class GuardAnimatorScript : MonoBehaviour
     public void PlayDeathAnim()
     {
         _anim.SetTrigger("isDead");
-        print("DIE");
     }
     public virtual void PlayAttackAnim() { }
 
