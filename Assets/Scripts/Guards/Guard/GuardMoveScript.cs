@@ -22,7 +22,9 @@ public class GuardMoveScript : MonoBehaviour
     public void Die()
     {
         _stopMovement = true;
+        Destroy(gameObject, 4);
     }
+
 
     //from DataGreed/UnityNavMeshCheck.cs github
     protected bool ReachedDestinationOrGaveUp()
