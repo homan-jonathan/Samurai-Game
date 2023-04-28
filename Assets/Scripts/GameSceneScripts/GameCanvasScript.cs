@@ -7,6 +7,7 @@ public class GameCanvasScript : MonoBehaviour
 {
     public GameSceneManagerScript gameSceneManager;
     public Text timerText;
+    public Text scoreText;
     public Text zoneText;
     public GameObject endGameObject;
     // Start is called before the first frame update

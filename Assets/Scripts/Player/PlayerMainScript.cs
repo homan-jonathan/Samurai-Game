@@ -12,6 +12,8 @@ public class PlayerMainScript : MonoBehaviour
 
     public GameObject _coinBagOnPlayer;
     public GameObject _swordOnPlayer;
+
+    public float _playerScore;
     
     bool _isDead = false;
     bool _hasCoins = false;
@@ -23,6 +25,7 @@ public class PlayerMainScript : MonoBehaviour
         _anim = GetComponent<PlayerAnimScript>();
         _moveScript = GetComponent<PlayerMoveScript>();
         _takedownScript = GetComponent<PlayerTakedownScript>();
+        _playerScore = 0.0f;
     }
 
     // Update is called once per frame
@@ -33,12 +36,14 @@ public class PlayerMainScript : MonoBehaviour
 
     public void PickupCoin()
     {
+        _playerScore += 100f;
         _anim.PlayPickupCoinsAnim();
         _hasCoins = true;
         _coinBagOnPlayer.SetActive(true);
     }
     public void PickupSword()
     {
+        _playerScore += 1000f;
         _anim.PlayPickupCoinsAnim();
         _hasSword = true;
         _swordOnPlayer.SetActive(true);
@@ -48,6 +53,7 @@ public class PlayerMainScript : MonoBehaviour
         if (other.gameObject.tag.Equals(Tag.sword) && !_isDead)
         {
             GetComponent<CharacterController>().enabled = false;
+            _playerScore = 0.0f;
             _anim.PlayDeathAnim();
             GAME_SCENE_MANAGER.HasLost();
             _isDead = true;
@@ -65,5 +71,9 @@ public class PlayerMainScript : MonoBehaviour
     public bool HasSword()
     {
         return _hasSword;
+    }
+    public float PlayerScore()
+    {
+        return _playerScore;
     }
 }

@@ -10,6 +10,7 @@ public class PlayerTakedownScript : MonoBehaviour
     Text _interactPopupText;
 
     PlayerAnimScript _animScript;
+    PlayerMainScript _mainScript;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +18,7 @@ public class PlayerTakedownScript : MonoBehaviour
         _interactPopupText = _popupTextScript.GetComponentInChildren<Text>();
         _interactPopupText.text = "";
         _animScript = GetComponent<PlayerAnimScript>();
+        _mainScript = GetComponent<PlayerMainScript>();
     }
 
     // Update is called once per frame
@@ -43,6 +45,7 @@ public class PlayerTakedownScript : MonoBehaviour
             {
                 _animScript.PlayStabAnim();
                 _popupTextScript.RemoveText();
+                _mainScript._playerScore += 50f;
                 _thisGuardMove.Die();
             }
         }
