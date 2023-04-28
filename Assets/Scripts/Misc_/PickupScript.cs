@@ -33,7 +33,14 @@ public class PickupScript : MonoBehaviour
             _popupTextScript.SetText();
             if (Input.GetKeyDown(KeyBinding.interact()))
             {
-                _playerScript.PickupCoin();
+                if(tag == Tag.coinPickup)
+                {
+                    _playerScript.PickupCoin();
+                }
+                else if (tag == Tag.swordPickup)
+                {
+                    _playerScript.PickupSword();
+                }
                 gameObject.SetActive(false);
                 _popupTextScript.RemoveText();
             }
