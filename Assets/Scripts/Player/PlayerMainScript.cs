@@ -35,11 +35,13 @@ public class PlayerMainScript : MonoBehaviour
     {
         _anim.PlayPickupCoinsAnim();
         _hasCoins = true;
+        _coinBagOnPlayer.SetActive(true);
     }
     public void PickupSword()
     {
         _anim.PlayPickupCoinsAnim();
         _hasSword = true;
+        _swordOnPlayer.SetActive(true);
     }
     private void OnTriggerEnter(Collider other)
     {
