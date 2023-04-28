@@ -9,9 +9,13 @@ public class PlayerMainScript : MonoBehaviour
     PlayerAnimScript _anim;
     PlayerMoveScript _moveScript;
     PlayerTakedownScript _takedownScript;
+
+    public GameObject _coinBagOnPlayer;
+    public GameObject _swordOnPlayer;
     
     bool _isDead = false;
     bool _hasCoins = false;
+    bool _hasSword = false;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +36,11 @@ public class PlayerMainScript : MonoBehaviour
         _anim.PlayPickupCoinsAnim();
         _hasCoins = true;
     }
+    public void PickupSword()
+    {
+        _anim.PlayPickupCoinsAnim();
+        _hasSword = true;
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag.Equals(Tag.sword) && !_isDead)
@@ -50,5 +59,9 @@ public class PlayerMainScript : MonoBehaviour
 
     public bool HasCoins() { 
         return _hasCoins;
+    }
+    public bool HasSword()
+    {
+        return _hasSword;
     }
 }

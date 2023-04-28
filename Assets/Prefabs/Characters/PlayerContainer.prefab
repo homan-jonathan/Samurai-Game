@@ -2355,6 +2355,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GAME_SCENE_MANAGER: {fileID: 0}
   healthBar: {fileID: 3016952081287736772}
+  _coinBagOnPlayer: {fileID: 6640268307204221406}
+  _swordOnPlayer: {fileID: 3551280158705740886}
 --- !u!114 &6209863415291061643
 MonoBehaviour:
   m_ObjectHideFlags: 0
