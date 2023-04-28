@@ -9,12 +9,14 @@ public class PlayerTakedownScript : MonoBehaviour
     public InteractTextScript _popupTextScript;
     Text _interactPopupText;
 
+    PlayerAnimScript _animScript;
     // Start is called before the first frame update
     void Start()
     {
         _popupTextScript = FindObjectOfType<InteractTextScript>();
         _interactPopupText = _popupTextScript.GetComponentInChildren<Text>();
         _interactPopupText.text = "";
+        _animScript = GetComponent<PlayerAnimScript>();
     }
 
     // Update is called once per frame
@@ -39,7 +41,7 @@ public class PlayerTakedownScript : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyBinding.interact()) && !_thisGuardSight.IsPlayerVisible())
             {
-
+                _animScript.PlayStabAnim();
                 _popupTextScript.RemoveText();
                 _thisGuardMove.Die();
             }

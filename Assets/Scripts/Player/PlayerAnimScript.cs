@@ -40,4 +40,9 @@ public class PlayerAnimScript : MonoBehaviour
         _anim.SetTrigger("pickupCoins");
         _playerSoundsScript.PickedUpCoinsNoise();
     }
+
+    public void PlayStabAnim()
+    {
+        _anim.SetTrigger("stabEnemy");
+    }
 }
