@@ -15,6 +15,11 @@ public class GameSceneManagerScript : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+
+        if (PlayerPrefs.HasKey("PlayerMaterial"))
+        {
+            pauseMenu.GetComponentInChildren<SettingsScript>(true).FindAndSetPlayerMat();
+        }
     }
 
     // Update is called once per frame
