@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class SettingsScript : MonoBehaviour
 {
     public Button sprint, crouch, cameraMode, jump, interact;
+    public Material[] _playerMats;
 
     GameObject _currentKey;
     void Awake()
@@ -47,7 +48,6 @@ public class SettingsScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
     }
 
     private void OnGUI()
@@ -67,11 +67,17 @@ public class SettingsScript : MonoBehaviour
         _currentKey = clicked;
     }
 
-    public void SaveControls() {
-        PlayerPrefs.SetString("Sprint", KeyBinding.keys["Sprint"].ToString());
-        PlayerPrefs.SetString("Crouch", KeyBinding.keys["Crouch"].ToString());
-        PlayerPrefs.SetString("CameraMode", KeyBinding.keys["CameraMode"].ToString());
-        PlayerPrefs.SetString("Jump", KeyBinding.keys["Jump"].ToString());
-        PlayerPrefs.SetString("Interact", KeyBinding.keys["Interact"].ToString());
+    public void MaterialClicked(int matIndex)
+    {
+        PlayerPrefs.SetInt("PlayerMaterial", matIndex);
+        FindAndSetPlayerMat();
+    }
+
+    public void FindAndSetPlayerMat() {
+        PlayerMainScript player = FindObjectOfType<PlayerMainScript>();
+        if (player != null)
+        {
+            player.GetComponentInChildren<SkinnedMeshRenderer>().material = _playerMats[PlayerPrefs.GetInt("PlayerMaterial")];
+        }
     }
 }
