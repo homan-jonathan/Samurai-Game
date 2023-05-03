@@ -9,6 +9,31 @@ public class SettingsScript : MonoBehaviour
     public Button sprint, crouch, cameraMode, jump, interact;
 
     GameObject _currentKey;
+    void Awake()
+    {
+        if (PlayerPrefs.HasKey("Sprint"))
+        {
+            KeyBinding.keys["Sprint"] = (KeyCode) Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Sprint"));
+            print(KeyBinding.keys);
+        }
+        if (PlayerPrefs.HasKey("Crouch"))
+        {
+            KeyBinding.keys["Crouch"] = (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Crouch"));
+        }
+        if (PlayerPrefs.HasKey("CameraMode"))
+        {
+            KeyBinding.keys["CameraMode"] = (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("CameraMode"));
+        }
+        if (PlayerPrefs.HasKey("Jump"))
+        {
+            KeyBinding.keys["Jump"] = (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Jump"));
+        }
+        if (PlayerPrefs.HasKey("Interact"))
+        {
+            KeyBinding.keys["Interact"] = (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Interact"));
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +56,7 @@ public class SettingsScript : MonoBehaviour
             Event e = Event.current;
             if (e.isKey) {
                 KeyBinding.keys[_currentKey.name] = e.keyCode;
+                PlayerPrefs.SetString(_currentKey.name, e.keyCode.ToString());
                 _currentKey.GetComponentInChildren<Text>().text = e.keyCode.ToString();
                 _currentKey = null;
             }
@@ -39,5 +65,13 @@ public class SettingsScript : MonoBehaviour
 
     public void ChangeKey(GameObject clicked) {
         _currentKey = clicked;
+    }
+
+    public void SaveControls() {
+        PlayerPrefs.SetString("Sprint", KeyBinding.keys["Sprint"].ToString());
+        PlayerPrefs.SetString("Crouch", KeyBinding.keys["Crouch"].ToString());
+        PlayerPrefs.SetString("CameraMode", KeyBinding.keys["CameraMode"].ToString());
+        PlayerPrefs.SetString("Jump", KeyBinding.keys["Jump"].ToString());
+        PlayerPrefs.SetString("Interact", KeyBinding.keys["Interact"].ToString());
     }
 }
