@@ -5,10 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
-  - Sword
   - HiddenPlayer
   - Coins
   - SwordPickup
+  - Weapon
   layers:
   - Default
   - TransparentFX

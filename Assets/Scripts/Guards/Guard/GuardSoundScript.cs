@@ -6,7 +6,7 @@ public class GuardSoundScript : MonoBehaviour
 {
     AudioSource audioSource;
 
-    public AudioClip swordSlash;
+    public AudioClip attackNoise;
     public AudioClip guardAlerted;
     public AudioClip guardSpotted;
     // Start is called before the first frame update
@@ -21,9 +21,9 @@ public class GuardSoundScript : MonoBehaviour
 
     }
 
-    public void SwordSlashNoise()
+    public void AttackNoise()
     {
-        audioSource.PlayOneShot(swordSlash);
+        audioSource.PlayOneShot(attackNoise);
     }
 
     public void GuardAlertedNoise()

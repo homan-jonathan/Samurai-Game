@@ -11,7 +11,7 @@ public class WMEnemyMoveScript : GuardMoveScript
     GuardMoveScript _baseMoveScript;
     GuardSightScript _sightScript;
     Transform _playerTransform;
-    WMEnemyAnimScript _anim;
+    GuardAnimatorScript _anim;
 
     public Transform[] waypoints;
     int _waypointIndx = 0;
@@ -24,7 +24,7 @@ public class WMEnemyMoveScript : GuardMoveScript
         _agent.SetDestination(waypoints[_waypointIndx].position);
 
         _sightScript = GetComponent<GuardSightScript>();
-        _anim = GetComponent<WMEnemyAnimScript>();
+        _anim = GetComponent<GuardAnimatorScript>();
         _playerTransform = GetComponent<GuardMainScript>().GetPlayerReference().transform;
         _baseMoveScript = GetComponent<GuardMoveScript>();
     }
@@ -32,7 +32,7 @@ public class WMEnemyMoveScript : GuardMoveScript
     // Update is called once per frame
     void Update()
     {
-        if (_anim.AnimationIsPlaying(AnimationState.swingSword)) //If attacking then stop moving
+        if (_anim.AttackAnimationIsPlaying()) //If attacking then stop moving
         {
             _agent.isStopped = true;
             return;

@@ -5,5 +5,5 @@ using UnityEngine;
 public class AnimationState
 {
     public const string swingSword = "Swing Sword";
-    public const string throwNinjaStar = "Throw Ninja Star";
+    public const string throwshuriken = "Throw Shuriken";
 }

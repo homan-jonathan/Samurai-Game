@@ -50,7 +50,7 @@ public class PlayerMainScript : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag.Equals(Tag.sword) && !_isDead)
+        if (other.gameObject.tag.Equals(Tag.weapon) && !_isDead)
         {
             GetComponent<CharacterController>().enabled = false;
             _playerScore = 0.0f;

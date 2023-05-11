@@ -5,7 +5,6 @@ using UnityEngine;
 public class WMEnemyAnimScript : GuardAnimatorScript
 {
     WMEnemyMoveScript _enemyScript;
-    GuardSoundScript _guardSounds;
 
     // Start is called before the first frame update
     void Start()
@@ -20,10 +19,5 @@ public class WMEnemyAnimScript : GuardAnimatorScript
     {
         _anim.SetBool("isWalking", _enemyScript.IsWalking());
         _anim.SetBool("isRunning", _enemyScript.IsRunning());
-    }
-
-    public override void PlayAttackAnim() {
-        _anim.SetTrigger("swingSword");
-        _guardSounds.SwordSlashNoise();
     }
 }
