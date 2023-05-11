@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38926cd1debbe5e4f84a5810ef4a49ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _stopMovement: 0
   GUARD_RUN_SPEED: 6
 --- !u!114 &779903081
 MonoBehaviour:
@@ -36,6 +37,10 @@ PrefabInstance:
       propertyPath: m_Radius
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 2422131158321551479, guid: 25180feac5ff241438fdd00eee64e5b1, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4238563257734804568, guid: 25180feac5ff241438fdd00eee64e5b1, type: 3}
       propertyPath: VIEW_DISTANCE
       value: 20
@@ -44,6 +49,10 @@ PrefabInstance:
       propertyPath: PLAYER
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4238563257734804575, guid: 25180feac5ff241438fdd00eee64e5b1, type: 3}
+      propertyPath: attackNoise
+      value: 
+      objectReference: {fileID: 8300000, guid: 54f6a6492bec48f4eaccc10455463c8c, type: 3}
     - target: {fileID: 6014159357314867947, guid: 25180feac5ff241438fdd00eee64e5b1, type: 3}
       propertyPath: m_Radius
       value: 20

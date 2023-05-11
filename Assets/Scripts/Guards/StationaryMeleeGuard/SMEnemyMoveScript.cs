@@ -9,7 +9,7 @@ public class SMEnemyMoveScript : GuardMoveScript
 
     GuardSightScript _sightScript;
     Transform _playerTransform;
-    SMEnemyAnimScript _anim;
+    GuardAnimatorScript _anim;
     GuardMoveScript _baseMoveScript;
     
     Vector3 _wayPoint;
@@ -22,7 +22,7 @@ public class SMEnemyMoveScript : GuardMoveScript
         _wayPoint = transform.position;
 
         _sightScript = GetComponent<GuardSightScript>();
-        _anim = GetComponent<SMEnemyAnimScript>();
+        _anim = GetComponent<GuardAnimatorScript>();
         _playerTransform = GetComponent<GuardMainScript>().GetPlayerReference().transform;
         _baseMoveScript = GetComponent<GuardMoveScript>();
 
@@ -32,7 +32,7 @@ public class SMEnemyMoveScript : GuardMoveScript
     // Update is called once per frame
     void Update()
     {
-        if (_anim.AnimationIsPlaying(AnimationState.swingSword)) //If attacking then stop moving
+        if (_anim.AttackAnimationIsPlaying()) //If attacking then stop moving
         {
             _agent.isStopped = true;
             return;

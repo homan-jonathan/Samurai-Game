@@ -5,6 +5,8 @@ using UnityEngine;
 public class GuardAnimatorScript : MonoBehaviour
 {
     protected Animator _anim;
+    protected string _attackAnim;
+    protected GuardSoundScript _guardSounds;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,11 +17,14 @@ public class GuardAnimatorScript : MonoBehaviour
     {
 
     }
-    public void PlayDeathAnim()
+    public virtual void PlayDeathAnim()
     {
         _anim.SetTrigger("isDead");
     }
-    public virtual void PlayAttackAnim() { }
+    public virtual void PlayAttackAnim() {
+        _anim.SetTrigger("attack");
+        _guardSounds.AttackNoise();
+    }
 
     //from edu4hd0
     bool AnimatorIsPlaying()
@@ -32,5 +37,10 @@ public class GuardAnimatorScript : MonoBehaviour
     public bool AnimationIsPlaying(string stateName)
     {
         return AnimatorIsPlaying() && _anim.GetCurrentAnimatorStateInfo(0).IsName(stateName);
+    }
+
+    public bool AttackAnimationIsPlaying()
+    {
+        return AnimatorIsPlaying() && _anim.GetCurrentAnimatorStateInfo(0).IsName(_attackAnim);
     }
 }

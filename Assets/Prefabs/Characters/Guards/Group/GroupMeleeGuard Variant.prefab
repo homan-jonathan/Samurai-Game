@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4be325a0d6031da4a9fe49966677688c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _stopMovement: 0
   GUARD_WALK_SPEED: 2
   GUARD_RUN_SPEED: 6
   waypoint: {fileID: 0}
@@ -35,13 +36,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 337716229013226639, guid: 6705d15905603b141992dc296469ed7e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 791283038855377736, guid: 6705d15905603b141992dc296469ed7e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4028026598716374447, guid: 6705d15905603b141992dc296469ed7e, type: 3}
       propertyPath: PLAYER
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8068776006495463084, guid: 6705d15905603b141992dc296469ed7e, type: 3}
       propertyPath: m_Name
-      value: GroupMeleeGuard
+      value: GroupMeleeGuard Variant
       objectReference: {fileID: 0}
     - target: {fileID: 8068776006495689318, guid: 6705d15905603b141992dc296469ed7e, type: 3}
       propertyPath: m_RootOrder
