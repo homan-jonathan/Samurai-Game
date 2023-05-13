@@ -11,7 +11,7 @@ public class XRayCapsuleScript : MonoBehaviour
     {
         _playerScript = FindObjectOfType<PlayerMoveScript>();
         _meshRenderer = GetComponent<MeshRenderer>();
-        _meshRenderer.enabled = true;
+        //_meshRenderer.enabled = true;
     }
 
     // Update is called once per frame
