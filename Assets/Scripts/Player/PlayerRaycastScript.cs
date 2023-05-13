@@ -28,9 +28,9 @@ public class PlayerRaycastScript : MonoBehaviour
     {
         RaycastHit hit;
 
-        Vector3 startPoint = transform.position + (_charCon.center + new Vector3(0, 1f, 0));
+        Vector3 startPoint = transform.position + _charCon.center;
 
-        if (Physics.SphereCast(startPoint, _charCon.height / 2, transform.forward, out hit, 10000))
+        if (Physics.SphereCast(startPoint, _charCon.height/4, transform.forward, out hit, Mathf.Infinity))
         {
             var obj = hit.collider.gameObject;
 
