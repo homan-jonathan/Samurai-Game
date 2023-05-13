@@ -24,7 +24,13 @@ public class GuardShaderScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //_thisMat = Shader.Find("Standard");
-        
+        if(_isTagged)
+        {
+            _skinnedMeshRenderer.material.shader = xRayShader;
+        }
+        else
+        {
+            _skinnedMeshRenderer.material.shader = basicShader;
+        }
     }
 }
