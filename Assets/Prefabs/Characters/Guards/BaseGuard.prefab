@@ -1132,7 +1132,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 7119635816594616157}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.4
   m_Height: 2
   m_Direction: 1
@@ -1163,6 +1163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PLAYER: {fileID: 0}
+  _xRayCapsule: {fileID: 0}
 --- !u!114 &4238563257734804575
 MonoBehaviour:
   m_ObjectHideFlags: 0

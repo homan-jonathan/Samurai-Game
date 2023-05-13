@@ -5,7 +5,7 @@ Shader "XRay Shaders/Diffuse-XRay-Replaceable"
 		_Color("Main Color", Color) = (1,1,1,1)
 		_EdgeColor("XRay Edge Color", Color) = (0,0,0,0)
 		_MainTex("Base (RGB)", 2D) = "white" {}
-	}
+		}
 
 	SubShader
 	{
