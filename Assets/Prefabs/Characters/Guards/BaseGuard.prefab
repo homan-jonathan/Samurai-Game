@@ -1132,7 +1132,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 7119635816594616157}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.4
   m_Height: 2
   m_Direction: 1
@@ -2410,6 +2410,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7119635816594282737}
   - component: {fileID: 7119635816599925221}
+  - component: {fileID: 4094538269004229839}
   m_Layer: 0
   m_Name: Character_Samurai_Grunt
   m_TagString: Untagged
@@ -2532,6 +2533,19 @@ SkinnedMeshRenderer:
     m_Center: {x: 0, y: 87.41212, z: -5.6492624}
     m_Extent: {x: 102.455956, y: 97.22349, z: 27.796299}
   m_DirtyAABB: 0
+--- !u!114 &4094538269004229839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7119635816594708703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96f0bec811546864989ad4e14d1c814c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PLAYER: {fileID: 0}
 --- !u!1 &7119635816594711987
 GameObject:
   m_ObjectHideFlags: 0
