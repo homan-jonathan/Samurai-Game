@@ -22,6 +22,7 @@ public class GuardMoveScript : MonoBehaviour
     public void Die()
     {
         _stopMovement = true;
+        GetComponent<GuardSightScript>().enabled = false;
         Destroy(gameObject, 4);
     }
 
