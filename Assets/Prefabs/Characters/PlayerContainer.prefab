@@ -2049,7 +2049,6 @@ MonoBehaviour:
   _rotAmtX: 0
   _rotAmtY: 0
   ROTATION_SPEED: 1.5
-  VERTICAL_CAMERA_MOVEMENT: 0.5
   Y_LOOKAT_OFFSET: 1
   Y_RETURN_SPEED: 1
   SMOOTH_TIME: 5
@@ -2098,7 +2097,6 @@ GameObject:
   - component: {fileID: 6113089253837846762}
   - component: {fileID: 3016952081287736772}
   - component: {fileID: 1931653318}
-  - component: {fileID: 757412800410835908}
   m_Layer: 5
   m_Name: ChargedJumpSlider
   m_TagString: Untagged
@@ -2180,18 +2178,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &1931653318
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4361546607666411553}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3859e687ba0ed24cb7ff5abc6fa5330, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &757412800410835908
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
