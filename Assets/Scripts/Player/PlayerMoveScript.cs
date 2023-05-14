@@ -37,6 +37,7 @@ public class PlayerMoveScript : MonoBehaviour
     float _chargeJumpTimer = 0.0f;
     public float NEEDED_TO_JUMP = 1.0f;
 
+    public GameObject _petalEffectObject;
     // Start is called before the first frame update
     void Start()
     {
@@ -47,6 +48,8 @@ public class PlayerMoveScript : MonoBehaviour
         _transform = transform;
 
         _speed = WALK_MOVESPEED;
+
+        _petalEffectObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -100,11 +103,13 @@ public class PlayerMoveScript : MonoBehaviour
         }
         if(_hasChargedJump)
         {
-            _animScript.StartPetalEffect();
+            //_animScript.StartPetalEffect();
+            _petalEffectObject.SetActive(true);
         }
         else
         {
-            _animScript.StartPetalEffect();
+            //_animScript.StartPetalEffect();
+            _petalEffectObject.SetActive(false);
         }
 
         switch (_cameraScript._mode)
