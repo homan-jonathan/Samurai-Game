@@ -12,6 +12,7 @@ public class WMEnemyMoveScript : GuardMoveScript
     GuardSightScript _sightScript;
     Transform _playerTransform;
     GuardAnimatorScript _anim;
+    GuardMainScript _guardMainScript;
 
     public Transform[] waypoints;
     int _waypointIndx = 0;
@@ -27,11 +28,17 @@ public class WMEnemyMoveScript : GuardMoveScript
         _anim = GetComponent<GuardAnimatorScript>();
         _playerTransform = GetComponent<GuardMainScript>().GetPlayerReference().transform;
         _baseMoveScript = GetComponent<GuardMoveScript>();
+        _guardMainScript = GetComponent<GuardMainScript>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!_guardMainScript.isActive)
+        {
+            return;
+        }
+
         if (_anim.AttackAnimationIsPlaying()) //If attacking then stop moving
         {
             _agent.isStopped = true;

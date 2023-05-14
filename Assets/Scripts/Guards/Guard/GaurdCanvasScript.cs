@@ -40,6 +40,11 @@ public class GaurdCanvasScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!_guardMainScript.isActive)
+        {
+            return;
+        }
+
         if (_inCautionRange > 0)
         {
             _inCautionRange -= Time.deltaTime;
