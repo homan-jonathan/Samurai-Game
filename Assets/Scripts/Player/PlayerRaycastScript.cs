@@ -34,7 +34,7 @@ public class PlayerRaycastScript : MonoBehaviour
         {
             var obj = hit.collider.gameObject;
 
-            if (obj.tag == Tag.enemy)
+            if (obj.tag == Tag.playerRaycastTarget)
             {
                 return true;
             }
