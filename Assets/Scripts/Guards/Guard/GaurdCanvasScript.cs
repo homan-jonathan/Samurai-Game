@@ -22,6 +22,7 @@ public class GaurdCanvasScript : MonoBehaviour
     GuardSightScript _guardSightScript;
     GuardSoundScript _guardSoundScript;
     EnemyPointersScript _enemyPointersScript;
+    GuardMainScript _guardMainScript;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,7 +34,8 @@ public class GaurdCanvasScript : MonoBehaviour
         _transform = GetComponentInParent<GuardMainScript>().transform;
         _warningImage = GetComponentInChildren<Image>();
         _enemyPointersScript = FindObjectOfType<EnemyPointersScript>();
-    }
+        _guardMainScript = GetComponentInParent<GuardMainScript>();
+    } 
 
     // Update is called once per frame
     void Update()
@@ -48,7 +50,7 @@ public class GaurdCanvasScript : MonoBehaviour
 
     void UpdateVisionImage()
     {
-        if (!_guardViewDistanceScript.IsPlayerInPossibleViewRange() && !_guardSightScript.IsPlayerVisible())
+        if ((!_guardViewDistanceScript.IsPlayerInPossibleViewRange() && !_guardSightScript.IsPlayerVisible()) || _guardMainScript.isDead)
         {
             _warningImage.enabled = false;
             _enemyPointersScript.ClearTarget(transform);

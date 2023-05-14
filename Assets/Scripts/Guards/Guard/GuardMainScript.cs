@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GuardMainScript : MonoBehaviour
 {
+    public bool isDead = false;
+    public bool isActive = false;
     public GameObject PLAYER;
     //public XRayCapsuleScript _xRayCapsule;
 
@@ -19,6 +21,21 @@ public class GuardMainScript : MonoBehaviour
     {
 
     }
+
+    public void ActivateGuard()
+    {
+        isActive = true;
+    }
+
+    public void DeactivateGuard()
+    {
+        isActive = false;
+    }
+
+    public void killGuard() {
+        isDead = true;
+    }
+
     public GameObject GetPlayerReference()
     {
         return PLAYER;
