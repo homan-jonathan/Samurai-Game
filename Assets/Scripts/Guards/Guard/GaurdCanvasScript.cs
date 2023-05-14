@@ -91,6 +91,7 @@ public class GaurdCanvasScript : MonoBehaviour
                 _inCautionRange = RESET_TIME;
             } else if (_inCautionRange <= 0)
             {
+                _enemyPointersScript.ClearTarget(transform);
                 _warningImage.enabled = false;
             }
         }

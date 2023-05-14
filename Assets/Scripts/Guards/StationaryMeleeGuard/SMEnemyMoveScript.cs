@@ -13,6 +13,7 @@ public class SMEnemyMoveScript : GuardMoveScript
     GuardMoveScript _baseMoveScript;
     
     Vector3 _wayPoint;
+    Quaternion _wayPointDirection;
     bool _isRunning = false;
     bool _reachedWayPoint = true;
     // Start is called before the first frame update
@@ -20,6 +21,7 @@ public class SMEnemyMoveScript : GuardMoveScript
     {
         _agent = GetComponent<NavMeshAgent>();
         _wayPoint = transform.position;
+        _wayPointDirection = transform.rotation;
 
         _sightScript = GetComponent<GuardSightScript>();
         _anim = GetComponent<GuardAnimatorScript>();
@@ -48,7 +50,9 @@ public class SMEnemyMoveScript : GuardMoveScript
             _agent.isStopped = false;
         }
 
-        if (Vector3.Distance(transform.position, _wayPoint) <= .5f) {
+        if (Vector3.Distance(transform.position, _wayPoint) <= .5f)
+        {
+            transform.rotation = _wayPointDirection;
             _reachedWayPoint = true;
             _isRunning = false;
         }
