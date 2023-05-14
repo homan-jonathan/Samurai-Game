@@ -9,6 +9,8 @@ TagManager:
   - Coins
   - SwordPickup
   - Weapon
+  - Ignore
+  - PlayerRaycastTarget
   layers:
   - Default
   - TransparentFX

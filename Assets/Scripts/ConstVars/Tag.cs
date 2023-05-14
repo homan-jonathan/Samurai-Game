@@ -11,4 +11,5 @@ public class Tag
     public const string coinPickup = "Coins";
     public const string swordPickup = "SwordPickup";
     public const string ignore = "Ignore";
+    public const string playerRaycastTarget = "PlayerRaycastTarget";
 }

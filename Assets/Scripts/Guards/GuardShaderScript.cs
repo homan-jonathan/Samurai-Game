@@ -10,6 +10,8 @@ public class GuardShaderScript : MonoBehaviour
     Shader xRayShader;
     SkinnedMeshRenderer _skinnedMeshRenderer;
 
+    PlayerRaycastScript _raycastScript;
+
     public bool _isTagged = false;
     // Start is called before the first frame update
     void Start()
@@ -19,6 +21,8 @@ public class GuardShaderScript : MonoBehaviour
         xRayShader = Shader.Find("XRay Shaders/Diffuse-XRay-Replaceable");
 
         _skinnedMeshRenderer.material.shader = basicShader;
+
+        _raycastScript = FindObjectOfType<PlayerRaycastScript>();
     }
 
     // Update is called once per frame
