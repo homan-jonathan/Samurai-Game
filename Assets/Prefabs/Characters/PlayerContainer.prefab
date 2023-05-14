@@ -2415,6 +2415,7 @@ MonoBehaviour:
   ROTATION_SPEED: 360
   _hasChargedJump: 0
   NEEDED_TO_JUMP: 1
+  _petalEffectObject: {fileID: 0}
 --- !u!114 &3598364532773958366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2427,6 +2428,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7471804c515629c4f93106bfed069be7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _petalEffect: {fileID: 0}
 --- !u!114 &441411187408652103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4636,7 +4638,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 447640, guid: 11cebe5678d7a294b8a98760ca9625b2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 447640, guid: 11cebe5678d7a294b8a98760ca9625b2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4671,7 +4673,15 @@ PrefabInstance:
       value: 17.884
       objectReference: {fileID: 0}
     - target: {fileID: 19865698, guid: 11cebe5678d7a294b8a98760ca9625b2, type: 3}
+      propertyPath: looping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19865698, guid: 11cebe5678d7a294b8a98760ca9625b2, type: 3}
       propertyPath: prewarm
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19865698, guid: 11cebe5678d7a294b8a98760ca9625b2, type: 3}
+      propertyPath: playOnAwake
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 19865698, guid: 11cebe5678d7a294b8a98760ca9625b2, type: 3}

@@ -9,7 +9,7 @@ public class PlayerRaycastScript : MonoBehaviour
     Transform _transform;
     CharacterController _charCon;
 
-    bool _tagEnemy = false;
+    //bool _tagEnemy = false;
     // Start is called before the first frame update
     void Start()
     {
