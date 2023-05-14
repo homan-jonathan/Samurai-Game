@@ -7,6 +7,9 @@ public class PlayerAnimScript : MonoBehaviour
     Animator _anim;
     PlayerMoveScript _playerMoveScript;
     PlayerSoundsScript _playerSoundsScript;
+
+    public ParticleSystem _petalEffect;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,5 +47,14 @@ public class PlayerAnimScript : MonoBehaviour
     public void PlayStabAnim()
     {
         _anim.SetTrigger("stabEnemy");
+    }
+    public void StartPetalEffect()
+    {
+        _petalEffect.Play();
+    }
+    public void StopPetalEffect()
+    {
+        
+        _petalEffect.Pause();
     }
 }
