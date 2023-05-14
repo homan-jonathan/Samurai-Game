@@ -7,6 +7,7 @@ public class GameSceneManagerScript : MonoBehaviour
 {
     public GameObject pauseMenu;
     public GameCanvasScript gameCanvas;
+    public GameObject interactCanvas;
     
     bool _isPaused = false;
     bool _gameOver = false;
@@ -25,7 +26,7 @@ public class GameSceneManagerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape)) {
+        if (Input.GetKeyDown(KeyCode.Escape) && !_gameOver) {
             PauseGame();
         }
 
@@ -57,6 +58,7 @@ public class GameSceneManagerScript : MonoBehaviour
     public void HasWon() {
         gameCanvas.DisplayEndGameText("Mission Succssesful", Color.green);
         _gameOver = true;
+        interactCanvas.SetActive(false);
         StartCoroutine(EndScreen(true));
     }
 
@@ -64,6 +66,7 @@ public class GameSceneManagerScript : MonoBehaviour
     {
         gameCanvas.DisplayEndGameText("Mission Failed", Color.red);
         _gameOver = true;
+        interactCanvas.SetActive(false);
         StartCoroutine(EndScreen(false));
     }
 
