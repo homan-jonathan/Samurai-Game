@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class HidingSpotScript : MonoBehaviour
 {
-    Material _mat;
+    Material[] _mats;
     // Start is called before the first frame update
     void Start()
     {
-        _mat = GetComponent<Renderer>().material;
+        Renderer[] renderers = GetComponents<Renderer>();
+        _mats = new Material[renderers.Length];
+        for (int i =0; i < renderers.Length; i++) { 
+            _mats[i] = renderers[i].material;
+        }
     }
 
     // Update is called once per frame
@@ -17,20 +21,38 @@ public class HidingSpotScript : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void EnterHidingSpot(Collider other)
     {
-        if (other.gameObject.tag.Equals(Tag.player) || other.gameObject.tag.Equals(Tag.hiddenPlayer)) {
-            _mat.color = new Color(_mat.color.r, _mat.color.g, _mat.color.b, .3f);
+        if (other.gameObject.tag.Equals(Tag.player) || other.gameObject.tag.Equals(Tag.hiddenPlayer))
+        {
+            foreach (var mat in _mats)
+            {
+                mat.color = new Color(mat.color.r, mat.color.g, mat.color.b, .1f);
+            }
             other.gameObject.tag = Tag.hiddenPlayer;
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    public void ExitHidingSpot(Collider other)
     {
         if (other.gameObject.tag.Equals(Tag.hiddenPlayer) || other.gameObject.tag.Equals(Tag.player))
         {
-            _mat.color = new Color(_mat.color.r, _mat.color.g, _mat.color.b, 1f);
+            foreach (var mat in _mats)
+            {
+                mat.color = new Color(mat.color.r, mat.color.g, mat.color.b, 1f);
+            }
             other.gameObject.tag = Tag.player;
         }
+    }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        EnterHidingSpot(other);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        ExitHidingSpot(other);
     }
 }

@@ -10,7 +10,6 @@ public class CameraScript : MonoBehaviour
     public float _rotAmtX = 0;
     public float _rotAmtY = 0;
     public float ROTATION_SPEED = 1;
-    public float VERTICAL_CAMERA_MOVEMENT = 0;
     public float Y_LOOKAT_OFFSET = 1;
     public float Y_RETURN_SPEED = .25f;
     public float SMOOTH_TIME = 1f;
@@ -64,11 +63,7 @@ public class CameraScript : MonoBehaviour
         }
 
         //Update Look at Target
-        _lookAtLocation = new Vector3(_playerTransform.position.x, _lookAtLocation.y, _playerTransform.position.z);
-        if (Mathf.Abs(_playerTransform.position.y - _lookAtLocation.y) > VERTICAL_CAMERA_MOVEMENT)
-        {
-            _lookAtLocation.y = _playerTransform.position.y + Y_LOOKAT_OFFSET;
-        }
+        _lookAtLocation = new Vector3(_playerTransform.position.x, _playerTransform.position.y + Y_LOOKAT_OFFSET, _playerTransform.position.z);
 
         //Move the camera
         if (sinceTransition <= 0)
