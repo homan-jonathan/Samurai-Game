@@ -64,7 +64,7 @@ public class GaurdCanvasScript : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                if (hit.collider.tag.Equals(Tag.player) || (hit.collider.tag.Equals(Tag.hiddenPlayer) && _guardSightScript.IsPlayerVisible()))
+                if (hit.collider.tag.Equals(Tag.player) || hit.collider.tag.Equals(Tag.hiddenPlayer) || _guardSightScript.IsPlayerVisible())
                 {
                     hitPlayer = true;
                 }
