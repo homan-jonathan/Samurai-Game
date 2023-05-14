@@ -36,10 +36,10 @@ public class GuardRangeAttack : MonoBehaviour
                     !_enemyAnimScript.AnimationIsPlaying(AnimationState.throwshuriken))
             {
                 _enemyAnimScript.PlayAttackAnim();
+
+                yield return new WaitForSeconds(.85f);
                 GameObject ninjaStar = Instantiate(shuriken, _spawnLocation.position, Quaternion.identity);
-                ninjaStar.GetComponent<Rigidbody>().AddForce(Quaternion.Euler(0, -90, 0) * new Vector3((_playerTransform.position - _spawnLocation.position).x, 0, (_playerTransform.position - _spawnLocation.position).z) * Time.deltaTime * speed);
-                print(_spawnLocation);
-                print((_spawnLocation.position - _playerTransform.position) * Time.deltaTime * speed);
+                ninjaStar.GetComponent<Rigidbody>().AddForce((_playerTransform.position - _spawnLocation.position) * Time.deltaTime * speed);
             }
             yield return new WaitForSeconds(.5f);
         }

@@ -27,21 +27,7 @@ MonoBehaviour:
   THROW_DISTANCE: 10
   ATTACK_ANGLE: 150
   shuriken: {fileID: 8053960615543421045, guid: 5bcdafaff96c2d64a93391f320d96406, type: 3}
-  speed: 10
---- !u!114 &9078067217793735672
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6972911285805097990}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38926cd1debbe5e4f84a5810ef4a49ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _stopMovement: 0
-  GUARD_RUN_SPEED: 6
+  speed: 4000
 --- !u!1001 &5531650261913680271
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -59,15 +45,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3170709252674396483, guid: d925f076cda1d4b448a3238ffcf1e1de, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.9083452
+      value: 1.1767303
       objectReference: {fileID: 0}
     - target: {fileID: 3170709252674396483, guid: d925f076cda1d4b448a3238ffcf1e1de, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.11347008
+      value: 0.31587124
       objectReference: {fileID: 0}
     - target: {fileID: 3170709252674396483, guid: d925f076cda1d4b448a3238ffcf1e1de, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 22.098167
+      value: 3.8156414
       objectReference: {fileID: 0}
     - target: {fileID: 3170709252674396483, guid: d925f076cda1d4b448a3238ffcf1e1de, type: 3}
       propertyPath: m_LocalRotation.w
@@ -99,11 +85,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3170709252674559369, guid: d925f076cda1d4b448a3238ffcf1e1de, type: 3}
       propertyPath: m_Name
-      value: StationaryRangeGuard Variant
+      value: StationaryRangeGuard Variant Variant
       objectReference: {fileID: 0}
     - target: {fileID: 5260663926456666221, guid: d925f076cda1d4b448a3238ffcf1e1de, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5460466623552849307, guid: d925f076cda1d4b448a3238ffcf1e1de, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5586818230255419951, guid: d925f076cda1d4b448a3238ffcf1e1de, type: 3}
+      propertyPath: GUARD_RUN_SPEED
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8020456752035209233, guid: d925f076cda1d4b448a3238ffcf1e1de, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 8366842147654928011, guid: d925f076cda1d4b448a3238ffcf1e1de, type: 3}
       propertyPath: attackNoise
@@ -113,10 +111,23 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8848231166134112324, guid: d925f076cda1d4b448a3238ffcf1e1de, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8848231166134112324, guid: d925f076cda1d4b448a3238ffcf1e1de, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8848231166134112324, guid: d925f076cda1d4b448a3238ffcf1e1de, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4807458857058094893, guid: d925f076cda1d4b448a3238ffcf1e1de, type: 3}
     - {fileID: 8804403929192181734, guid: d925f076cda1d4b448a3238ffcf1e1de, type: 3}
     - {fileID: 2521649804833068307, guid: d925f076cda1d4b448a3238ffcf1e1de, type: 3}
+    - {fileID: 5052746667791344598, guid: d925f076cda1d4b448a3238ffcf1e1de, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d925f076cda1d4b448a3238ffcf1e1de, type: 3}
 --- !u!1 &6972911285805097990 stripped
 GameObject:

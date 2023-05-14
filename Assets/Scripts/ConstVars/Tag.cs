@@ -10,4 +10,5 @@ public class Tag
     public const string weapon = "Weapon";
     public const string coinPickup = "Coins";
     public const string swordPickup = "SwordPickup";
+    public const string ignore = "Ignore";
 }
