@@ -41,7 +41,7 @@ public class PlayerRaycastScript : MonoBehaviour
         {
             var obj = hit.collider.gameObject;
 
-            if (obj.tag == Tag.playerRaycastTarget && Input.GetKeyDown(KeyBinding.interact()))
+            if (obj.name == "PlayerRaycastTarget" && Input.GetKeyDown(KeyBinding.interact()))
             {
                 GuardShaderScript _script = obj.GetComponentInParent<GuardShaderScript>();
                 _script._isTagged = true;

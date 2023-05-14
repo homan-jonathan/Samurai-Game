@@ -33,7 +33,7 @@ public class PlayerMoveScript : MonoBehaviour
     bool _isFalling = false;
 
     //logic for charging jump
-    bool _hasChargedJump = false;
+    public bool _hasChargedJump = false;
     float _chargeJumpTimer = 0.0f;
     public float NEEDED_TO_JUMP = 1.0f;
 
@@ -98,7 +98,14 @@ public class PlayerMoveScript : MonoBehaviour
                 _isFalling = true;
             }
         }
-        
+        if(_hasChargedJump)
+        {
+            _animScript.StartPetalEffect();
+        }
+        else
+        {
+            _animScript.StartPetalEffect();
+        }
 
         switch (_cameraScript._mode)
         {
@@ -139,7 +146,7 @@ public class PlayerMoveScript : MonoBehaviour
 
         if (_chargeJumpTimer >= NEEDED_TO_JUMP)
         {
-            _hasChargedJump = true;
+            _hasChargedJump = true; 
         }
         else
         {
