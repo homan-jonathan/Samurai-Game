@@ -13,7 +13,6 @@ public class SRGuardAnimScript : GuardAnimatorScript
         _enemyScript = GetComponent<SMEnemyMoveScript>();
         _guardSounds = GetComponent<GuardSoundScript>();
         _attackAnim = AnimationState.throwshuriken;
-        print(_attackAnim);
     }
 
     // Update is called once per frame
