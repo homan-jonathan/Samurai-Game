@@ -1162,6 +1162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec8dde0636bce7d47aace746601575be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDead: 0
   PLAYER: {fileID: 0}
 --- !u!114 &4238563257734804575
 MonoBehaviour:
@@ -1190,7 +1191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96063ebb046c262468e39f840984a0f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VIEW_ANGLE: 170
+  VIEW_ANGLE: 180
   VIEW_DISTANCE: 10
   PLAYER_CROUCHING_MULTIPLIER: 0.5
   PLAYER_SPOTTED_DURATION: 2

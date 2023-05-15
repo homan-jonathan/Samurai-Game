@@ -16,6 +16,7 @@ public class GuardSightScript : MonoBehaviour
     GuardViewDistance _sightIndicatorScript;
     GuardAlertScript _alertGuardScript;
     GuardSoundScript _guardSoundScript;
+    GuardMainScript _guardMainScript;
     bool _playerCloseToGaurd = false;
     float _seenPlayerRecently = 0;
 
@@ -27,11 +28,17 @@ public class GuardSightScript : MonoBehaviour
         _playerMoveScript = GetComponent<GuardMainScript>().GetPlayerReference().GetComponent<PlayerMoveScript>();
         _alertGuardScript = GetComponentInChildren<GuardAlertScript>();
         _guardSoundScript = GetComponent<GuardSoundScript>();
+        _guardMainScript = GetComponent<GuardMainScript>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!_guardMainScript.isActive)
+        {
+            return;
+        }
+
         if (_seenPlayerRecently > 0)
         {
             _seenPlayerRecently -= Time.deltaTime;

@@ -11,7 +11,8 @@ public class SMEnemyMoveScript : GuardMoveScript
     Transform _playerTransform;
     GuardAnimatorScript _anim;
     GuardMoveScript _baseMoveScript;
-    
+    GuardMainScript _guardMainScript;
+
     Vector3 _wayPoint;
     Quaternion _wayPointDirection;
     bool _isRunning = false;
@@ -27,6 +28,7 @@ public class SMEnemyMoveScript : GuardMoveScript
         _anim = GetComponent<GuardAnimatorScript>();
         _playerTransform = GetComponent<GuardMainScript>().GetPlayerReference().transform;
         _baseMoveScript = GetComponent<GuardMoveScript>();
+        _guardMainScript = GetComponent<GuardMainScript>();
 
         _agent.speed = GUARD_RUN_SPEED;
     }
@@ -34,6 +36,11 @@ public class SMEnemyMoveScript : GuardMoveScript
     // Update is called once per frame
     void Update()
     {
+        if (!_guardMainScript.isActive)
+        {
+            return;
+        }
+
         if (_anim.AttackAnimationIsPlaying()) //If attacking then stop moving
         {
             _agent.isStopped = true;

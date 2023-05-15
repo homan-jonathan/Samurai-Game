@@ -10,7 +10,6 @@ public class GuardMoveScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -23,9 +22,9 @@ public class GuardMoveScript : MonoBehaviour
     {
         _stopMovement = true;
         GetComponent<GuardSightScript>().enabled = false;
+        GetComponent<GuardMainScript>().killGuard();
         Destroy(gameObject, 4);
     }
-
 
     //from DataGreed/UnityNavMeshCheck.cs github
     protected bool ReachedDestinationOrGaveUp()

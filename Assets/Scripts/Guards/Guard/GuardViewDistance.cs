@@ -9,16 +9,23 @@ public class GuardViewDistance : MonoBehaviour
 
     GuardSightScript _enemySightScript;
     SphereCollider _sphereCollider;
+    GuardMainScript _guardMainScript;
     // Start is called before the first frame update
     void Start()
     {
         _enemySightScript = GetComponentInParent<GuardSightScript>();
         _sphereCollider = GetComponent<SphereCollider>();
+        _guardMainScript = GetComponentInParent<GuardMainScript>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!_guardMainScript.isActive)
+        {
+            return;
+        }
+
         if (_sphereCollider.radius != _enemySightScript.CalculateViewDistance() * EPISLON_VISIBILITY_RANGE)
         {
             _sphereCollider.radius = _enemySightScript.CalculateViewDistance() * EPISLON_VISIBILITY_RANGE;
