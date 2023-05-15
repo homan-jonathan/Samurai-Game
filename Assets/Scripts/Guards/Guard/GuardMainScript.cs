@@ -7,6 +7,7 @@ public class GuardMainScript : MonoBehaviour
     public bool isDead = false;
     public bool isActive = false;
     public GameObject PLAYER;
+    GuardShaderScript _shaderScript;
     //public XRayCapsuleScript _xRayCapsule;
 
     // Start is called before the first frame update
@@ -14,6 +15,7 @@ public class GuardMainScript : MonoBehaviour
     {
         //_xRayCapsule = GetComponentInChildren<XRayCapsuleScript>();
         //_xRayCapsule.gameObject.SetActive(false);
+        _shaderScript = GetComponentInChildren<GuardShaderScript>();
     }
 
     // Update is called once per frame
@@ -21,8 +23,19 @@ public class GuardMainScript : MonoBehaviour
     {
 
     }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.name == "TagGuardCollider")
+        {
+            if (Input.GetKeyDown(KeyBinding.interact()))
+            {
+                _shaderScript._isTagged = true;
+                print("tag enemy");
+            }
+        }
+    }
 
-    public void ActivateGuard()
+        public void ActivateGuard()
     {
         isActive = true;
     }
