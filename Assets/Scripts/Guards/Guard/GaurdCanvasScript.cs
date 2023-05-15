@@ -13,6 +13,7 @@ public class GaurdCanvasScript : MonoBehaviour
     public Color spottedColor;
 
     float _inCautionRange = 0;
+    float _inSightRange = 0;
     public float RESET_TIME = 2.5f;
 
     Transform _headTransform;
@@ -84,6 +85,11 @@ public class GaurdCanvasScript : MonoBehaviour
                 Color color = new Color(spottedColor.r, spottedColor.g, spottedColor.b);
                 _warningImage.color = color;
                 _enemyPointersScript.SetTarget(transform, color);
+                if (_inSightRange <= 0)
+                {
+                    _guardSoundScript.GuardSpottedNoise();
+                }
+                _inSightRange = RESET_TIME;
             } //In caution view radius
             else if (hitPlayer && Vector3.Angle(_transform.forward, directionToPlayer) < WARNING_VIEW_ANGLE / 2)
             {

@@ -27,7 +27,7 @@ MonoBehaviour:
   THROW_DISTANCE: 10
   ATTACK_ANGLE: 150
   shuriken: {fileID: 8053960615543421045, guid: 5bcdafaff96c2d64a93391f320d96406, type: 3}
-  speed: 4000
+  speed: 2000
 --- !u!1001 &5531650261913680271
 PrefabInstance:
   m_ObjectHideFlags: 0
