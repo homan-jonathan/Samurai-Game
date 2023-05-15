@@ -60,6 +60,7 @@ public class PlayerMainScript : MonoBehaviour
         }
     }
 
+
     public bool IsDead()
     {
         return _isDead;
