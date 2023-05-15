@@ -59,7 +59,18 @@ public class PlayerMainScript : MonoBehaviour
             _isDead = true;
         }
     }
-
+    private void OnTriggerStay(Collider other)
+    {
+        if(other.gameObject.name == "GuardSpottedRange")
+        {
+            if (Input.GetKeyDown(KeyBinding.interact()))
+            {
+                GuardShaderScript _thisEnemy = other.GetComponentInParent<GuardShaderScript>();
+                _thisEnemy._isTagged = true;
+                print("tag enemy");
+            }
+        }
+    }
 
     public bool IsDead()
     {

@@ -23,17 +23,6 @@ public class GuardMainScript : MonoBehaviour
     {
 
     }
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.name == "TagGuardCollider")
-        {
-            if (Input.GetKeyDown(KeyBinding.interact()))
-            {
-                _shaderScript._isTagged = true;
-                print("tag enemy");
-            }
-        }
-    }
 
         public void ActivateGuard()
     {
