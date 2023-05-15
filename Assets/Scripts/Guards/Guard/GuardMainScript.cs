@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class GuardMainScript : MonoBehaviour
 {
+    public bool isDead = false;
+    public bool isActive = false;
     public GameObject PLAYER;
-    GuardShaderScript _shaderScript;
     //public XRayCapsuleScript _xRayCapsule;
 
     // Start is called before the first frame update
@@ -13,23 +14,26 @@ public class GuardMainScript : MonoBehaviour
     {
         //_xRayCapsule = GetComponentInChildren<XRayCapsuleScript>();
         //_xRayCapsule.gameObject.SetActive(false);
-        _shaderScript = GetComponentInChildren<GuardShaderScript>();
     }
 
     // Update is called once per frame
     void Update()
     {
+
     }
 
-    private void OnTriggerStay(Collider other)
+    public void ActivateGuard()
     {
-        if (other.gameObject.name == "TagGuardCollider")
-        {
-            if (Input.GetKeyDown(KeyBinding.interact())){
-                _shaderScript._isTagged = true;
-                print("tag enemy");
-            }
-        }
+        isActive = true;
+    }
+
+    public void DeactivateGuard()
+    {
+        isActive = false;
+    }
+
+    public void killGuard() {
+        isDead = true;
     }
 
     public GameObject GetPlayerReference()
