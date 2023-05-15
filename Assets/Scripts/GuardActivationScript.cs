@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class GuardActivationScript : MonoBehaviour
 {
+    EnemyPointersScript _enemyPointersScript;
     // Start is called before the first frame update
     void Start()
     {
-        
+        _enemyPointersScript = FindObjectOfType<EnemyPointersScript>();
     }
 
     // Update is called once per frame
@@ -18,14 +19,15 @@ public class GuardActivationScript : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == Tag.enemy) {
-            GetComponent<GuardMainScript>().ActivateGuard();
+            other.GetComponent<GuardMainScript>().ActivateGuard();
         }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == Tag.enemy)
         {
-            GetComponent<GuardMainScript>().DeactivateGuard();
+            other.GetComponent<GuardMainScript>().DeactivateGuard();
+            _enemyPointersScript.ClearTarget(other.transform);
         }
     }
 }
